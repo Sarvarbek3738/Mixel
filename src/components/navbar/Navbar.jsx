@@ -42,7 +42,7 @@ function Navbar({ getCategories, setInputValue, categories }) {
                     navigate("/search");
                   }}
                   type="text"
-                  placeholder="Телефоны и бытовая"
+                  placeholder="Telephones and household appliances"
                 />
               </div>
 
@@ -52,7 +52,7 @@ function Navbar({ getCategories, setInputValue, categories }) {
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </div>
                   <div>
-                    <p>Поиск</p>
+                    <p>Search</p>
                   </div>
                 </button>
               </div>
@@ -62,33 +62,33 @@ function Navbar({ getCategories, setInputValue, categories }) {
                 <div>
                   <i class="fa-solid fa-right-to-bracket"></i>
                   <br />
-                  <p>Войти</p>
+                  <p>Login</p>
                 </div>
               </Link>
               <Link to={"/comparison"}>
                 <div>
                   <i class="fa-solid fa-scale-balanced"></i>
                   <br />
-                  <p>Сравнение</p>
+                  <p>Comparison</p>
                 </div>
               </Link>
               <Link to={"/liked"}>
                 <div>
                   <i class="fa-regular fa-heart"></i>
                   <br />
-                  <p>Избранное</p>
+                  <p>Featured</p>
                 </div>
               </Link>
               <div>
                 <i class="fa-solid fa-cart-shopping"></i>
                 <br />
-                <p>Корзина</p>
+                <p>Cart</p>
               </div>
               <Link to={"/dashboard"}>
                 <div>
                   <i class="fa-solid fa-user"></i>
                   <br />
-                  <p>Профиль</p>
+                  <p>Profile</p>
                 </div>
               </Link>
             </div>
@@ -107,7 +107,7 @@ function Navbar({ getCategories, setInputValue, categories }) {
                   <Hamburger size={15} toggled={isOpen} toggle={setOpen} />
                 </div>
                 <div>
-                  <p>Категории</p>
+                  <p>Category</p>
                 </div>
               </button>
             </div>
