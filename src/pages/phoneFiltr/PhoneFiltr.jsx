@@ -379,7 +379,7 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
                   <p>Посмотреть все →</p>
                 </div>
                 <div className="smartfonRightCards">
-               <Slaydir/>
+               <Slaydir  products={products} getData={getData} />
                 </div>
                 <div className="ToliqMalumot">
                   <h3>Где купить надежный смартфон в Ташкенте?</h3>

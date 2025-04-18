@@ -270,7 +270,7 @@ function Product({ categories, getCategories, products, getData }) {
           </div>
         </div>
         <div className="container">
-          <Slaydir/>
+          <Slaydir  products={products} getData={getData} />
           {/* <div className="smartfonRightCards">
             <Swiper
               slidesPerView={3}
