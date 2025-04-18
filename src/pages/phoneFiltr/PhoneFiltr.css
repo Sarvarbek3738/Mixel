@@ -1,0 +1,235 @@
+.phoneFilter .container {
+    padding-top: 200px;
+}
+.smartfonBlock{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.basicTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.basicTitleLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 25px 0px;
+}
+
+.basicTitleLeft div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.basicTitle p,
+i {
+    color: rgba(98, 99, 100, 1);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.smatfonTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.smatfonTitle1 {
+    display: flex;
+    gap: 120px;
+}
+
+.sent {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.sent {
+
+    color: rgba(144, 144, 144, 1);
+}
+
+.sent div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.smatfonTitleMenu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    color: rgba(144, 144, 144, 1);
+}
+
+.smartfonLeftSent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.smartfonLeft {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid rgba(242, 242, 242, 1);
+    height: 100%;
+    border-radius: 5px;
+
+}
+.smartfonLeftPrise{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(242, 242, 242, 1);
+    border-radius: 5px;
+    color: rgba(144, 144, 144, 1);
+}
+.ot{
+    border-right: 1px solid rgba(242, 242, 242, 1);
+    padding-right: 25px;
+}
+.smartfonLeftPrise p{
+    padding: 7px;
+}
+.zabrat{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(237, 55, 41, 1);
+    border-radius: 5px;
+    padding: 10px;
+}
+.brend{
+    padding-top: 20px;
+}
+.Емкость{
+    padding-top: 20px;
+}
+.Страна{
+    padding-top: 20px;
+}
+.Количество{
+    padding-top: 20px;
+}
+.Фронтальная{
+    padding-top: 20px;
+}
+.Фотокамера{
+    padding-top: 20px;
+}
+.Версия{
+    padding-top: 20px;
+}
+.Разъем{
+    padding-top: 20px;
+}
+
+.lg{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.samsung{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.artel{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.huawei{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.smartfonLeftBtn{
+    text-align: center;
+    margin-top: 30px;
+}
+.smartfonLeftBtn button{
+    width: 100%;
+    padding: 11px 0px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px ;
+    font-weight: 400;
+    background-color: #ED3729;
+    color: white;
+}
+/* =================================================== */
+.smartfonRight  .smartfonRightCards{
+    display: flex;
+    width: 1000px;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 26px;
+}
+
+.smartfonRighBtn{
+    text-align: center;
+    padding-top: 60px;
+}
+.smartfonRighBtn .smartfonRighButton{
+    padding: 12px 50px;
+    border: 1px solid #ED3729;
+    color: #ED3729;
+    background-color: white;
+    border-radius: 5px;
+}
+.Paginetion{
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+    padding-bottom: 80px;
+}
+.smartfonRighBrendBox{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-bottom: 80px;
+}
+.smartfonRighBrendBox div{
+    border: 1px solid rgba(189, 189, 189, 1);
+    padding: 4px 22px;
+    border-radius: 17px;
+    font-size: 14px;
+    font-weight: 400;
+
+}
+.smartfonRighBrendBox div:hover{
+    background-color: #E0E0E0;
+    cursor: pointer;
+}
+.smartfonRighBrend h3{
+    padding-bottom: 40px;
+}
+.ToliqMalumot{
+    padding-bottom: 90px;
+}
+.ToliqMalumot h3{
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+.ToliqMalumot p{
+    line-height: 25px;
+}
+.activeFiltr{
+    color: #ED3729;
+}

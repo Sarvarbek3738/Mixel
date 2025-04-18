@@ -1,0 +1,79 @@
+.comparison {
+    padding-top: 200px;
+}
+
+.comparisonCards .productsBlock {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding-bottom: 60px;
+    padding-top: 20px;
+}
+.comparisSwitch{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 20px;
+}
+
+.comparisonCategory {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+}
+
+.comparisonBtn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.comparisonBtn i {
+    padding-top: 2.3px;
+    color: black;
+}
+
+.comparisonBtn p {
+    color:black;
+
+}
+
+
+.comparisonBtn .camBtn {
+    border-radius: 20px;
+    padding: 5px 15px;
+    border: 1px solid rgba(224, 224, 224, 1);
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.comparisonBtn .camBtn:hover  {
+    background-color: #ED3729;
+    color: white;
+    border: 1px solid #ED3729;
+}
+.comparisonBtn .camBtn:hover p {
+    color: white;
+}
+.comparisonBtn .camBtn:hover i {
+    color: white;
+}
+.comparisonTovar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.comparisonTovar i{
+    font-size: 20px;
+    color: #BDBDBD;
+    padding-top: 2px;
+    cursor: pointer;
+}

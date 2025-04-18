@@ -1,0 +1,12 @@
+.PhoneFiltrAlotCards {
+  margin-bottom: 30px;
+}
+.AloImg{
+
+    mix-blend-mode: multiply;
+}
+.AloImg img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}

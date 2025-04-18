@@ -1,0 +1,246 @@
+.navTop .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0px;
+}
+
+.navTop {
+  background-color: #ed3729;
+  color: white;
+  transition: all 5s ease;
+}
+.categoryIcon img{
+  object-fit: contain;
+  width: 30px;
+  height: 30px;
+}
+.categoryNames{
+  padding-top: 30px;
+}
+.NavTopLeft {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.NavTopLeft div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.NavbarTopRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.formControl section {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+/* ============================================= */
+.navbar {
+  background-color: white;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.NavSearch {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid #ed3729;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+.NavSearch button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  border-radius: 0px 5px 5px 0px;
+  border: #ed3729;
+  outline: none;
+  background-color: #ed3729;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button {
+  cursor: pointer;
+}
+
+.mikrafon {
+  color: #bdbdbd;
+  cursor: pointer;
+}
+
+.NavSearch input {
+  border: none;
+  outline: none;
+  width: 280px;
+}
+
+.NavIcon {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 36px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.NavIcon i {
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+/* ===================================================== */
+.MenuCategori button {
+  padding: 0px 60px;
+  background-color: #ed3729;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.MenuCategori i {
+  color: white;
+}
+.CategoryTovar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.CategoryTovar p {
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.navCategori .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navCategori {
+  background-color: white;
+  padding-bottom: 10px;
+}
+.navCategori {
+  position: fixed;
+  z-index: 1000;
+  top: 100px;
+  width: 100%;
+  background-color: white !important;
+}
+.OneNav {
+  z-index: 999;
+  width: 100%;
+  top: 0px;
+  background-color: white;
+}
+
+/* ============================================== */
+.categoriyaModal {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  top: 156px;
+}
+
+.ModalLeft {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 280px;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.25s ease;
+}
+
+.ModalLeft:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+.hamburger-react {
+  height: 48px !important;
+}
+.ModalLeftBlock {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.categoriyaLeft {
+  display: flex;
+  gap: 15px;
+}
+.categoriyaModal2 {
+  padding: 5px 10px;
+}
+.categoriyaModal2 h3 {
+  font-size: 24px;
+  font-weight: 400;
+  padding-bottom: 25px;
+}
+.categoriyaModal .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoriyaRight img {
+  width: 500px;
+  cursor: pointer;
+}
+.categoriyaModal {
+  position: fixed;
+  backdrop-filter: blur(8px);
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+.categoriyaModal .ModalContainer {
+  background-color: white;
+}
+.categoriyaModal2 p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 5px;
+  transition: all 0.25s ease;
+}
+.categoriyaModal2 p:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}

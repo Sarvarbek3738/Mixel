@@ -1,0 +1,215 @@
+.dashboardPage {
+  padding-top: 200px;
+}
+.pageWay {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  color: #626364;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 180%;
+}
+.mainContent {
+  padding-top: 30px;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.accountSidebar {
+  width: 360px;
+  border-right: #f2f2f2 solid 1px;
+}
+.userInfo p {
+  color: #202020 !important;
+  font-weight: 500;
+}
+.userData {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 30px;
+}
+.leftForms {
+  display: flex;
+  gap: 30px;
+}
+.rowItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-top: 30px;
+}
+.PrivateSwitchBase-input {
+  color: #ed3729 !important;
+  background-color: #ed3729 !important;
+}
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 90px;
+}
+.switch p {
+  padding: 0 !important;
+}
+.iconImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.userInfo p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+}
+.userInfo p:last-child {
+  color: #626364;
+}
+.personalData {
+  border: #f2f2f2 1px solid;
+  width: 450px;
+}
+.personalTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 15px;
+  padding: 15px;
+}
+.personalTop .rowItem {
+  padding: 0;
+}
+.editBtn {
+  color: #ed3729;
+  background-color: transparent;
+  padding: 9px 25px;
+  border-radius: 5px;
+  border: 1px solid #ed3729;
+}
+.personalMain {
+  padding: 15px;
+  padding-top: 20px;
+}
+.personalMain p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+}
+.personalMain p:first-child {
+  padding-bottom: 14px;
+}
+.personalMain p:last-child {
+  color: #626364;
+  padding-bottom: 90px;
+}
+.accountCol {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.street {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+.rowInputs {
+  display: flex;
+  gap: 30px;
+  margin: 24px 0;
+}
+input {
+  outline: none;
+}
+.defoultAddress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.defoultAddress p {
+  padding: 0 !important;
+}
+input[type="checkbox"]:checked {
+  background-color: #ed3729; /* Tanlangan holatda orqa fon */
+  border-color: #ed3729; /* Tanlangan holatda chiziq rangi */
+}
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 8px;
+  height: 14px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+.personalDataBtn {
+  padding-top: 10px;
+  display: flex;
+  gap: 14px;
+}
+.saveBtn {
+  background-color: #ed3729;
+  padding: 12px 51px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.cancelBtn {
+  padding: 12px 51px;
+  border: 1px solid #ed3729;
+  color: #ed3729;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 16px;
+}
+.rightForm {
+  width: 700px;
+}
+.rightForm .row {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  gap: 80px;
+}
+.rightForm .rowItem {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-top: 20px;
+}
+.rightForm input {
+  border: none;
+  background-color: #f5f5f5;
+  padding: 10px 15px;
+  width: 250px;
+  font-size: 16px;
+}
+.passwordChanges {
+  display: flex;
+  padding-top: 30px;
+  flex-direction: column;
+  gap: 20px;
+}
+.passwordChanges input {
+  width: 100%;
+}
+.formBtns {
+  display: flex;
+  gap: 30px;
+  justify-content: end;
+}
+.saveBtn {
+  padding: 15px 30px;
+  font-size: 18px;
+}

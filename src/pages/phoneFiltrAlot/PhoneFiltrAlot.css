@@ -1,0 +1,113 @@
+.PhoneFiltrAlotCards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  border: 1px solid rgba(242, 242, 242, 1);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.AloImg {
+  width: 230px;
+  display: flex;
+  justify-content: center;
+}
+
+.AlotTitle {
+  width: 370px;
+}
+
+.AlotTitle h3 {
+  padding-bottom: 20px;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.AlotTitle p {
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 5px;
+}
+
+.AlotTitle span {
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.AlotBuy {
+  width: 170px;
+  text-align: center;
+}
+
+.AlotBuy h4 {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(237, 55, 41, 1);
+  line-height: 100%;
+}
+
+.AlotBuy p {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(144, 144, 144, 1);
+  line-height: 180%;
+  padding-bottom: 9px;
+}
+
+.AlotBuy div button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+  width: 100%;
+  gap: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: rgba(237, 55, 41, 1);
+}
+.AlotBuy button p {
+  color: white;
+  font-size: 14px;
+  padding-top: 8px;
+}
+.AlotBuy button i {
+  color: white;
+}
+.AlotBuyIcon {
+  padding-top: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(242, 242, 242, 1);
+}
+.AlotBuyIcon i {
+  color: rgba(189, 189, 189, 1);
+  cursor: pointer;
+}
+.AlotBuyIcon i:hover {
+  color: #ed3729;
+}
+
+.AlotBuyIcon div {
+  padding: 0px 30px;
+}
+.AlotBuyIconHeard {
+  border-right: 2px solid rgba(242, 242, 242, 1);
+}
+.custom-checkbox {
+  accent-color: #ed3729;
+}
+
+.MuiSlider-valueLabel {
+  color: white !important;
+}
+.MuiSlider-root {
+  color: #ed3729 !important;
+}
+.activeAlot {
+  color: #ed3729;
+}

@@ -1,0 +1,131 @@
+.product {
+  padding-top: 200px;
+}
+.productCardImgssss {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+.productCardImgssss .itemImg {
+  width: 64px;
+  border: 1px solid #ccc;
+  height: 64px;
+}
+.productCardImgssss .itemImg img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.productCardImg {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 35px;
+}
+.productCardImg img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+.productCards {
+  display: flex;
+  justify-content: space-between;
+}
+.ProductTitle h1 {
+  font-size: 28px;
+}
+.productPrise {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  padding: 30px 0px;
+}
+.productPrise div p {
+  font-size: 18px;
+  font-weight: 600;
+}
+.vip i {
+  padding-right: 10px;
+  color: rgba(144, 144, 144, 1);
+}
+.vip {
+  color: rgba(144, 144, 144, 1);
+  cursor: pointer;
+}
+.productPrise .Box5Tovar {
+  border-top: none;
+}
+.productBtn {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 40px 0px;
+}
+.productBtn button {
+  padding: 10px 50px;
+  border: none;
+  background-color: #202020;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.productBtn button:hover {
+  background-color: #ed3729;
+}
+.ProductMinText {
+  width: 500px;
+}
+.ProductMinText div p {
+  width: 260px;
+  font-size: 14px;
+}
+.productMinSiz {
+  color: rgba(144, 144, 144, 1);
+}
+.ProductMinText div {
+  border-top: 1px solid rgba(242, 242, 242, 1);
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  padding: 10px 5px;
+}
+.ProductMinText div:hover {
+  background-color: #f2f2f2;
+}
+.ProductMinText h3 {
+  font-size: 16px;
+  padding-bottom: 15px;
+  padding-top: 20px;
+}
+
+.smartfonRightCards{
+  width: 100%;
+  justify-content: start;
+  gap: 0px;
+  padding-bottom: 80px;
+}
+
+.product .section1Title {
+  gap: 525px;
+  padding-top: 80px;
+}
+.ProductservicesCard {
+  display: flex;
+  gap: 10px;
+  background-color: #f7f7f7;
+  padding: 25px;
+  border-radius: 5px;
+}
+.ProductservicesCard p {
+  color: rgba(144, 144, 144, 1);
+  font-size: 12px;
+  padding: 5px 0px;
+}
+.ProductservicesCard h4 {
+  font-size: 15px;
+}
+.ProductservicesCard a {
+  font-size: 12px;
+  color: rgba(47, 128, 237, 1);
+}

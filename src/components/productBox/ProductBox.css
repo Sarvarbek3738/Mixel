@@ -1,0 +1,87 @@
+.box4-1 {
+  width: 230px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgba(242, 242, 242, 1);
+  position: relative;
+}
+.box4-1:hover {
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.cardImg {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 220px;
+}
+.discVal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #D93535;
+}
+.cardImg img {
+  width: 220px;
+  height: 180px;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+.Box4Narx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+  flex-direction: column-reverse;
+}
+
+.Box4Narx p {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(144, 144, 144, 1);
+}
+
+.Box4Narx h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(237, 55, 41, 1);
+}
+
+.box4-1 .Title4 {
+  font-size: 15px;
+  padding-bottom: 20px;
+  font-weight: 700;
+}
+
+.Box4Tovar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  padding: 15px 0px;
+  border-top: 1px solid rgba(242, 242, 242, 1);
+  color: #bdbdbd;
+}
+.Box4Tovar i {
+  cursor: pointer;
+  font-size: 14px;
+}
+.Box4Tovar div:hover i {
+  color: red;
+}
+.Box4 {
+  display: flex;
+  justify-content: start;
+  gap: 25px;
+  align-items: center;
+  flex-wrap: wrap;
+}
