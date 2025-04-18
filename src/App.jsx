@@ -18,9 +18,12 @@ import SignUp from "./pages/signup/SignUp";
 import { Bounce, ToastContainer } from "react-toastify";
 import { SkeletonTheme } from "react-loading-skeleton";
 import Slaydir from "./components/slaydir/Slaydir";
+import Search from "./pages/search/Search";
 function App() {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
+  const [inputValue, setInputValue] = useState(false);
+
   // getData Function
   const getData = () => {
     const requestOptions = {
@@ -28,7 +31,10 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/products/?size=100", requestOptions)
+    fetch(
+      "https://abzzvx.pythonanywhere.com/products/?size=100",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         setProducts(result);
@@ -58,7 +64,6 @@ function App() {
   };
   if (localStorage.getItem("mixelToken")) {
     useEffect(() => {
-
       getData();
     }, []);
   }
@@ -81,7 +86,7 @@ function App() {
   };
   useEffect(() => {
     getCategories();
-    getData()
+    getData();
   }, []);
 
   return (
@@ -100,7 +105,11 @@ function App() {
           theme="light"
           transition={Bounce}
         />
-        <Navbar categories={categories} getCategories={getCategories} />
+        <Navbar
+          setInputValue={setInputValue}
+          categories={categories}
+          getCategories={getCategories}
+        />
         <Routes>
           <Route
             path="/"
@@ -138,14 +147,23 @@ function App() {
             }
           />
           <Route path="/phoneFiltrAlot" element={<PhoneFiltrAlot />} />
-          <Route path="/product/:id" element={<Product
-            getCategories={getCategories}
-            categories={categories}
-            products={products}
-            getData={getData}
-          />} />
+          <Route
+            path="/product/:id"
+            element={
+              <Product
+                getCategories={getCategories}
+                categories={categories}
+                products={products}
+                getData={getData}
+              />
+            }
+          />
           <Route path="/liked" element={<Liked />} />
           <Route path="/comparison" element={<Comparison />} />
+          <Route
+            path="/search"
+            element={<Search inputValue={inputValue} products={products} getData={getData} />}
+          />
           <Route
             path="/dashboard"
             element={<Dashboard userData={userData} />}

@@ -137,7 +137,6 @@ function Home({ categories, getCategories, products, getData }) {
                             width={50}
                             height={42}
                           />
-
                         </div>
                       </div>
                     );
@@ -212,61 +211,63 @@ function Home({ categories, getCategories, products, getData }) {
                 <p>Посмотреть все →</p>
               </div>
               <div className="Box4">
-                {products?.results?.length > 0 ? (
-                  products.results
-                    .sort((a, b) => a.price - b.price) // Narx bo'yicha tartiblash
-                    .map(item => {
-                      if (item.price >= 1000 && item.price <= 1000000) {
-                        return <ProductBox key={item.id} item={item} />;
-                      } else {
-                        return null;
-                      }
-                    })
-                ) : (
-                  [1, 2, 3, 4, 5].map((_, index) => (
-                    <div key={index} className="loadingSkeletons">
-                      <Skeleton variant="rectangular" width={230} height={210} />
-                      <Skeleton
-                        variant="rectangular"
-                        style={{ marginTop: "30px" }}
-                        width={230}
-                        height={18}
-                      />
-                      <Skeleton
-                        variant="rectangular"
-                        style={{ marginTop: "20px" }}
-                        width={230}
-                        height={32}
-                      />
-                      <div
-                        className="skeletonButtons"
-                        style={{ display: "flex", justifyContent: "space-between" }}
-                      >
+                {products?.results?.length > 0
+                  ? products.results
+                      .sort((a, b) => a.price - b.price) // Narx bo'yicha tartiblash
+                      .map((item) => {
+                        if (item.price >= 1000 && item.price <= 1000000) {
+                          return <ProductBox key={item.id} item={item} />;
+                        } else {
+                          return null;
+                        }
+                      })
+                  : [1, 2, 3, 4, 5].map((_, index) => (
+                      <div key={index} className="loadingSkeletons">
                         <Skeleton
                           variant="rectangular"
-                          style={{ marginTop: "20px" }}
-                          width={50}
-                          height={42}
+                          width={230}
+                          height={210}
+                        />
+                        <Skeleton
+                          variant="rectangular"
+                          style={{ marginTop: "30px" }}
+                          width={230}
+                          height={18}
                         />
                         <Skeleton
                           variant="rectangular"
                           style={{ marginTop: "20px" }}
-                          width={50}
-                          height={42}
+                          width={230}
+                          height={32}
                         />
-                        <Skeleton
-                          variant="rectangular"
-                          style={{ marginTop: "20px" }}
-                          width={50}
-                          height={42}
-                        />
+                        <div
+                          className="skeletonButtons"
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={50}
+                            height={42}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={50}
+                            height={42}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={50}
+                            height={42}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))
-                )}
-
-
-
+                    ))}
               </div>
             </div>
           </section>
@@ -296,7 +297,11 @@ function Home({ categories, getCategories, products, getData }) {
                   ) : (
                     Array.from({ length: 5 }).map((_, index) => (
                       <div key={index} className="loadingSkeletons">
-                        <Skeleton variant="rectangular" width={230} height={210} />
+                        <Skeleton
+                          variant="rectangular"
+                          width={230}
+                          height={210}
+                        />
                         <Skeleton
                           variant="rectangular"
                           style={{ marginTop: "30px" }}
@@ -338,7 +343,6 @@ function Home({ categories, getCategories, products, getData }) {
                       </div>
                     ))
                   )}
-
                 </div>
               </div>
             </div>

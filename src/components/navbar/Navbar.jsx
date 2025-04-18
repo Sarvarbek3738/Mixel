@@ -5,16 +5,18 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import Skeleton from "react-loading-skeleton";
-function Navbar({ getCategories, categories }) {
+function Navbar({ getCategories, setInputValue, categories }) {
+  const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const [isOpenModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     getCategories();
   }, []);
+
   return (
     <>
       <div className="OneNav">
@@ -32,7 +34,16 @@ function Navbar({ getCategories, categories }) {
             </Link>
             <div className="NavSearch">
               <div>
-                <input type="text" placeholder="Телефоны и бытовая" />
+                <input
+                  onChange={(e) => {
+                    setInputValue(e.target.value);
+                  }}
+                  onFocus={() => {
+                    navigate("/search");
+                  }}
+                  type="text"
+                  placeholder="Телефоны и бытовая"
+                />
               </div>
 
               <div>
