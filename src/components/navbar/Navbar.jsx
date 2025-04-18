@@ -5,16 +5,18 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import Skeleton from "react-loading-skeleton";
-function Navbar({ getCategories, categories }) {
+function Navbar({ getCategories, setInputValue, categories }) {
+  const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const [isOpenModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     getCategories();
   }, []);
+
   return (
     <>
       <div className="OneNav">
@@ -32,7 +34,16 @@ function Navbar({ getCategories, categories }) {
             </Link>
             <div className="NavSearch">
               <div>
-                <input type="text" placeholder="Телефоны и бытовая" />
+                <input
+                  onChange={(e) => {
+                    setInputValue(e.target.value);
+                  }}
+                  onFocus={() => {
+                    navigate("/search");
+                  }}
+                  type="text"
+                  placeholder="Telephones and household appliances"
+                />
               </div>
 
               <div>
@@ -41,7 +52,7 @@ function Navbar({ getCategories, categories }) {
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </div>
                   <div>
-                    <p>Поиск</p>
+                    <p>Search</p>
                   </div>
                 </button>
               </div>
@@ -51,33 +62,33 @@ function Navbar({ getCategories, categories }) {
                 <div>
                   <i class="fa-solid fa-right-to-bracket"></i>
                   <br />
-                  <p>Войти</p>
+                  <p>Login</p>
                 </div>
               </Link>
               <Link to={"/comparison"}>
                 <div>
                   <i class="fa-solid fa-scale-balanced"></i>
                   <br />
-                  <p>Сравнение</p>
+                  <p>Comparison</p>
                 </div>
               </Link>
               <Link to={"/liked"}>
                 <div>
                   <i class="fa-regular fa-heart"></i>
                   <br />
-                  <p>Избранное</p>
+                  <p>Featured</p>
                 </div>
               </Link>
               <div>
                 <i class="fa-solid fa-cart-shopping"></i>
                 <br />
-                <p>Корзина</p>
+                <p>Cart</p>
               </div>
               <Link to={"/dashboard"}>
                 <div>
                   <i class="fa-solid fa-user"></i>
                   <br />
-                  <p>Профиль</p>
+                  <p>Profile</p>
                 </div>
               </Link>
             </div>
@@ -96,7 +107,7 @@ function Navbar({ getCategories, categories }) {
                   <Hamburger size={15} toggled={isOpen} toggle={setOpen} />
                 </div>
                 <div>
-                  <p>Категории</p>
+                  <p>Category</p>
                 </div>
               </button>
             </div>
