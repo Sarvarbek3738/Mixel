@@ -10,11 +10,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
-// import ProductCard from "../../components/productCard/ProductCard";
-import ProductBox from "../../components/productBox/ProductBox";
-import ProductPanel from "../../components/productPanel/ProductPanel";
 import { Link } from "react-router-dom";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import ProductBox from "../../components/productBox/ProductBox";
 
 function Home({ categories, getCategories, products, getData }) {
   console.log(products);
