@@ -8,20 +8,20 @@ function ProductAlotCard({item}) {
           <img src={item?.images[0]?.image} alt="" />
         </div>
         <div className="AlotTitle">
-          <h3>I Mac i9 11 protsesor 8Gb SSD 256Gb</h3>
+          <h3>{item?.name}</h3>
           <p>
-            Brend: <span>Apple</span>
+            Brend: <span>{item?.brand}</span>
           </p>
           <p>
-            Ishlab chiqaruvchi davlat: <span>AQSH</span>
+            Ishlab chiqaruvchi davlat: <span>{item?.country}</span>
           </p>
           <p>
             Turi: <span>An‘anaviy</span>
           </p>
         </div>
         <div className="AlotBuy">
-          <h4>15 000 000 сум/мес</h4>
-          <p>17 000 000 сум</p>
+          <h4>{item?.monthly_price} сум/мес</h4>
+          <p>{item?.price} сум</p>
           <div>
             <button>
               <div>
