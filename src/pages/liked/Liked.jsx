@@ -7,31 +7,23 @@ function Liked() {
     <div className="likedPage">
       <div className="container">
         <div className="basicTitle">
-
-          <div className='basicTitleLeft'>
+          <div className="basicTitleLeft">
             <div>
-              <p>
-                Главная
-              </p>
+              <p>Главная</p>
               <div>
                 <i class="fa-solid fa-chevron-right"></i>
               </div>
             </div>
             <div>
-              <p>
-              Изброанное
-              </p>
+              <p>Изброанное</p>
             </div>
           </div>
-
-
         </div>
         <h2 className="pageTitle">Избранное</h2>
         <div className="productsBlock">
           <ProductBox />
           <ProductBox />
           <ProductBox />
-
         </div>
       </div>
     </div>

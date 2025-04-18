@@ -10,11 +10,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
-// import ProductCard from "../../components/productCard/ProductCard";
-import ProductBox from "../../components/productBox/ProductBox";
-import ProductPanel from "../../components/productPanel/ProductPanel";
 import { Link } from "react-router-dom";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import ProductBox from "../../components/productBox/ProductBox";
 
 function Home({ categories, getCategories, products, getData }) {
   console.log(products);
@@ -85,8 +83,8 @@ function Home({ categories, getCategories, products, getData }) {
           <section className="section1">
             <div className="container">
               <div className="section1Title">
-                <h3>Горящие предложения</h3>
-                <p>Посмотреть все →</p>
+                <h3>Flash Deals</h3>
+                <p>View All →</p>
               </div>
               <div className="Box1">
                 {products?.results?.map((item) => {
@@ -139,7 +137,6 @@ function Home({ categories, getCategories, products, getData }) {
                             width={50}
                             height={42}
                           />
-
                         </div>
                       </div>
                     );
@@ -149,7 +146,7 @@ function Home({ categories, getCategories, products, getData }) {
           </section>
           <section className="section2">
             <div className="container">
-              <h3>Популярные категории</h3>
+              <h3>Top Categories</h3>
               <div className="box2">
                 <Swiper
                   slidesPerView={4}
@@ -191,9 +188,9 @@ function Home({ categories, getCategories, products, getData }) {
                 <div>
                   <h1>Apple iPhone X 64 ГБ</h1>
                   <h5>
-                    Совершенно новый дисплей Super Retina с <br /> диагональю
-                    5,8 дюйма, который удобно лежит в руке <br /> и потрясающие
-                    выглядит, — это и есть iPhone X.
+                    An all-new 5.8-inch Super Retina display <br /> that fits
+                    comfortably in your hand and looks stunning—that's <br />{" "}
+                    iPhone X.
                   </h5>
                 </div>
                 <div className="Box3Img">
@@ -202,7 +199,7 @@ function Home({ categories, getCategories, products, getData }) {
                 <div className="Box3-1">
                   <h2>1 250 900 Сум</h2>
                   <p>2 220 900 Сум</p>
-                  <button>Показать еще</button>
+                  <button>Show More</button>
                 </div>
               </div>
             </div>
@@ -210,73 +207,75 @@ function Home({ categories, getCategories, products, getData }) {
           <section className="section4">
             <div className="container">
               <div className="section1Title">
-                <h3>Товары дешевле:</h3>
-                <p>Посмотреть все →</p>
+                <h3>Cheaper Products :</h3>
+                <p>Show More →</p>
               </div>
               <div className="Box4">
-                {products?.results?.length > 0 ? (
-                  products.results
-                    .sort((a, b) => a.price - b.price) // Narx bo'yicha tartiblash
-                    .map(item => {
-                      if (item.price >= 1000 && item.price <= 1000000) {
-                        return <ProductBox key={item.id} item={item} />;
-                      } else {
-                        return null;
-                      }
-                    })
-                ) : (
-                  [1, 2, 3, 4, 5].map((_, index) => (
-                    <div key={index} className="loadingSkeletons">
-                      <Skeleton variant="rectangular" width={230} height={210} />
-                      <Skeleton
-                        variant="rectangular"
-                        style={{ marginTop: "30px" }}
-                        width={230}
-                        height={18}
-                      />
-                      <Skeleton
-                        variant="rectangular"
-                        style={{ marginTop: "20px" }}
-                        width={230}
-                        height={32}
-                      />
-                      <div
-                        className="skeletonButtons"
-                        style={{ display: "flex", justifyContent: "space-between" }}
-                      >
+                {products?.results?.length > 0
+                  ? products.results
+                      .sort((a, b) => a.price - b.price) // Narx bo'yicha tartiblash
+                      .map((item) => {
+                        if (item.price >= 1000 && item.price <= 1000000) {
+                          return <ProductBox key={item.id} item={item} />;
+                        } else {
+                          return null;
+                        }
+                      })
+                  : [1, 2, 3, 4, 5].map((_, index) => (
+                      <div key={index} className="loadingSkeletons">
                         <Skeleton
                           variant="rectangular"
-                          style={{ marginTop: "20px" }}
-                          width={50}
-                          height={42}
+                          width={230}
+                          height={210}
+                        />
+                        <Skeleton
+                          variant="rectangular"
+                          style={{ marginTop: "30px" }}
+                          width={230}
+                          height={18}
                         />
                         <Skeleton
                           variant="rectangular"
                           style={{ marginTop: "20px" }}
-                          width={50}
-                          height={42}
+                          width={230}
+                          height={32}
                         />
-                        <Skeleton
-                          variant="rectangular"
-                          style={{ marginTop: "20px" }}
-                          width={50}
-                          height={42}
-                        />
+                        <div
+                          className="skeletonButtons"
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={50}
+                            height={42}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={50}
+                            height={42}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={50}
+                            height={42}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))
-                )}
-
-
-
+                    ))}
               </div>
             </div>
           </section>
           <section className="section5">
             <div className="container">
               <div className="section1Title">
-                <h3>Рекомендуем</h3>
-                <p>Посмотреть все →</p>
+                <h3>Recommended </h3>
+                <p>Show More →</p>
               </div>
               <div className="Box5">
                 <div className="box5-3">
@@ -298,7 +297,11 @@ function Home({ categories, getCategories, products, getData }) {
                   ) : (
                     Array.from({ length: 5 }).map((_, index) => (
                       <div key={index} className="loadingSkeletons">
-                        <Skeleton variant="rectangular" width={230} height={210} />
+                        <Skeleton
+                          variant="rectangular"
+                          width={230}
+                          height={210}
+                        />
                         <Skeleton
                           variant="rectangular"
                           style={{ marginTop: "30px" }}
@@ -340,7 +343,6 @@ function Home({ categories, getCategories, products, getData }) {
                       </div>
                     ))
                   )}
-
                 </div>
               </div>
             </div>
@@ -348,7 +350,7 @@ function Home({ categories, getCategories, products, getData }) {
           <section className="section6">
             <div className="container">
               <div className="section1Title">
-                <h3>Бренды</h3>
+                <h3>Brands</h3>
                 <p>← →</p>
               </div>
               <div className="Box6">
