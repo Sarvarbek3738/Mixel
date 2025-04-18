@@ -13,7 +13,17 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Link } from "react-router-dom";
 import "./PhoneFiltrAlot.css";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/scrollbar';
+
+
+// import required modules
+import { FreeMode, Scrollbar, Mousewheel } from 'swiper/modules';
+import Slaydir from "../../components/slaydir/Slaydir";
 function valuetext(value) {
   return `${value}°C`;
 }
@@ -27,6 +37,16 @@ function PhoneFiltrAlot() {
   return (
     <>
       <div className="phoneFilter">
+      <Swiper
+        direction={'vertical'}
+        slidesPerView={'auto'}
+        freeMode={true}
+        scrollbar={true}
+        mousewheel={true}
+        modules={[FreeMode, Scrollbar, Mousewheel]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
         <div className="container">
           <div className="basicTitle">
             <div className="basicTitleLeft">
@@ -169,6 +189,13 @@ function PhoneFiltrAlot() {
                     <p>Huawei (30)</p>
                   </div>
                 </div>
+                <div className="section1Title">
+                  <h3>Товары которые так же могут быть интересны</h3>
+                  <p>Посмотреть все →</p>
+                </div>
+                <div className="smartfonRightCards">
+               <Slaydir  products={products} getData={getData} />
+                </div>
                 <div className="Емкость">
                   <div className="smartfonLeftSent">
                     <div>
@@ -293,43 +320,7 @@ function PhoneFiltrAlot() {
               </div>
               <div className="smartfonRight">
                 <div className="PhoneFiltrAlotCards">
-                  <div className="AloImg">
-                    <img src="/public/imgs/Rectangle 24.png" alt="" />
-                  </div>
-                  <div className="AlotTitle">
-                    <h3>I Mac i9 11 protsesor 8Gb SSD 256Gb</h3>
-                    <p>
-                      Brend: <span>Apple</span>
-                    </p>
-                    <p>
-                      Ishlab chiqaruvchi davlat: <span>AQSH</span>
-                    </p>
-                    <p>
-                      Turi: <span>An‘anaviy</span>
-                    </p>
-                  </div>
-                  <div className="AlotBuy">
-                    <h4>15 000 000 сум/мес</h4>
-                    <p>17 000 000 сум</p>
-                    <div>
-                      <button>
-                        <div>
-                          <i class="fa-solid fa-cart-shopping"></i>
-                        </div>
-                        <div>
-                          <p>В корзину</p>
-                        </div>
-                      </button>
-                    </div>
-                    <div className="AlotBuyIcon">
-                      <div className="AlotBuyIconHeard">
-                        <i class="fa-solid fa-heart"></i>
-                      </div>
-                      <div>
-                        <i class="fa-solid fa-scale-balanced"></i>
-                      </div>
-                    </div>
-                  </div>
+                 <PhoneFiltrAlot/>
                 </div>
                 <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
@@ -379,6 +370,9 @@ function PhoneFiltrAlot() {
             </div>
           </div>
         </div>
+        </SwiperSlide>
+      </Swiper>
+        
       </div>
     </>
   );
