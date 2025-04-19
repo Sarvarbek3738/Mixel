@@ -189,6 +189,10 @@ button {
   background-color: #f2f2f2;
   cursor: pointer;
 }
+.ModalLeft.active {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
 .hamburger-react {
   height: 48px !important;
 }
@@ -203,9 +207,13 @@ button {
 }
 .categoriyaModal2 {
   padding: 5px 10px;
+  height: 450px;
+  width: 450px;
+  overflow-y: auto;
 }
 .categoriyaModal2 h3 {
   font-size: 24px;
+  padding-top: 20px;
   font-weight: 400;
   padding-bottom: 25px;
 }
@@ -217,7 +225,8 @@ button {
 
 .categoriyaRight img {
   width: 500px;
-  cursor: pointer;
+  height: 500px;
+  object-fit: contain;
 }
 .categoriyaModal {
   position: fixed;

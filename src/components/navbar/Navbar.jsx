@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import Skeleton from "react-loading-skeleton";
-function Navbar({ getCategories, setInputValue, categories }) {
+function Navbar({
+  getCategories,
+  products,
+  getData,
+  setInputValue,
+  categories,
+}) {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const [isOpenModal, setOpenModal] = useState(false);
-
+  const [categoryId, setCategoryId] = useState(3);
+  const [categoryName, setCategoryName] = useState("Phones and Tablets");
   useEffect(() => {
     getCategories();
+    getData();
   }, []);
 
   return (
@@ -142,7 +145,13 @@ function Navbar({ getCategories, setInputValue, categories }) {
                   <div className="categoryNames">
                     {categories?.results?.map((category) => {
                       return (
-                        <Link to={"/phoneFiltr/:id"} className="ModalLeft">
+                        <div
+                          onClick={() => {
+                            setCategoryId(category?.id);
+                            setCategoryName(category?.name);
+                          }}
+                          className={category?.id == categoryId ? "ModalLeft active" : "ModalLeft"}
+                        >
                           <div className="ModalLeftBlock">
                             <div className="categoryIcon">
                               <img src={category?.icon} alt="" />
@@ -154,32 +163,23 @@ function Navbar({ getCategories, setInputValue, categories }) {
                           <div>
                             <i class="fa-solid fa-chevron-right"></i>
                           </div>
-                        </Link>
+                        </div>
                       );
                     })}
                   </div>
                   <div className="categoriyaModal2">
-                    <h3>
-                      Сетевое <br /> оборудование
-                    </h3>
-                    <p>Коммутаторы</p>
-                    <p>Точки доступа Wi-Fi</p>
-                    <p>Медиаконверторы</p>
-                    <p>ADSL роутеры</p>
-                    <p>Сетевые адаптеры</p>
-                    <p>Wi-Fi роутеры и маршрутизаторы</p>
-                    <p>Инжекторы</p>
-                    <p>Повторители сигнала</p>
-                    <p>Прочее сетевое оборудование</p>
-                    <p>Сетевой кабель (Ethernet)</p>
+                    <h3>{categoryName}</h3>
+                    {products?.results?.map((product) => {
+                      if (product?.category == categoryId) {
+                        return <p>{product.name}</p>;
+                      } else {
+                        return;
+                      }
+                    })}
                   </div>
                 </div>
                 <div className="categoriyaRight">
-                  <img
-                    onClick={() => setOpen(false)}
-                    src="/imgs/Group 460.png"
-                    alt=""
-                  />
+                  <img src="/imgs/Group 460.png" alt="" />
                 </div>
               </div>
             </div>
