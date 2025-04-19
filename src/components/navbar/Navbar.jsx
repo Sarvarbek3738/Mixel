@@ -14,6 +14,7 @@ function Navbar({
   const [isOpen, setOpen] = useState(false);
   const [isOpenModal, setOpenModal] = useState(false);
   const [categoryId, setCategoryId] = useState(3);
+  const [productId, setProductId] = useState(null);
   const [categoryName, setCategoryName] = useState("Phones and Tablets");
   useEffect(() => {
     getCategories();
@@ -150,7 +151,11 @@ function Navbar({
                             setCategoryId(category?.id);
                             setCategoryName(category?.name);
                           }}
-                          className={category?.id == categoryId ? "ModalLeft active" : "ModalLeft"}
+                          className={
+                            category?.id == categoryId
+                              ? "ModalLeft active"
+                              : "ModalLeft"
+                          }
                         >
                           <div className="ModalLeftBlock">
                             <div className="categoryIcon">
@@ -171,7 +176,15 @@ function Navbar({
                     <h3>{categoryName}</h3>
                     {products?.results?.map((product) => {
                       if (product?.category == categoryId) {
-                        return <p>{product.name}</p>;
+                        return (
+                          <p
+                            onMouseEnter={() => {
+                              setProductId(product.id);
+                            }}
+                          >
+                            {product.name}
+                          </p>
+                        );
                       } else {
                         return;
                       }
@@ -179,7 +192,13 @@ function Navbar({
                   </div>
                 </div>
                 <div className="categoriyaRight">
-                  <img src="/imgs/Group 460.png" alt="" />
+                  {products?.results?.map((item) => {
+                    if (item.id == productId) {
+                      return <img src={item.images[0]?.image} alt="" />;
+                    } else {
+                      return;
+                    }
+                  })}
                 </div>
               </div>
             </div>
