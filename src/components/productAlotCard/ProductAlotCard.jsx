@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductAlotCard.css";
-function ProductAlotCard({item}) {
+function ProductAlotCard({ item }) {
   return (
     <>
       <div className="PhoneFiltrAlotCards">
@@ -28,7 +28,7 @@ function ProductAlotCard({item}) {
                 <i class="fa-solid fa-cart-shopping"></i>
               </div>
               <div>
-                <p>В корзину</p>
+                <p>To Cart</p>
               </div>
             </button>
           </div>

@@ -7,12 +7,11 @@ import { TbMenuDeep } from "react-icons/tb";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import ProductBox from "../../components/productBox/ProductBox";
-import ProductPanel from "../../components/productPanel/ProductPanel";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { Link, useParams } from "react-router-dom";
 import ProductAlotCard from "../../components/productAlotCard/ProductAlotCard";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
@@ -27,7 +26,6 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
   const filteredProducts = products?.results?.filter((item) => {
     return item.category == id.id;
   });
-
 
   // function for range
   function valuetext(value) {
@@ -378,8 +376,8 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
                   <h3>Товары которые так же могут быть интересны</h3>
                   <p>Посмотреть все →</p>
                 </div>
-                <div className="smartfonRightCards">
-               <Slaydir  products={products} getData={getData}/>
+                <div className="sliderCards">
+                  <Slaydir products={products} getData={getData} />
                 </div>
                 <div className="ToliqMalumot">
                   <h3>Где купить надежный смартфон в Ташкенте?</h3>
@@ -390,7 +388,7 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
                     такое "смартфон"? – это небольшое устройство, способное
                     заменить компьютер, радио, видеокамеру, телевизор. Открывает
                     доступ к интернету и связи в любой ситуации – дома, в
-                    транспорте, в спортзале, на улице. Раньше, чтобы купить
+                    транспорте, в спортзале, на улице. Раньше,   чтобы купить
                     электронику, мы мучительно ехали на рынки, блуждали по
                     торговым рядам, тратили время, чтобы купить новую аппарат из
                     линейки. Сейчас, всё на много проще. Зашли на сайт, почитали
@@ -401,7 +399,6 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
                     качественный товар с адекватным ценником?
                   </p>
                 </div>
-
               </div>
             </div>
           </div>

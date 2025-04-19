@@ -116,9 +116,9 @@ function Slaydir({ categories, getCategories, products, getData, item }) {
                 <h3>Недавно просмотренные</h3>
                 <p>Посмотреть все →</p>
             </div>
-            <div className="smartfonRightCards">
+            <div className="sliderCards">
                 <Swiper
-                    slidesPerView={5}
+                    slidesPerView={4}
                     centeredSlides={true}
                     autoplay={{
                         delay: 2500,

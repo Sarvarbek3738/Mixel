@@ -6,10 +6,7 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Dashboard from "./pages/dashboard/Dashboard";
 import PhoneFiltr from "./pages/phoneFiltr/PhoneFiltr";
-// import ProductCard from "./components/productCard/ProductCard";
-import ProductPanel from "./components/productPanel/ProductPanel";
 import ProductBox from "./components/productBox/ProductBox";
-import PhoneFiltrAlot from "./pages/phoneFiltrAlot/PhoneFiltrAlot";
 import Product from "./pages/product/Product";
 import Liked from "./pages/liked/Liked";
 import Comparison from "./pages/comparison/Comparison";
@@ -87,6 +84,9 @@ function App() {
   useEffect(() => {
     getCategories();
     getData();
+    if (localStorage.getItem("mixelToken")) {
+      getUser();
+    }
   }, []);
 
   return (
@@ -135,7 +135,6 @@ function App() {
               />
             }
           />
-          <Route path="/productPanel" element={<ProductPanel />} />
           <Route path="/productBox" element={<ProductBox />} />
           <Route
             path="/phoneFiltr/:id"
@@ -148,7 +147,6 @@ function App() {
               />
             }
           />
-          <Route path="/phoneFiltrAlot" element={<PhoneFiltrAlot />} />
           <Route
             path="/product/:id"
             element={
@@ -174,7 +172,7 @@ function App() {
           />
           <Route
             path="/dashboard"
-            element={<Dashboard userData={userData} />}
+            element={<Dashboard getUser={getUser} userData={userData} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

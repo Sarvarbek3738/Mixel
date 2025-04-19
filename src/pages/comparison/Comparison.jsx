@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Comparison.css"
 // import ProductCard from '../../components/productCard/ProductCard'
-import ProductPanel from '../../components/productPanel/ProductPanel'
+// import ProductPanel from '../../components/productPanel/ProductPanel'
 import ProductBox from '../../components/productBox/ProductBox'
 import { Switch } from '@mui/material'
 

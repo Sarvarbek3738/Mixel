@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import Switch from "@mui/material/Switch";
 import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
+import { toast } from "react-toastify";
 
 const label = {
   inputProps: { "aria-label": "Switch demo", "aria-label": "Checkbox demo" },
@@ -15,6 +16,11 @@ function Dashboard({ userData, getUser }) {
   const [password, setPassword] = useState(null);
   const [cardNumber, setCardNumber] = useState(null);
   const [phone_number, setPhoneNumber] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("mixelToken")) {
+      getUser();
+    }
+  }, []);
   useEffect(() => {
     setUserName(userData?.username);
     setFirstName(userData?.first_name);
@@ -30,7 +36,7 @@ function Dashboard({ userData, getUser }) {
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
       "Authorization",
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ2OTY4ODM2LCJpYXQiOjE3NDQzNzY4MzYsImp0aSI6IjM3ZDg1OWM0MDI1YzQ0OTI4YTBiZmJjYzI1OTIzMWIwIiwidXNlcl9pZCI6Nn0.EeshoEXkKF59HLiBCpb_AsIiC2_mlwa6AIGceUX8464"
+      `Bearer ${localStorage.getItem("mixelToken")}`
     );
 
     const raw = JSON.stringify({
@@ -54,8 +60,9 @@ function Dashboard({ userData, getUser }) {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        
-        console.log(raw);
+        if (result.id) {
+          toast.success("Ma'lumotlar muvaffaqiyatli yangilandi!");
+        }
       })
       .catch((error) => console.error(error));
   };
@@ -138,7 +145,7 @@ function Dashboard({ userData, getUser }) {
                     value={firstName}
                     required
                     type="text"
-                    placeholder="Md"
+                    placeholder="Firstname"
                   />
                 </div>
                 <div className="rowItem">
@@ -150,7 +157,7 @@ function Dashboard({ userData, getUser }) {
                     value={lastName}
                     required
                     type="text"
-                    placeholder="Rimel"
+                    placeholder="Last Name"
                   />
                 </div>
               </div>
