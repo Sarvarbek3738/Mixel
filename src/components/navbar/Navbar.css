@@ -222,10 +222,17 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+.categoriyaRight {
+  width: 420px;
+  height: 420px;
+  padding: 10px;
+  border: 2px solid gray;
+}
 
 .categoriyaRight img {
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
+  mix-blend-mode: multiply;
   object-fit: contain;
 }
 .categoriyaModal {

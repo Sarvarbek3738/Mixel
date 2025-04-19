@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Product.css";
 import { Link, useParams } from "react-router-dom";
-import ProductPanel from "../../components/productPanel/ProductPanel";
+// import ProductPanel from "../../components/productPanel/ProductPanel";
 import Skeleton from "react-loading-skeleton";
 import ProductBox from "../../components/productBox/ProductBox";
 import { Swiper, SwiperSlide } from "swiper/react";
