@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .section1Title p {
@@ -64,6 +64,37 @@
   object-fit: cover;
   height: 100px;
   mix-blend-mode: multiply;
+}
+.brandBlock .swiper-slide {
+  margin-bottom: 30px;
+}
+.brandBox {
+  border: 1px solid #e3e3e3;
+  padding: 20px;
+  width: 250px !important;
+  height: 150px !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  flex-direction: column;
+}
+.brandBox h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.brandImg {
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+}
+.brandImg img {
+  width: 90px !important;
+  height: 90px !important;
+  object-fit: cover;
 }
 .Box1 {
   display: flex;
@@ -183,7 +214,7 @@
 }
 
 .box2 {
-  padding-top: 40px;
+  /* padding-top: 40px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -329,14 +360,13 @@
 .Box4Tovar div:hover i {
   color: red;
 }
-.productList{
+.productList {
   display: flex;
   justify-content: start;
   gap: 37px;
   align-items: center;
   flex-wrap: wrap;
 }
-
 
 .Box4 {
   display: flex;
