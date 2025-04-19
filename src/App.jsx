@@ -106,6 +106,8 @@ function App() {
           transition={Bounce}
         />
         <Navbar
+          products={products}
+          getData={getData}
           setInputValue={setInputValue}
           categories={categories}
           getCategories={getCategories}
@@ -162,7 +164,13 @@ function App() {
           <Route path="/comparison" element={<Comparison />} />
           <Route
             path="/search"
-            element={<Search inputValue={inputValue} products={products} getData={getData} />}
+            element={
+              <Search
+                inputValue={inputValue}
+                products={products}
+                getData={getData}
+              />
+            }
           />
           <Route
             path="/dashboard"

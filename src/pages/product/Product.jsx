@@ -4,9 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import ProductPanel from "../../components/productPanel/ProductPanel";
 import Skeleton from "react-loading-skeleton";
 import ProductBox from "../../components/productBox/ProductBox";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 import Slaydir from "../../components/slaydir/Slaydir";
 function Product({ categories, getCategories, products, getData }) {
@@ -78,9 +78,12 @@ function Product({ categories, getCategories, products, getData }) {
                 )}
               </div>
               <div className="productCardImgssss">
-                <div className="itemImg" onClick={() => {
-                  setMainImgIndex(0)
-                }}>
+                <div
+                  className="itemImg"
+                  onClick={() => {
+                    setMainImgIndex(0);
+                  }}
+                >
                   {oneProductData && (
                     <img src={oneProductData?.images[0]?.image} alt="" />
                   )}
@@ -94,7 +97,8 @@ function Product({ categories, getCategories, products, getData }) {
                   )}
                 </div>
                 <div
-                  className="itemImg" onClick={() => {
+                  className="itemImg"
+                  onClick={() => {
                     setMainImgIndex(1);
                   }}
                 >
@@ -111,7 +115,8 @@ function Product({ categories, getCategories, products, getData }) {
                   )}
                 </div>
                 <div
-                  className="itemImg" onClick={() => {
+                  className="itemImg"
+                  onClick={() => {
                     setMainImgIndex(2);
                   }}
                 >
@@ -127,9 +132,12 @@ function Product({ categories, getCategories, products, getData }) {
                     />
                   )}
                 </div>
-                <div className="itemImg" onClick={() => {
-                  setMainImgIndex(3)
-                }}>
+                <div
+                  className="itemImg"
+                  onClick={() => {
+                    setMainImgIndex(3);
+                  }}
+                >
                   {oneProductData && (
                     <img src={oneProductData?.images[3]?.image} alt="" />
                   )}
@@ -208,7 +216,6 @@ function Product({ categories, getCategories, products, getData }) {
                   {!oneProductData && (
                     <Skeleton
                       variant="rectangular"
-                      // style={{ marginTop: "30px" }}
                       width={400}
                       height={32}
                     />
@@ -270,83 +277,7 @@ function Product({ categories, getCategories, products, getData }) {
           </div>
         </div>
         <div className="container">
-          <Slaydir  products={products} getData={getData} />
-          {/* <div className="smartfonRightCards">
-            <Swiper
-              slidesPerView={3}
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Pagination]}
-              className="mySwiper"
-            >
-              <SwiperSlide>Slide 1</SwiperSlide>
-              <SwiperSlide>Slide 2</SwiperSlide>
-              <SwiperSlide>Slide 3</SwiperSlide>
-              <SwiperSlide>Slide 4</SwiperSlide>
-              <SwiperSlide>Slide 5</SwiperSlide>
-              <SwiperSlide>Slide 6</SwiperSlide>
-              <SwiperSlide>Slide 7</SwiperSlide>
-              <SwiperSlide>Slide 8</SwiperSlide>
-              <SwiperSlide>Slide 9</SwiperSlide>
-            </Swiper>
-            {products?.results?.map((item) => {
-              return (
-                <ProductBox key={item.id} item={item} getData={getData} />
-              );
-            }) ||
-              [1, 2, 3, 4, 5].map((item) => {
-                return (
-                  <div className="loadingSkeletons">
-                    <Skeleton
-                      variant="rectangular"
-                      width={230}
-                      height={210}
-                    />
-                    <Skeleton
-                      variant="rectangular"
-                      style={{ marginTop: "30px" }}
-                      width={230}
-                      height={18}
-                    />
-                    <Skeleton
-                      variant="rectangular"
-                      style={{ marginTop: "20px" }}
-                      width={230}
-                      height={32}
-                    />
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                      className="skeletonButtons"
-                    >
-                      <Skeleton
-                        variant="rectangular"
-                        style={{ marginTop: "20px" }}
-                        width={50}
-                        height={42}
-                      />
-                      <Skeleton
-                        variant="rectangular"
-                        style={{ marginTop: "20px" }}
-                        width={50}
-                        height={42}
-                      />
-                      <Skeleton
-                        variant="rectangular"
-                        style={{ marginTop: "20px" }}
-                        width={50}
-                        height={42}
-                      />
-
-                    </div>
-                  </div>
-                );
-              })}
-          </div> */}
+          <Slaydir products={products} getData={getData} />
         </div>
       </div>
     </>

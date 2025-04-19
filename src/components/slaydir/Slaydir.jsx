@@ -118,7 +118,7 @@ function Slaydir({ categories, getCategories, products, getData, item }) {
             </div>
             <div className="smartfonRightCards">
                 <Swiper
-                    slidesPerView={4}
+                    slidesPerView={5}
                     centeredSlides={true}
                     autoplay={{
                         delay: 2500,
