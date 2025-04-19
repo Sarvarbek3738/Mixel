@@ -15,7 +15,24 @@ import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import ProductBox from "../../components/productBox/ProductBox";
 
 function Home({ categories, getCategories, products, getData }) {
-  console.log(products);
+  const [brands, setBrands] = useState(null);
+  // getBrands function
+
+  const getBrands = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/brands/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setBrands(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
   // getBanner function
   const [banner, setBanner] = useState(null);
   const getBanner = () => {
@@ -35,6 +52,7 @@ function Home({ categories, getCategories, products, getData }) {
 
   useEffect(() => {
     getBanner();
+    getBrands();
   }, []);
 
   return (
@@ -83,14 +101,23 @@ function Home({ categories, getCategories, products, getData }) {
           <section className="section1">
             <div className="container">
               <div className="section1Title">
-                <h3>Flash Deals</h3>
-                <p>View All →</p>
+                {(products && <h3>Flash Deals</h3>) || (
+                  <Skeleton variant="rectangular" width={230} height={20} />
+                )}
+                 {(products &&  <p>View All →</p>) || (
+                  <Skeleton variant="rectangular" width={230} height={20} />
+                )}
+               
               </div>
               <div className="Box1">
-                {products?.results?.map((item) => {
-                  return (
-                    <ProductBox key={item.id} item={item} getData={getData} />
-                  );
+                {products?.results?.map((item, index) => {
+                  if (index < 10) {
+                    return (
+                      <ProductBox key={item.id} item={item} getData={getData} />
+                    );
+                  } else {
+                    return;
+                  }
                 }) ||
                   [1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((item) => {
                     return (
@@ -146,7 +173,10 @@ function Home({ categories, getCategories, products, getData }) {
           </section>
           <section className="section2">
             <div className="container">
-              <h3>Top Categories</h3>
+              {(categories && <h3>Top Categories</h3>) || (
+                <Skeleton variant="rectangular" width={230} height={20} />
+              )}
+
               <div className="box2">
                 <Swiper
                   slidesPerView={4}
@@ -167,7 +197,7 @@ function Home({ categories, getCategories, products, getData }) {
                     return (
                       <SwiperSlide>
                         <Link
-                          to={`/phoneFiltr/:${category.id}`}
+                          to={`/phoneFiltr/${category.id}`}
                           className="box2-1"
                         >
                           <h4>{category?.name}</h4>
@@ -349,26 +379,38 @@ function Home({ categories, getCategories, products, getData }) {
           </section>
           <section className="section6">
             <div className="container">
-              <div className="section1Title">
+              <div>
                 <h3>Brands</h3>
-                <p>← →</p>
               </div>
-              <div className="Box6">
-                <div className="box6-1">
-                  <img src="/imgs/Layer 48 copy 1.svg" alt="" />
-                </div>
-                <div className="box6-1">
-                  <img src="/imgs/Layer 48 copy 1.svg" alt="" />
-                </div>
-                <div className="box6-1">
-                  <img src="/imgs/Layer 48 copy 1.svg" alt="" />
-                </div>
-                <div className="box6-1">
-                  <img src="/imgs/Layer 48 copy 1.svg" alt="" />
-                </div>
-                <div className="box6-1">
-                  <img src="/imgs/Layer 48 copy 1.svg" alt="" />
-                </div>
+              <div className="brandBlock">
+                <Swiper
+                  slidesPerView={5}
+                  spaceBetween={true}
+                  autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
+                  }}
+                  loop={true}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  navigation={true}
+                  modules={[Autoplay, Pagination, Navigation]}
+                  className="mySwiper"
+                >
+                  {brands?.results?.map((brand) => {
+                    return (
+                      <SwiperSlide>
+                        <div className="brandBox">
+                          <div className="brandImg">
+                            <img src={brand?.image} alt="" />
+                          </div>
+                          <h2>{brand?.name}</h2>
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
               </div>
             </div>
           </section>
@@ -379,22 +421,3 @@ function Home({ categories, getCategories, products, getData }) {
 }
 
 export default Home;
-
-[
-  {
-    brand: [
-      { title: "acer", id: 0 },
-      { title: "Hp", id: 1 },
-    ],
-    ozu: [
-      {
-        title: "16 gb",
-        id: 0,
-      },
-      {
-        title: "32 gb",
-        id: 1,
-      },
-    ],
-  },
-];

@@ -26,94 +26,111 @@ function Navbar({
       <div className="OneNav">
         <nav className={`navbar`}>
           <div className="container">
-            <Link to={"/"}>
-              <div className="logo">
-                <div>
-                  <img src="/imgs/logo.svg" alt="" />
+            {(products && (
+              <Link to={"/"}>
+                <div className="logo">
+                  <div>
+                    <img src="/imgs/logo.svg" alt="" />
+                  </div>
+                  <div>
+                    <h2>MIXEL.UZ</h2>
+                  </div>
                 </div>
+              </Link>
+            )) || <Skeleton variant="rectangular" width={180} height={50} />}
+            {(products && (
+              <div className="NavSearch">
                 <div>
-                  <h2>MIXEL.UZ</h2>
+                  <input
+                    onChange={(e) => {
+                      setInputValue(e.target.value);
+                    }}
+                    onFocus={() => {
+                      navigate("/search");
+                    }}
+                    type="text"
+                    placeholder="Telephones and household appliances"
+                  />
                 </div>
-              </div>
-            </Link>
-            <div className="NavSearch">
-              <div>
-                <input
-                  onChange={(e) => {
-                    setInputValue(e.target.value);
-                  }}
-                  onFocus={() => {
-                    navigate("/search");
-                  }}
-                  type="text"
-                  placeholder="Telephones and household appliances"
-                />
-              </div>
 
-              <div>
-                <button>
-                  <div>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </div>
-                  <div>
-                    <p>Search</p>
-                  </div>
-                </button>
+                <div>
+                  <button>
+                    <div>
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div>
+                      <p>Search</p>
+                    </div>
+                  </button>
+                </div>
               </div>
-            </div>
+            )) || <Skeleton variant="rectangular" width={400} height={70} />}
+
             <div className="NavIcon">
-              <Link to={"/signup"}>
+              {(products && (
+                <Link to={"/signup"}>
+                  <div>
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <br />
+                    <p>Login</p>
+                  </div>
+                </Link>
+              )) || <Skeleton variant="rectangular" width={40} height={45} />}
+              {(products && (
+                <Link to={"/comparison"}>
+                  <div>
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <br />
+                    <p>Comparison</p>
+                  </div>
+                </Link>
+              )) || <Skeleton variant="rectangular" width={40} height={45} />}
+              {(products && (
+                <Link to={"/liked"}>
+                  <div>
+                    <i class="fa-regular fa-heart"></i>
+                    <br />
+                    <p>Featured</p>
+                  </div>
+                </Link>
+              )) || <Skeleton variant="rectangular" width={40} height={45} />}
+              {(products && (
                 <div>
-                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <i class="fa-solid fa-cart-shopping"></i>
                   <br />
-                  <p>Login</p>
+                  <p>Cart</p>
                 </div>
-              </Link>
-              <Link to={"/comparison"}>
-                <div>
-                  <i class="fa-solid fa-scale-balanced"></i>
-                  <br />
-                  <p>Comparison</p>
-                </div>
-              </Link>
-              <Link to={"/liked"}>
-                <div>
-                  <i class="fa-regular fa-heart"></i>
-                  <br />
-                  <p>Featured</p>
-                </div>
-              </Link>
-              <div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <br />
-                <p>Cart</p>
-              </div>
-              <Link to={"/dashboard"}>
-                <div>
-                  <i class="fa-solid fa-user"></i>
-                  <br />
-                  <p>Profile</p>
-                </div>
-              </Link>
+              )) || <Skeleton variant="rectangular" width={40} height={45} />}
+              {(products && (
+                <Link to={"/dashboard"}>
+                  <div>
+                    <i class="fa-solid fa-user"></i>
+                    <br />
+                    <p>Profile</p>
+                  </div>
+                </Link>
+              )) || <Skeleton variant="rectangular" width={40} height={45} />}
             </div>
           </div>
         </nav>
         <div className={`navCategori`}>
           <div className="container">
             <div className="MenuCategori">
-              <button
-                onClick={() => {
-                  setOpenModal(!isOpenModal);
-                  setOpen(!isOpen);
-                }}
-              >
-                <div>
-                  <Hamburger size={15} toggled={isOpen} toggle={setOpen} />
-                </div>
-                <div>
-                  <p>Category</p>
-                </div>
-              </button>
+              {(products && (
+                <button
+                  onClick={() => {
+                    setOpenModal(!isOpenModal);
+                    setOpen(!isOpen);
+                  }}
+                >
+                  <div>
+                    <Hamburger size={15} toggled={isOpen} toggle={setOpen} />
+                  </div>
+                  <div>
+                    <p>Category</p>
+                  </div>
+                </button>
+              )) || <Skeleton variant="rectangular" width={230} height={60} />}
             </div>
             <div className="CategoryTovar">
               {categories?.results?.map((category) => {
