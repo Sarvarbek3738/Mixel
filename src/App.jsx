@@ -12,14 +12,144 @@ import Liked from "./pages/liked/Liked";
 import Comparison from "./pages/comparison/Comparison";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
-import { Bounce, ToastContainer } from "react-toastify";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import { SkeletonTheme } from "react-loading-skeleton";
 import Slaydir from "./components/slaydir/Slaydir";
 import Search from "./pages/search/Search";
+import Cart from "./pages/cart/Cart";
 function App() {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
   const [inputValue, setInputValue] = useState(false);
+  const [likedProducts, setLikedProducts] = useState(false);
+  const [oneProductData, setOneProductData] = useState(null);
+  const [cartProducts, setCartProducts] = useState(null);
+
+  // addToLiked function
+  const addToLiked = (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const raw = JSON.stringify({
+      product: id,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/liked-items/add/", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        toast.success("Product added to featured successfully");
+      })
+      .catch((error) => console.error(error));
+  };
+
+  // getCartProducts function
+  const getCartProducts = () => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/cart-items/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setCartProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+  // addToCart function
+  const addToCart = (product, amount) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const raw = JSON.stringify({
+      product,
+      amount,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/cart-items/create", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("result", result);
+        toast.success("Product added successufully");
+        getCartProducts();
+      })
+      .catch((error) => console.error(error));
+  };
+  // getOneproductdata fucntion
+  const getOneProductData = (id) => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`https://abzzvx.pythonanywhere.com/products/${id}/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setOneProductData(result);
+        console.log(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  // Get liked products function
+  const getLikedProducts = () => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setLikedProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("mixelToken")) {
+      getLikedProducts();
+      getCartProducts();
+    }
+  }, []);
 
   // getData Function
   const getData = () => {
@@ -35,6 +165,8 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         setProducts(result);
+        console.log(result);
+        
       })
       .catch((error) => console.error(error));
   };
@@ -62,6 +194,7 @@ function App() {
   if (localStorage.getItem("mixelToken")) {
     useEffect(() => {
       getData();
+      getOneProductData();
     }, []);
   }
 
@@ -106,6 +239,7 @@ function App() {
           transition={Bounce}
         />
         <Navbar
+          cartProducts={cartProducts}
           products={products}
           getData={getData}
           setInputValue={setInputValue}
@@ -117,6 +251,10 @@ function App() {
             path="/"
             element={
               <Home
+              addToLiked={addToLiked}
+                addToCart={addToCart}
+                getOneProductData={getOneProductData}
+                oneProductData={oneProductData}
                 getCategories={getCategories}
                 categories={categories}
                 products={products}
@@ -135,7 +273,6 @@ function App() {
               />
             }
           />
-          <Route path="/productBox" element={<ProductBox />} />
           <Route
             path="/phoneFiltr/:id"
             element={
@@ -151,6 +288,8 @@ function App() {
             path="/product/:id"
             element={
               <Product
+                getOneProductData={getOneProductData}
+                oneProductData={oneProductData}
                 getCategories={getCategories}
                 categories={categories}
                 products={products}
@@ -158,8 +297,25 @@ function App() {
               />
             }
           />
-          <Route path="/liked" element={<Liked />} />
+          <Route
+            path="/liked"
+            element={
+              <Liked
+                likedProducts={likedProducts}
+                getLikedProducts={getLikedProducts}
+              />
+            }
+          />
           <Route path="/comparison" element={<Comparison />} />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                cartProducts={cartProducts}
+                getCartProducts={getCartProducts}
+              />
+            }
+          />
           <Route
             path="/search"
             element={

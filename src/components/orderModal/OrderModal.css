@@ -1,0 +1,161 @@
+.orderModalBack {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orderModalBack.open {
+  z-index: 1000000;
+  opacity: 1;
+}
+.orderModal {
+  transform: translateY(700px);
+  opacity: 0;
+  width: 800px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 50px;
+  position: relative;
+  transition: all 0.5s ease;
+}
+.orderModal.open {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.closeModal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.closeModal svg {
+  color: #686868;
+  font-size: 32px;
+  transition: all 0.5s ease;
+}
+.closeModal svg:hover {
+  color: #ed3729;
+}
+.productImgSide {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.mainImg {
+  width: 400px;
+  height: 400px;
+}
+.mainImg img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+.itemImgs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.itemImgs .itemImg {
+  width: 80px;
+  height: 80px;
+}
+.itemImgs .itemImg img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.productData {
+  padding-top: 25px;
+  width: 330px;
+}
+.productPrice {
+  color: #ed3729;
+}
+.discountPrice {
+  color: #ed3729;
+}
+.productPrice.disabled {
+  color: #686868 !important;
+  text-decoration: line-through;
+}
+.productTitle {
+  font-size: 28px;
+  padding-bottom: 20px;
+}
+.productDetails {
+  margin-bottom: 10px;
+  max-height: 100px;
+  overflow-y: auto;
+  font-size: 16px;
+  color: #686868;
+}
+
+.productData p {
+  font-size: 16px;
+  color: #686868;
+  padding-bottom: 10px;
+}
+.detailsTitle {
+  padding: 0 !important;
+  color: black !important;
+  font-size: 18px !important;
+  padding-top: 10px !important;
+}
+.counter {
+  display: flex;
+  width: 250px;
+  align-items: center;
+  justify-content: space-between;
+  border: #686868 1px solid;
+  border-radius: 8px;
+  padding: 5px;
+}
+.counter button {
+  padding: 10px 35px;
+  border-radius: 8px;
+  border: none;
+  font-size: 22px;
+}
+.minusBtn {
+  background-color: transparent;
+  border: 1px solid #ed3729 !important;
+}
+.plusBtn {
+  color: white;
+  background-color: #ed3729;
+}
+.addToCart {
+  padding-top: 30px;
+  width: 100%;
+}
+.addToCart button {
+  width: 250px;
+  padding: 15px;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  background-color: #ed3729;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  border-radius: 8px;
+}
+.addToCart button i{
+  font-size: 20px;
+  color: white;
+}

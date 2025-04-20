@@ -9,29 +9,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 import Slaydir from "../../components/slaydir/Slaydir";
-function Product({ categories, getCategories, products, getData }) {
+function Product({
+  categories,
+  getOneProductData,
+  oneProductData,
+  getCategories,
+  products,
+  getData,
+}) {
   const id = useParams();
   const [mainImgIndex, setMainImgIndex] = useState(0);
-  const [oneProductData, setOneProductData] = useState(null);
-  const getOneProductData = () => {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
+  const [detailValue, setDetailValue] = useState(80);
 
-    fetch(
-      `https://abzzvx.pythonanywhere.com/products/${id.id}/`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setOneProductData(result);
-        console.log(result);
-      })
-      .catch((error) => console.error(error));
-  };
   useEffect(() => {
-    getOneProductData();
+    getOneProductData(id.id);
     window.scrollTo({
       top: "0",
     });
@@ -210,15 +201,32 @@ function Product({ categories, getCategories, products, getData }) {
                   <p className="productMinSiz">Название для договора</p>
                   {oneProductData && (
                     <p>
-                      {oneProductData?.name} {oneProductData?.details}
+                      {oneProductData?.name}{" "}
+                      {String(oneProductData?.details).slice(0, detailValue)}
+                      {detailValue < 100 ? (
+                        <button
+                          className="readBtn"
+                          onClick={() => {
+                            setDetailValue(10000);
+                          }}
+                        >
+                          Read more
+                        </button>
+                      ) : (
+                        <button
+                          className="readBtn"
+                          onClick={() => {
+                            setDetailValue(80);
+                          }}
+                        >
+                          {" "}
+                          Read less
+                        </button>
+                      )}
                     </p>
                   )}
                   {!oneProductData && (
-                    <Skeleton
-                      variant="rectangular"
-                      width={400}
-                      height={32}
-                    />
+                    <Skeleton variant="rectangular" width={400} height={32} />
                   )}
                 </div>
               </div>

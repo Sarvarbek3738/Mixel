@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ProductBox.css";
-function ProductBox({ item }) {
+function ProductBox({
+  item,
+  getOneProductData,
+  addToLiked,
+  setShowOrderModal,
+}) {
+  console.log(item.like);
+
   return (
     <>
       <Link to={`/product/${item?.id}`}>
@@ -16,22 +23,37 @@ function ProductBox({ item }) {
           </div>
           <div className="Box4Narx">
             <div>
-              <p>{item?.price} сум</p>
-            </div>
-            <div>
-              <h3>{item?.monthly_price} сум/мес</h3>
+              <h3>{item?.price} UZS</h3>
             </div>
           </div>
           <h3 className="Title4">{String(item?.name).slice(0, 28)}</h3>
 
           <div className="Box4Tovar">
-            <div>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                getOneProductData(item?.id);
+                setShowOrderModal(true);
+              }}
+            >
               <i class="fa-solid fa-cart-shopping"></i>
             </div>
-            <div className="hear">
-              <i class="fa-regular fa-heart"></i>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                addToLiked(item.id);
+              }}
+              className="hear"
+            >
+              <i
+                class={item.like ? "fa-solid fa-heart" : "fa-regular fa-heart"}
+              ></i>
             </div>
-            <div>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+            >
               <i class="fa-solid fa-scale-balanced"></i>
             </div>
           </div>
