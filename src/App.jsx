@@ -153,20 +153,24 @@ function App() {
 
   // getData Function
   const getData = () => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("mixelToken")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("mixelToken")}`
+      );
+    }
+
     const requestOptions = {
       method: "GET",
+      headers: myHeaders,
       redirect: "follow",
     };
 
-    fetch(
-      "https://abzzvx.pythonanywhere.com/products/?size=100",
-      requestOptions
-    )
+    fetch("https://abzzvx.pythonanywhere.com/products/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setProducts(result);
-        console.log(result);
-        
       })
       .catch((error) => console.error(error));
   };
@@ -221,6 +225,7 @@ function App() {
       getUser();
     }
   }, []);
+  console.log(likedProducts);
 
   return (
     <SkeletonTheme baseColor="#fafafa" highlightColor="#ccc">
@@ -239,6 +244,7 @@ function App() {
           transition={Bounce}
         />
         <Navbar
+          getLikedProducts={getLikedProducts}
           cartProducts={cartProducts}
           products={products}
           getData={getData}
@@ -251,7 +257,7 @@ function App() {
             path="/"
             element={
               <Home
-              addToLiked={addToLiked}
+                addToLiked={addToLiked}
                 addToCart={addToCart}
                 getOneProductData={getOneProductData}
                 oneProductData={oneProductData}

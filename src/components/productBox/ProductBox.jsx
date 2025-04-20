@@ -7,8 +7,6 @@ function ProductBox({
   addToLiked,
   setShowOrderModal,
 }) {
-  console.log(item.like);
-
   return (
     <>
       <Link to={`/product/${item?.id}`}>
@@ -46,7 +44,7 @@ function ProductBox({
               className="hear"
             >
               <i
-                class={item.like ? "fa-solid fa-heart" : "fa-regular fa-heart"}
+                class={item?.like ? "fa-solid fa-heart" : "fa-regular fa-heart"}
               ></i>
             </div>
             <div
