@@ -5,6 +5,7 @@ import Hamburger from "hamburger-react";
 import Skeleton from "react-loading-skeleton";
 function Navbar({
   getCategories,
+  cartProducts,
   products,
   getData,
   setInputValue,
@@ -87,7 +88,10 @@ function Navbar({
               )) || <Skeleton variant="rectangular" width={40} height={45} />}
               {(products && (
                 <Link to={"/liked"}>
-                  <div>
+                  <div className="navBtn">
+                    <div className="likeItemVal">
+                      <p>1</p>
+                    </div>
                     <i class="fa-regular fa-heart"></i>
                     <br />
                     <p>Featured</p>
@@ -95,11 +99,19 @@ function Navbar({
                 </Link>
               )) || <Skeleton variant="rectangular" width={40} height={45} />}
               {(products && (
-                <div>
-                  <i class="fa-solid fa-cart-shopping"></i>
-                  <br />
-                  <p>Cart</p>
-                </div>
+                <Link to={"/cart"}>
+                  <div className="navBtn">
+                    {cartProducts?.results?.length > 0 && (
+                      <div className="itemValue">
+                        <p>{cartProducts?.results?.length}</p>
+                      </div>
+                    )}
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <br />
+                    <p>Cart</p>
+                  </div>
+                </Link>
               )) || <Skeleton variant="rectangular" width={40} height={45} />}
               {(products && (
                 <Link to={"/dashboard"}>

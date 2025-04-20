@@ -13,11 +13,22 @@ import "swiper/css/navigation";
 import { Link } from "react-router-dom";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import ProductBox from "../../components/productBox/ProductBox";
+import OrderModal from "../../components/orderModal/OrderModal";
 
-function Home({ categories, getCategories, products, getData }) {
+function Home({
+  addToLiked,
+  categories,
+  addToCart,
+  getOneProductData,
+  oneProductData,
+  getCategories,
+  products,
+  getData,
+}) {
   const [brands, setBrands] = useState(null);
-  // getBrands function
+  const [showOrderModal, setShowOrderModal] = useState(false);
 
+  // getBrands function
   const getBrands = () => {
     const requestOptions = {
       method: "GET",
@@ -59,6 +70,15 @@ function Home({ categories, getCategories, products, getData }) {
     <div className="home">
       <div>
         <div className="hero">
+          <div className={showOrderModal ? "forModal open" : "forModal"}>
+            <OrderModal
+              addToCart={addToCart}
+              oneProductData={oneProductData}
+              showOrderModal={showOrderModal}
+              setShowOrderModal={setShowOrderModal}
+            />
+          </div>
+
           <div className="container">
             {banner && (
               <Swiper
@@ -104,16 +124,22 @@ function Home({ categories, getCategories, products, getData }) {
                 {(products && <h3>Flash Deals</h3>) || (
                   <Skeleton variant="rectangular" width={230} height={20} />
                 )}
-                 {(products &&  <p>View All →</p>) || (
+                {(products && <p>View All →</p>) || (
                   <Skeleton variant="rectangular" width={230} height={20} />
                 )}
-               
               </div>
               <div className="Box1">
                 {products?.results?.map((item, index) => {
                   if (index < 10) {
                     return (
-                      <ProductBox key={item.id} item={item} getData={getData} />
+                      <ProductBox
+                        addToLiked={addToLiked}
+                        getOneProductData={getOneProductData}
+                        setShowOrderModal={setShowOrderModal}
+                        key={item.id}
+                        item={item}
+                        getData={getData}
+                      />
                     );
                   } else {
                     return;
@@ -246,7 +272,14 @@ function Home({ categories, getCategories, products, getData }) {
                       .sort((a, b) => a.price - b.price) // Narx bo'yicha tartiblash
                       .map((item) => {
                         if (item.price >= 1000 && item.price <= 1000000) {
-                          return <ProductBox key={item.id} item={item} />;
+                          return (
+                            <ProductBox
+                              getOneProductData={getOneProductData}
+                              setShowOrderModal={setShowOrderModal}
+                              key={item.id}
+                              item={item}
+                            />
+                          );
                         } else {
                           return null;
                         }
@@ -316,7 +349,14 @@ function Home({ categories, getCategories, products, getData }) {
                     products.results?.length > 0 ? (
                       products.results.map((item) => {
                         if (item.discount) {
-                          return <ProductBox key={item.id} item={item} />;
+                          return (
+                            <ProductBox
+                              getOneProductData={getOneProductData}
+                              setShowOrderModal={setShowOrderModal}
+                              key={item.id}
+                              item={item}
+                            />
+                          );
                         } else {
                           return null;
                         }
