@@ -26,7 +26,9 @@ function Liked({}) {
       .catch((error) => console.error(error));
   };
   useEffect(() => {
-    getLikedProducts();
+    if (localStorage.getItem("mixelToken")) {
+      getLikedProducts();
+    }
   }, [likedProducts]);
   useEffect(() => {
     window.scrollTo({
