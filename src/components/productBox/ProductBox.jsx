@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductBox.css";
 function ProductBox({
+  getUser,
+  userData,
+  deleteFromLiked,
   item,
+  getData,
   getOneProductData,
   addToLiked,
   setShowOrderModal,
 }) {
+  userData
+  const [localLiked, setLocalLiked] = useState(false);
   return (
     <>
       <Link to={`/product/${item?.id}`}>
@@ -39,12 +45,24 @@ function ProductBox({
             <div
               onClick={(e) => {
                 e.preventDefault();
-                addToLiked(item.id);
+                setLocalLiked(false);
+                if (item?.like) {
+                  deleteFromLiked(item.id);
+                  getData();
+                } else {
+                  addToLiked(item.id);
+                  setLocalLiked(true);
+                  getData();
+                }
               }}
               className="hear"
             >
               <i
-                class={item?.like ? "fa-solid fa-heart" : "fa-regular fa-heart"}
+                class={
+                  item?.like || localLiked
+                    ? "fa-solid fa-heart"
+                    : "fa-regular fa-heart"
+                }
               ></i>
             </div>
             <div

@@ -21,7 +21,6 @@ function Liked({}) {
     fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setLikedProducts(result);
       })
       .catch((error) => console.error(error));
@@ -29,6 +28,11 @@ function Liked({}) {
   useEffect(() => {
     getLikedProducts();
   }, [likedProducts]);
+  useEffect(() => {
+    window.scrollTo({
+      top: "0",
+    });
+  }, []);
   return (
     <div className="likedPage">
       <div className="container">

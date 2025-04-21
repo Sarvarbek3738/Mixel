@@ -16,6 +16,9 @@ import ProductBox from "../../components/productBox/ProductBox";
 import OrderModal from "../../components/orderModal/OrderModal";
 
 function Home({
+  getUser,
+  userData,
+  deleteFromLiked,
   addToLiked,
   categories,
   addToCart,
@@ -38,7 +41,7 @@ function Home({
     fetch("https://abzzvx.pythonanywhere.com/brands/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setBrands(result);
       })
       .catch((error) => console.error(error));
@@ -56,7 +59,7 @@ function Home({
       .then((response) => response.json())
       .then((result) => {
         setBanner(result);
-        console.log(result);
+        // console.log(result);
       })
       .catch((error) => console.error(error));
   };
@@ -98,7 +101,7 @@ function Home({
               >
                 {banner?.results.map((item) => {
                   return (
-                    <SwiperSlide>
+                    <SwiperSlide key={item.id}>
                       <div className="heroBanner">
                         <img src={item?.image} alt="" />
                       </div>
@@ -133,10 +136,13 @@ function Home({
                   if (index < 10) {
                     return (
                       <ProductBox
+                        getUser={getUser}
+                        userData={userData}
+                        key={item.id}
+                        deleteFromLiked={deleteFromLiked}
                         addToLiked={addToLiked}
                         getOneProductData={getOneProductData}
                         setShowOrderModal={setShowOrderModal}
-                        key={item.id}
                         item={item}
                         getData={getData}
                       />
@@ -221,7 +227,7 @@ function Home({
                 >
                   {categories?.results?.map((category) => {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={category.id}>
                         <Link
                           to={`/phoneFiltr/${category.id}`}
                           className="box2-1"
@@ -274,6 +280,10 @@ function Home({
                         if (item.price >= 1000 && item.price <= 1000000) {
                           return (
                             <ProductBox
+                              getUser={getUser}
+                              userData={userData}
+                              deleteFromLiked={deleteFromLiked}
+                              addToLiked={addToLiked}
                               getOneProductData={getOneProductData}
                               setShowOrderModal={setShowOrderModal}
                               key={item.id}
@@ -351,6 +361,10 @@ function Home({
                         if (item.discount) {
                           return (
                             <ProductBox
+                              getUser={getUser}
+                              userData={userData}
+                              deleteFromLiked={deleteFromLiked}
+                              addToLiked={addToLiked}
                               getOneProductData={getOneProductData}
                               setShowOrderModal={setShowOrderModal}
                               key={item.id}
