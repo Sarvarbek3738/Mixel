@@ -13,6 +13,8 @@ function ProductBox({
 }) {
   const navigate = useNavigate();
   const [localLiked, setLocalLiked] = useState(false);
+  // console.log(item.like_id[0]);
+
   return (
     <>
       <Link to={`/product/${item?.id}`}>
@@ -52,7 +54,7 @@ function ProductBox({
                 if (userData) {
                   if (item?.like) {
                     setLocalLiked(false);
-                    deleteFromLiked(item.id);
+                    deleteFromLiked(item?.like_id);
                   } else {
                     addToLiked(item.id);
                     setLocalLiked(true);
