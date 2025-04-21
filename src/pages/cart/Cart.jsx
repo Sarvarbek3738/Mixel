@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Cart.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import { toast } from "react-toastify";
@@ -26,7 +26,9 @@ function Cart({ cartProducts, getCartProducts }) {
       .then((response) => response.text())
       .then((result) => {
         toast.success("Product deleted successfully");
-        getCartProducts();
+        if (localStorage.getItem("mixelToken")) {
+          getCartProducts();
+        }
       })
       .catch((error) => console.error(error));
   };

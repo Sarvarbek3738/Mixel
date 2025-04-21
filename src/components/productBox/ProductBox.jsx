@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ProductBox.css";
 function ProductBox({
   getUser,
@@ -11,8 +11,10 @@ function ProductBox({
   addToLiked,
   setShowOrderModal,
 }) {
-  userData
+  const navigate = useNavigate();
   const [localLiked, setLocalLiked] = useState(false);
+  // console.log(item.like_id[0]);
+
   return (
     <>
       <Link to={`/product/${item?.id}`}>
@@ -35,9 +37,13 @@ function ProductBox({
           <div className="Box4Tovar">
             <div
               onClick={(e) => {
+                if (userData) {
+                  getOneProductData(item?.id);
+                  setShowOrderModal(true);
+                } else {
+                  navigate("/signup");
+                }
                 e.preventDefault();
-                getOneProductData(item?.id);
-                setShowOrderModal(true);
               }}
             >
               <i class="fa-solid fa-cart-shopping"></i>
@@ -45,15 +51,18 @@ function ProductBox({
             <div
               onClick={(e) => {
                 e.preventDefault();
-                setLocalLiked(false);
-                if (item?.like) {
-                  deleteFromLiked(item.id);
-                  getData();
+                if (userData) {
+                  if (item?.like) {
+                    setLocalLiked(false);
+                    deleteFromLiked(item?.like_id);
+                  } else {
+                    addToLiked(item.id);
+                    setLocalLiked(true);
+                  }
                 } else {
-                  addToLiked(item.id);
-                  setLocalLiked(true);
-                  getData();
+                  navigate("/signup");
                 }
+                getData();
               }}
               className="hear"
             >
