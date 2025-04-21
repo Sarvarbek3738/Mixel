@@ -3,6 +3,11 @@ import "./Cart.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import { toast } from "react-toastify";
 function Cart({ cartProducts, getCartProducts }) {
+  useEffect(() => {
+    window.scrollTo({
+      top: "0",
+    });
+  }, []);
   // deleteCartProduct function
   const deleteCartProduct = (id) => {
     const myHeaders = new Headers();

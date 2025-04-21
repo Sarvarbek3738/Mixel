@@ -25,6 +25,32 @@ function App() {
   const [oneProductData, setOneProductData] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
 
+  // deleteFromLiked function
+  const deleteFromLiked = (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      `https://abzzvx.pythonanywhere.com/liked-items/${id}/`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        toast.error("Product removed from Featured");
+        getData();
+      })
+      .catch((error) => console.error(error));
+  };
+
   // addToLiked function
   const addToLiked = (id) => {
     const myHeaders = new Headers();
@@ -70,7 +96,7 @@ function App() {
     fetch("https://abzzvx.pythonanywhere.com/cart-items/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setCartProducts(result);
       })
       .catch((error) => console.error(error));
@@ -99,7 +125,7 @@ function App() {
     fetch("https://abzzvx.pythonanywhere.com/cart-items/create", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log("result", result);
+        // console.log("result", result);
         toast.success("Product added successufully");
         getCartProducts();
       })
@@ -116,7 +142,7 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         setOneProductData(result);
-        console.log(result);
+        // console.log(result);
       })
       .catch((error) => console.error(error));
   };
@@ -138,7 +164,7 @@ function App() {
     fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setLikedProducts(result);
       })
       .catch((error) => console.error(error));
@@ -153,20 +179,24 @@ function App() {
 
   // getData Function
   const getData = () => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("mixelToken")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("mixelToken")}`
+      );
+    }
+
     const requestOptions = {
       method: "GET",
+      headers: myHeaders,
       redirect: "follow",
     };
 
-    fetch(
-      "https://abzzvx.pythonanywhere.com/products/?size=100",
-      requestOptions
-    )
+    fetch("https://abzzvx.pythonanywhere.com/products/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setProducts(result);
-        console.log(result);
-        
       })
       .catch((error) => console.error(error));
   };
@@ -194,7 +224,7 @@ function App() {
   if (localStorage.getItem("mixelToken")) {
     useEffect(() => {
       getData();
-      getOneProductData();
+      // getOneProductData();
     }, []);
   }
 
@@ -221,6 +251,7 @@ function App() {
       getUser();
     }
   }, []);
+  // console.log(likedProducts);
 
   return (
     <SkeletonTheme baseColor="#fafafa" highlightColor="#ccc">
@@ -239,6 +270,10 @@ function App() {
           transition={Bounce}
         />
         <Navbar
+          getUser={getUser}
+          userData={userData}
+          likedProducts={likedProducts}
+          getLikedProducts={getLikedProducts}
           cartProducts={cartProducts}
           products={products}
           getData={getData}
@@ -251,7 +286,10 @@ function App() {
             path="/"
             element={
               <Home
-              addToLiked={addToLiked}
+                getUser={getUser}
+                userData={userData}
+                deleteFromLiked={deleteFromLiked}
+                addToLiked={addToLiked}
                 addToCart={addToCart}
                 getOneProductData={getOneProductData}
                 oneProductData={oneProductData}

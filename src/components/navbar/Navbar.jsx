@@ -4,10 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import Skeleton from "react-loading-skeleton";
 function Navbar({
+  likedProducts,
   getCategories,
+  getLikedProducts,
   cartProducts,
   products,
   getData,
+  getUser,
+  userData,
   setInputValue,
   categories,
 }) {
@@ -20,6 +24,10 @@ function Navbar({
   useEffect(() => {
     getCategories();
     getData();
+    getLikedProducts();
+    if (localStorage.getItem("mixelToken")) {
+      getUser();
+    }
   }, []);
 
   return (
@@ -69,15 +77,6 @@ function Navbar({
 
             <div className="NavIcon">
               {(products && (
-                <Link to={"/signup"}>
-                  <div>
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    <br />
-                    <p>Login</p>
-                  </div>
-                </Link>
-              )) || <Skeleton variant="rectangular" width={40} height={45} />}
-              {(products && (
                 <Link to={"/comparison"}>
                   <div>
                     <i class="fa-solid fa-scale-balanced"></i>
@@ -89,9 +88,11 @@ function Navbar({
               {(products && (
                 <Link to={"/liked"}>
                   <div className="navBtn">
-                    <div className="likeItemVal">
-                      <p>1</p>
-                    </div>
+                    {likedProducts.length > 0 && (
+                      <div className="likeItemVal">
+                        <p>{likedProducts.length}</p>
+                      </div>
+                    )}
                     <i class="fa-regular fa-heart"></i>
                     <br />
                     <p>Featured</p>
@@ -113,7 +114,7 @@ function Navbar({
                   </div>
                 </Link>
               )) || <Skeleton variant="rectangular" width={40} height={45} />}
-              {(products && (
+              {(userData && (
                 <Link to={"/dashboard"}>
                   <div>
                     <i class="fa-solid fa-user"></i>
@@ -121,7 +122,15 @@ function Navbar({
                     <p>Profile</p>
                   </div>
                 </Link>
-              )) || <Skeleton variant="rectangular" width={40} height={45} />}
+              )) || (
+                <Link to={"/signup"}>
+                  <div>
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <br />
+                    <p>Login</p>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
         </nav>
