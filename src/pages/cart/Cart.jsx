@@ -26,7 +26,9 @@ function Cart({ cartProducts, getCartProducts }) {
       .then((response) => response.text())
       .then((result) => {
         toast.success("Product deleted successfully");
-        getCartProducts();
+        if (localStorage.getItem("mixelToken")) {
+          getCartProducts();
+        }
       })
       .catch((error) => console.error(error));
   };
