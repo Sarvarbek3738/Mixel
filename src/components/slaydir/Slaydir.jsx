@@ -113,8 +113,8 @@ function Slaydir({ categories, getCategories, products, getData, item }) {
 
         <div>
             <div className="section1Title">
-                <h3>Недавно просмотренные</h3>
-                <p>Посмотреть все →</p>
+                <h3>Recently Viewed</h3>
+                <p>View All →</p>
             </div>
             <div className="sliderCards">
                 <Swiper

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Cart.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import { toast } from "react-toastify";

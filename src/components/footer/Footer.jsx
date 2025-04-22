@@ -18,11 +18,11 @@ function Footer() {
                             </div>
                         </div>
                         <p>
-                            График работы колл-центра <br />
-                            Понедельник - Суббота: 9:00–18:00
+                            Call center working hours <br />
+                            Monday - Saturday: 9:00–18:00
                         </p>
                         <p>
-                            Колл-центр: <br />
+                            Call center: <br />
                             + 998 (71) 205-93-93
                         </p>
                         <div className="footerIcon">
@@ -34,29 +34,29 @@ function Footer() {
                     </div>
                     <div className="footerRight">
                         <div>
-                            <h3>Категории</h3>
-                            <p>Ноутбуки</p>
-                            <p>Новости</p>
-                            <p>Покупка в рассрочку</p>
-                            <p>Игровые кресла</p>
-                            <p>О нас</p>
+                            <h3>Categories</h3>
+                            <p>Laptops</p>
+                            <p>News</p>
+                            <p>Purchase in installments</p>
+                            <p>Gaming chairs</p>
+                            <p>About us</p>
                         </div>
                         <div>
-                            <h3>Общее</h3>
-                            <p>Доставка и оплата</p>
-                            <p>Телефоны</p>
-                            <p>Наши магазины</p>
-                            <p>Правила покупок с cashback</p>
-                            <p>Моноблоки</p>
-                            <p>Контакты</p>
+                            <h3>General</h3>
+                            <p>Delivery and payment</p>
+                            <p>Phones</p>
+                            <p>Our stores</p>
+                            <p>Rules for purchases with cashback</p>
+                            <p>Monoblocks</p>
+                            <p>Contacts</p>
                         </div>
                         <div>
-                            <h3>Покупателям</h3>
-                            <p>Политика конфиденциальности</p>
-                            <p>Возврат / Обмен</p>
-                            <p>Модули памяти</p>
-                            <p>Правила программы лояльности</p>
-                            <p>Правила пользования купонами</p>
+                            <h3> Buyers</h3>
+                            <p>Privacy Policy</p>
+                            <p>Returns / Exchanges</p>
+                            <p>Memory Modules</p>
+                            <p> Loyalty Program Rules</p>
+                            <p>Coupon Use Rules</p>
                         </div>
                     </div>
                 </div>

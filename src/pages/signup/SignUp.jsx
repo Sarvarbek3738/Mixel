@@ -66,14 +66,14 @@ function SignUp() {
             action="#"
           >
             <div className="signUpText">
-              <h1>Завести аккаунт</h1>
-              <p>Введите ваши данные ниже</p>
+              <h1>Create an account</h1>
+              <p>Enter your details below</p>
               <input
                 onChange={(e) => {
                   setUserName(e.target.value);
                 }}
                 type="text"
-                placeholder="Имя пользователя"
+                placeholder="Username"
               />
               <br />
               <input
@@ -89,7 +89,7 @@ function SignUp() {
                   setUserPassword(e.target.value);
                 }}
                 type="text"
-                placeholder="Пароль"
+                placeholder="Confirm password"
               />
               <br />
               <input
@@ -97,7 +97,7 @@ function SignUp() {
                   setConfirmPassword(e.target.value);
                 }}
                 type="text"
-                placeholder="Подтвердите пароль"
+                placeholder="Create an account"
               />
               <br />
               <button className="Account">Завести аккаунт</button> <br />
@@ -105,11 +105,11 @@ function SignUp() {
                 <div>
                   <img src="/Icon-Google.svg" alt="" />
                 </div>{" "}
-                <div>Зарегистрироваться через Google</div>
+                <div>Sign up with Google</div>
               </button>
               <h5 className="toLogin">
-                У вас уже есть аккаунт?{" "}
-                <Link to={"/login"}>Авторизоваться</Link>
+              Already have an account?{" "}
+                <Link to={"/login"}>Login</Link>
               </h5>
             </div>
           </form>

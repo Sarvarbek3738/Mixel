@@ -15,14 +15,11 @@ function ProductAlotCard({ item }) {
           <p>
             Ishlab chiqaruvchi davlat: <span>{item?.country}</span>
           </p>
-          <p>
-            Turi: <span>An‘anaviy</span>
-          </p>
+        
         </div>
         <div className="AlotBuy">
-          <h4>{item?.monthly_price} сум/мес</h4>
-          <p>{item?.price} сум</p>
-          <div>
+          <h4 >{item?.price} сум/мес</h4>
+          <div className="AlotBuyBtn">
             <button>
               <div>
                 <i class="fa-solid fa-cart-shopping"></i>

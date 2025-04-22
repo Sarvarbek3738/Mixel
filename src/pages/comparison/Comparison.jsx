@@ -18,7 +18,7 @@ function Comparison() {
                         <div className='basicTitleLeft'>
                             <div>
                                 <p>
-                                    Главная
+                                    Home
                                 </p>
                                 <div>
                                     <i class="fa-solid fa-chevron-right"></i>
@@ -26,19 +26,19 @@ function Comparison() {
                             </div>
                             <div>
                                 <p>
-                                    Сравнить
+                                    Compare
                                 </p>
                             </div>
                         </div>
                     </div>
                     <h3>
-                        Сравнение товаров
+                        Compare Products
                     </h3>
                     <div className="comparisonCategory">
                         <div className="comparisonBtn">
-                            <div className='camBtn'><div><p>Смартфоны 5 </p></div> <div><i class="fa-solid fa-xmark"></i></div> </div>
-                            <div className='camBtn'><div><p>Смартфоны 5 </p></div> <div><i class="fa-solid fa-xmark"></i></div> </div>
-                            <div className='camBtn'><div><p>Внешние аккумуляторы 2 </p> </div> <div><i class="fa-solid fa-xmark"></i></div></div>
+                            <div className='camBtn'><div><p>Smartphones 5</p></div> <div><i class="fa-solid fa-xmark"></i></div> </div>
+                            <div className='camBtn'><div><p>Smartphones 5</p></div> <div><i class="fa-solid fa-xmark"></i></div> </div>
+                            <div className='camBtn'><div><p>Power banks 2 </p> </div> <div><i class="fa-solid fa-xmark"></i></div></div>
 
                         </div>
                         <div className='comparisonTovar'>
@@ -47,7 +47,7 @@ function Comparison() {
                             </div>
                             <div>
                                 <p>
-                                    Добавить товары
+                                Add products
                                 </p>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ function Comparison() {
                             {...label}
                             defaultChecked
                         />
-                        <p>Только отличия</p>
+                        <p>Only differences</p>
                     </div>
                     <div className="comparisonCards">
                         <div className="productsBlock">

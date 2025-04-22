@@ -72,13 +72,13 @@ function Dashboard({ userData, getUser }) {
         <div className="basicTitle">
           <div className="basicTitleLeft">
             <div>
-              <p>Главная</p>
+              <p>Home</p>
               <div>
                 <i class="fa-solid fa-chevron-right"></i>
               </div>
             </div>
             <div>
-              <p>Личный кобинет</p>
+              <p>Personal account</p>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@ function Dashboard({ userData, getUser }) {
                 <img src="/cart.svg" alt="" />
               </div>
               <div className="userInfo">
-                <p>Мои рассрочки</p>
+                <p>My installments</p>
               </div>
             </div>
             <div className="rowItem">
@@ -106,7 +106,7 @@ function Dashboard({ userData, getUser }) {
                 <img src="/file-text.svg" alt="" />
               </div>
               <div className="userInfo">
-                <p>Мои рассрочки</p>
+                <p>My installments</p>
               </div>
             </div>
             <div className="rowItem">
@@ -114,7 +114,7 @@ function Dashboard({ userData, getUser }) {
                 <img src="/clock.svg" alt="" />
               </div>
               <div className="userInfo">
-                <p>Мои рассрочки</p>
+                <p>My installments</p>
               </div>
             </div>
             <div className="rowItem">
@@ -122,7 +122,7 @@ function Dashboard({ userData, getUser }) {
                 <img src="/log-out.svg" alt="" />
               </div>
               <div className="userInfo">
-                <p>Мои рассрочки</p>
+                <p>My installments</p>
               </div>
             </div>
           </div>

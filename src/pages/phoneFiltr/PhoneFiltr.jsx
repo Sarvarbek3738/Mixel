@@ -50,19 +50,19 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
           <div className="basicTitle">
             <div className="basicTitleLeft">
               <div>
-                <p>Главная</p>
+                <p>Home</p>
                 <div>
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
               </div>
               <div>
-                <p>Телефоны, планшеты</p>
+                <p>Phones, tablets</p>
                 <div>
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
               </div>
               <div>
-                <p>Телефоны и гаджеты</p>
+                <p>Phones and gadgets</p>
               </div>
             </div>
             <div className="basicTitleRight">
@@ -73,7 +73,7 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
           <div className="smartfon">
             <div className="smatfonTitle">
               <div className="smatfonTitle1">
-                <div>
+                <div className="smatfonTitle1Panel">
                   <h3>{categoryName && categoryName[0]?.name}</h3>
                 </div>
                 <div className="sent">
@@ -82,7 +82,7 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
                       <img src="/imgs/Bonus.svg" alt="" />
                     </div>
                     <div>
-                      <p>По цене</p>
+                      <p>By price</p>
                     </div>
                   </div>
                   <div>
@@ -90,7 +90,7 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
                       <TbMenuDeep />
                     </div>
                     <div>
-                      <p>По популярности asd</p>
+                      <p>By popularity asd</p>
                     </div>
                   </div>
                 </div>
@@ -341,62 +341,45 @@ function PhoneFiltr({ products, getData, getCategories, categories }) {
                   </div>
                 </div>
                 <div className="smartfonRighBrend">
-                  <h3>Популярные категории и модели</h3>
+                  <h3>Popular categories and models</h3>
                   <div className="smartfonRighBrendBox">
                     <div>
                       <p>Realme</p>
                     </div>
                     <div>
-                      <p>Игровые</p>
+                      <p>Gaming</p>
                     </div>
                     <div>
-                      <p>Оптимальные</p>
+                      <p>Optimal</p>
                     </div>
                     <div>
-                      <p>Смартфоны Samsung</p>
+                      <p>Samsung smartphones</p>
                     </div>
                     <div>
-                      <p>Смартфоны Apple</p>
+                      <p>Apple smartphones</p>
                     </div>
                     <div>
-                      <p>Смартфоны</p>
+                      <p>Smartphones</p>
                     </div>
                     <div>
-                      <p>Смартфоны Samsung</p>
+                      <p>Samsung smartphones</p>
                     </div>
                     <div>
-                      <p>Смартфоны</p>
+                      <p>Smartphones</p>
                     </div>
                     <div>
-                      <p>Игровые</p>
+                      <p>Gaming</p>
                     </div>
                   </div>
                 </div>
-                <div className="section1Title">
-                  <h3>Товары которые так же могут быть интересны</h3>
-                  <p>Посмотреть все →</p>
-                </div>
+               
                 <div className="sliderCards">
                   <Slaydir products={products} getData={getData} />
                 </div>
                 <div className="ToliqMalumot">
-                  <h3>Где купить надежный смартфон в Ташкенте?</h3>
+                  <h3>Where to buy a reliable smartphone in Tashkent?</h3>
                   <p>
-                    С каждым годом телефоны становятся всё умнее, незаменимей,
-                    функциональнее. Фактический на данном этапе у каждого
-                    узбекистанца есть как минимум один смартфон. Так что же
-                    такое "смартфон"? – это небольшое устройство, способное
-                    заменить компьютер, радио, видеокамеру, телевизор. Открывает
-                    доступ к интернету и связи в любой ситуации – дома, в
-                    транспорте, в спортзале, на улице. Раньше,   чтобы купить
-                    электронику, мы мучительно ехали на рынки, блуждали по
-                    торговым рядам, тратили время, чтобы купить новую аппарат из
-                    линейки. Сейчас, всё на много проще. Зашли на сайт, почитали
-                    характеристики, отзывы, заказали. Все эти сложные
-                    технические характеристики в топовых смартфонах ничуть не
-                    уступают ноутбукам и стационарным ПК, но путают обычных
-                    потребителей. Возникает вопрос, где и как выбрать правильно
-                    качественный товар с адекватным ценником?
+                  Every year, phones are becoming smarter, more indispensable, more functional. In fact, at this stage, every Uzbek has at least one smartphone. So what is a "smartphone"? - It is a small device that can replace a computer, radio, video camera, TV. It opens access to the Internet and communication in any situation - at home, in transport, in the gym, on the street. Previously, in order to buy electronics, we painfully went to the markets, wandered along the shopping arcades, wasted time to buy a new device from the line. Now, everything is much simpler. We went to the site, read the characteristics, reviews, ordered. All these complex technical characteristics in top smartphones are in no way inferior to laptops and desktop PCs, but they confuse ordinary consumers. The question arises, where and how to choose the right quality product with an adequate price tag?
                   </p>
                 </div>
               </div>
