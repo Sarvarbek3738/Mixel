@@ -32,7 +32,7 @@ function ProductBox({
               <h3>{item?.price} UZS</h3>
             </div>
           </div>
-          <h3 className="Title4">{String(item?.name).slice(0, 28)}</h3>
+          <h3 className="Title4">{item?.name?.length > 10 ? item?.name.slice(0, 15) + "..." : item?.name}</h3>
 
           <div className="Box4Tovar">
             <div

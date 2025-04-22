@@ -76,13 +76,7 @@ function Comparison() {
                     </div>
                     <div className="comparisonCards">
                         <div className="productsBlock">
-                            <ProductBox />
-                            <ProductBox />
-                            <ProductBox />
-
-
-
-                        </div>
+                            <ProductBox />                        </div>
                     </div>
                 </div>
             </div>

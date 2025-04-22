@@ -13,12 +13,14 @@
 
 .signIn {
   position: relative;
-  padding-top: 80px;
+  padding-top: 200px;
 }
 
 .signInImg {
   position: absolute;
   left: 50px;
+  border: 1px solid red;
+
 }
 
 .signInText h1 {

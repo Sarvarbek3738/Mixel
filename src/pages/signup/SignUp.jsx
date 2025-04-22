@@ -100,7 +100,7 @@ function SignUp() {
                 placeholder="Create an account"
               />
               <br />
-              <button className="Account">Завести аккаунт</button> <br />
+              <button className="Account">Create an account</button> <br />
               <button className="google">
                 <div>
                   <img src="/Icon-Google.svg" alt="" />

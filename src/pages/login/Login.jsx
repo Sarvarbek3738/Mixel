@@ -55,14 +55,14 @@ function Login() {
             action="#"
           >
             <div className="signInText">
-              <h1>Войти в Mixel.uz</h1>
-              <p>Введите ваши данные ниже</p>
+              <h1>Login to Mixel.uz</h1>
+              <p>Enter your details below</p>
               <input
                 onChange={(e) => {
                   setUserName(e.target.value);
                 }}
                 type="text"
-                placeholder="Имя пользователя"
+                placeholder="Username"
               />
               <br />
               <input
@@ -70,15 +70,15 @@ function Login() {
                   setPassword(e.target.value);
                 }}
                 type="text"
-                placeholder="Пароль"
+                placeholder="Password"
               />
               <br />
               <div className="signInIcon">
                 <div>
-                  <button>Войти</button>{" "}
+                  <button>Login</button>{" "}
                 </div>
                 <div>
-                  <p>Забыли пароль?</p>
+                  <p>Forgot your password?</p>
                 </div>
               </div>
             </div>
