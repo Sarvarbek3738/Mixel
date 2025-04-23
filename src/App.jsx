@@ -17,6 +17,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import Slaydir from "./components/slaydir/Slaydir";
 import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
+import BrandFiltr from "./pages/brandfiltr/BrandFiltr";
 function App() {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
@@ -340,6 +341,19 @@ function App() {
             path="/phoneFiltr/:id"
             element={
               <PhoneFiltr
+                getBrands={getBrands}
+                brands={brands}
+                products={products}
+                getData={getData}
+                categories={categories}
+                getCategories={getCategories}
+              />
+            }
+          />
+          <Route
+            path="/phoneFiltr/:id"
+            element={
+              <BrandFiltr
                 getBrands={getBrands}
                 brands={brands}
                 products={products}
