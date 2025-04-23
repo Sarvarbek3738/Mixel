@@ -27,25 +27,29 @@ function Home({
   getCategories,
   products,
   getData,
+  getBrands,
+  brands
+
 }) {
-  const [brands, setBrands] = useState(null);
+  // const [brands, setBrands] = useState(null);
   const [showOrderModal, setShowOrderModal] = useState(false);
 
-  // getBrands function
-  const getBrands = () => {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
 
-    fetch("https://abzzvx.pythonanywhere.com/brands/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        // console.log(result);
-        setBrands(result);
-      })
-      .catch((error) => console.error(error));
-  };
+  // getBrands function
+  // const getBrands = () => {
+  //   const requestOptions = {
+  //     method: "GET",
+  //     redirect: "follow",
+  //   };
+
+  //   fetch("https://abzzvx.pythonanywhere.com/brands/", requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       // console.log(result);
+  //       setBrands(result);
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
 
   // getBanner function
   const [banner, setBanner] = useState(null);
@@ -66,7 +70,7 @@ function Home({
 
   useEffect(() => {
     getBanner();
-    getBrands();
+    // getBrands();
   }, []);
 
   return (

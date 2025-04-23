@@ -89,8 +89,8 @@ function Dashboard({ userData, getUser }) {
                 <img src="/user.svg" alt="" />
               </div>
               <div className="userInfo">
-                <p>Shukurillo Tojonazarov</p>
-                <p>+998 99 0333848</p>
+              <p>{userData?.first_name} {userData?.last_name}</p>
+              <p>{userData?.phone_number}</p>
               </div>
             </div>
             <div className="rowItem">
