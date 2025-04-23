@@ -97,8 +97,9 @@
 }
 .productDetails {
   margin-bottom: 10px;
-  max-height: 100px;
+  max-height: 195px;
   overflow-y: auto;
+  cursor: pointer;
   font-size: 16px;
   color: #686868;
 }
@@ -116,7 +117,7 @@
 }
 .counter {
   display: flex;
-  width: 250px;
+  width: 95%;
   align-items: center;
   justify-content: space-between;
   border: #686868 1px solid;
@@ -124,7 +125,7 @@
   padding: 5px;
 }
 .counter button {
-  padding: 10px 35px;
+  padding: 4px 35px;
   border-radius: 8px;
   border: none;
   font-size: 22px;
@@ -138,12 +139,12 @@
   background-color: #ed3729;
 }
 .addToCart {
-  padding-top: 30px;
-  width: 100%;
+  padding-top: 10px;
+  
 }
 .addToCart button {
-  width: 250px;
-  padding: 15px;
+  width:95%;
+  padding: 10px   ;
   border: none;
   font-size: 18px;
   font-weight: 700;
@@ -158,4 +159,7 @@
 .addToCart button i{
   font-size: 20px;
   color: white;
+}
+.itemImg{
+  cursor: pointer;
 }

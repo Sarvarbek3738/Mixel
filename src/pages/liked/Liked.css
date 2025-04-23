@@ -9,6 +9,16 @@
 .likedPage .productsBlock {
   padding-bottom: 80px;
   display: flex;
-  gap: 20px;
+  gap: 37px;
   flex-wrap: wrap;
+  justify-content: start;
+}
+.emptyWishlist {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  font-size:40px;
+  font-weight: 600;
+  color:#A0A0A0;
 }

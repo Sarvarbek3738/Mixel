@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import "./OrderModal.css";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+
 function OrderModal({
   setShowOrderModal,
   addToCart,
@@ -8,49 +10,54 @@ function OrderModal({
   showOrderModal,
 }) {
   const [productAmount, setProductAmount] = useState(1);
+  const [mainImage, setMainImage] = useState("");
+
+  useEffect(() => {
+    if (showOrderModal && oneProductData?.images?.[0]?.image) {
+      setMainImage(oneProductData.images[0].image);
+    }
+  }, [showOrderModal, oneProductData]);
+
+  const handleCloseModal = () => {
+    setShowOrderModal(false);
+    setProductAmount(1);
+    setMainImage(oneProductData?.images?.[0]?.image || "");
+  };
 
   return (
     <div
       onClick={(e) => {
         if (e.target.classList.contains("orderModalBack")) {
-          setShowOrderModal(false);
+          handleCloseModal();
         }
       }}
       className={showOrderModal ? "orderModalBack open" : "orderModalBack"}
     >
       <div
-        onClick={(e) => {
-          e.preventDefault();
-        }}
+        onClick={(e) => e.preventDefault()}
         className={showOrderModal ? "orderModal open" : "orderModal"}
       >
-        <div
-          className="closeModal"
-          onClick={() => {
-            setShowOrderModal(false);
-          }}
-        >
+        <div className="closeModal" onClick={handleCloseModal}>
           <IoMdCloseCircleOutline />
         </div>
+
         <div className="productImgSide">
           <div className="mainImg">
-            <img src={oneProductData?.images[0]?.image} alt="" />
+            <img src={mainImage} alt="Main product" />
           </div>
           <div className="itemImgs">
-            <div className="itemImg">
-              <img src={oneProductData?.images[0]?.image} alt="" />
-            </div>
-            <div className="itemImg">
-              <img src={oneProductData?.images[1]?.image} alt="" />
-            </div>
-            <div className="itemImg">
-              <img src={oneProductData?.images[2]?.image} alt="" />
-            </div>
-            <div className="itemImg">
-              <img src={oneProductData?.images[3]?.image} alt="" />
-            </div>
+            {(oneProductData?.images || []).slice(0, 4).map((img, index) => (
+              <div
+                key={index}
+                className="itemImg"
+                onClick={() => setMainImage(img.image)}
+              >
+                <img src={img.image} alt={`Product thumbnail ${index + 1}`} />
+              </div>
+            ))}
           </div>
         </div>
+
         <div className="productData">
           <h2 className="productTitle">{oneProductData?.name}</h2>
           <h3
@@ -67,16 +74,14 @@ function OrderModal({
               Discount Price: {oneProductData?.discount_price}
             </h3>
           )}
-
           <p className="detailsTitle">Details: </p>
           <p className="productDetails">{String(oneProductData?.details)}</p>
           <p>Country: {oneProductData?.country}</p>
+
           <div className="counter">
             <button
               onClick={() => {
-                productAmount > 1
-                  ? setProductAmount(productAmount - 1)
-                  : setProductAmount(productAmount);
+                if (productAmount > 1) setProductAmount(productAmount - 1);
               }}
               className="minusBtn"
             >
@@ -92,15 +97,15 @@ function OrderModal({
               +
             </button>
           </div>
+
           <div className="addToCart">
             <button
               onClick={() => {
                 addToCart(oneProductData?.id, productAmount);
-                setShowOrderModal(false)
+                handleCloseModal();
               }}
               className="addToCartBtn"
             >
-              {" "}
               <i className="fas fa-shopping-cart"></i> Add to Cart
             </button>
           </div>

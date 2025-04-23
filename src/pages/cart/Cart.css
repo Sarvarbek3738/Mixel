@@ -59,3 +59,11 @@
 .removeProductfromCartBtn i:hover {
   color: #ed3729;
 }
+
+.emptyCartMessage {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.5rem;
+  color: #555;
+}
+
