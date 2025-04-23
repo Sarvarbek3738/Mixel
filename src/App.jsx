@@ -46,6 +46,7 @@ function App() {
       .then((response) => response.text())
       .then((result) => {
         toast.error("Product removed from Featured");
+        getLikedProducts();
         getData();
       })
       .catch((error) => console.error(error));
@@ -75,6 +76,8 @@ function App() {
       .then((response) => response.text())
       .then((result) => {
         toast.success("Product added to featured successfully");
+        getLikedProducts();
+        getData();
       })
       .catch((error) => console.error(error));
   };
@@ -247,7 +250,6 @@ function App() {
 
   const [brands, setBrands] = useState(null);
 
-
   // getBrands function
   const getBrands = () => {
     const requestOptions = {
@@ -264,9 +266,8 @@ function App() {
       .catch((error) => console.error(error));
   };
 
-
   useEffect(() => {
-    getBrands()
+    getBrands();
     getCategories();
     getData();
     if (localStorage.getItem("mixelToken")) {
@@ -275,14 +276,12 @@ function App() {
   }, []);
   // console.log(likedProducts);
 
-
-
   return (
     <SkeletonTheme baseColor="#fafafa" highlightColor="#ccc">
       <BrowserRouter>
         <ToastContainer
           position="top-right"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}
@@ -310,8 +309,8 @@ function App() {
             path="/"
             element={
               <Home
-              getBrands={getBrands}
-              brands={brands}
+                getBrands={getBrands}
+                brands={brands}
                 getUser={getUser}
                 userData={userData}
                 deleteFromLiked={deleteFromLiked}
@@ -341,8 +340,8 @@ function App() {
             path="/phoneFiltr/:id"
             element={
               <PhoneFiltr
-              getBrands={getBrands}
-              brands={brands}
+                getBrands={getBrands}
+                brands={brands}
                 products={products}
                 getData={getData}
                 categories={categories}
@@ -369,6 +368,10 @@ function App() {
               <Liked
                 likedProducts={likedProducts}
                 getLikedProducts={getLikedProducts}
+                getData={getData}
+                deleteFromLiked={deleteFromLiked}
+                userData={userData}
+                getUser={getUser}
               />
             }
           />
