@@ -21,10 +21,7 @@ function Navbar({
   const [categoryId, setCategoryId] = useState(3);
   const [productId, setProductId] = useState(null);
   const [categoryName, setCategoryName] = useState("Phones and Tablets");
-  const [featuredLink, setFeaturedLink] = useState(
-    userData ? "/liked" : "/signup"
-  );
-  const [cartLink, setCartLink] = useState(userData ? "/cart" : "/signup");
+
   useEffect(() => {
     getCategories();
     getData();
@@ -92,9 +89,9 @@ function Navbar({
               {(products && (
                 <Link to={"/liked"}>
                   <div className="navBtn">
-                    {likedProducts.length > 0 && (
+                    {likedProducts?.length > 0 && (
                       <div className="likeItemVal">
-                        <p>{likedProducts.length}</p>
+                        <p>{likedProducts?.length}</p>
                       </div>
                     )}
                     <i class="fa-regular fa-heart"></i>
