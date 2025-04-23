@@ -244,7 +244,29 @@ function App() {
       })
       .catch((error) => console.error(error));
   };
+
+  const [brands, setBrands] = useState(null);
+
+
+  // getBrands function
+  const getBrands = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/brands/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        // console.log(result);
+        setBrands(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
+
   useEffect(() => {
+    getBrands()
     getCategories();
     getData();
     if (localStorage.getItem("mixelToken")) {
@@ -252,6 +274,8 @@ function App() {
     }
   }, []);
   // console.log(likedProducts);
+
+
 
   return (
     <SkeletonTheme baseColor="#fafafa" highlightColor="#ccc">
@@ -286,6 +310,8 @@ function App() {
             path="/"
             element={
               <Home
+              getBrands={getBrands}
+              brands={brands}
                 getUser={getUser}
                 userData={userData}
                 deleteFromLiked={deleteFromLiked}
@@ -315,6 +341,8 @@ function App() {
             path="/phoneFiltr/:id"
             element={
               <PhoneFiltr
+              getBrands={getBrands}
+              brands={brands}
                 products={products}
                 getData={getData}
                 categories={categories}
