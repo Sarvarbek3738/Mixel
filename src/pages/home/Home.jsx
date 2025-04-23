@@ -353,6 +353,9 @@ function Home({
               <div className="section1Title">
                 <h3>Recommended </h3>
                 <p>Show More →</p>
+
+
+                {/* yangiladim */}
               </div>
               <div className="Box5">
                 <div className="box5-3">
