@@ -81,6 +81,12 @@ function PhoneFiltr({ products,
 
           <div className="smartfon">
             <div className="smatfonTitle">
+
+
+
+
+
+              {/* fghjklkjhertghjkl */}
               <div className="smatfonTitle1">
                 <div className="smatfonTitle1Panel">
                   <h3>{categoryName && categoryName[0]?.name}</h3>

@@ -360,7 +360,7 @@ function Home({
                 </div>
                 <div className="box5-2">
                   {products ? (
-                    products.results?.length > 0 ? (
+                    products?.results?.length > 0 ? (
                       products.results.map((item) => {
                         if (item.discount) {
                           return (

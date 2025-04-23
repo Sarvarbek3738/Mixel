@@ -3,13 +3,13 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function Login() {
+function Login({getUser}) {
   const [username, setUserName] = useState(null);
   const [password, setPassword] = useState(null);
   const navigate = useNavigate();
 
-  // getUser function
-  const getUser = () => {
+  // getUserData function
+  const getUserData = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -31,6 +31,7 @@ function Login() {
         if (result.access) {
           localStorage.setItem("mixelToken", result.access);
           toast.success("Tizimga muvaffaqiyatli kirdingiz!");
+          // getUser();
           navigate("/");
         } else {
           toast.error("Login yoki parol noto'g'ri!");
@@ -50,7 +51,7 @@ function Login() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              getUser();
+              getUserData();
             }}
             action="#"
           >
