@@ -351,7 +351,7 @@ function App() {
             }
           />
           <Route
-            path="/phoneFiltr/:id"
+            path="/brandfiltr/:id"
             element={
               <BrandFiltr
                 getBrands={getBrands}
