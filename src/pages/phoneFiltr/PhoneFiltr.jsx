@@ -17,14 +17,14 @@ import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
 
-
-
-function PhoneFiltr({ products,
+function PhoneFiltr({
+  products,
   getData,
   getCategories,
   categories,
   getBrands,
-  brands }) {
+  brands,
+}) {
   const [value, setValue] = useState([20, 70]);
   const id = useParams();
   const [isGrid, setIsGrid] = useState(true);
@@ -81,11 +81,6 @@ function PhoneFiltr({ products,
 
           <div className="smartfon">
             <div className="smatfonTitle">
-
-
-
-
-
               {/* fghjklkjhertghjkl */}
               <div className="smatfonTitle1">
                 <div className="smatfonTitle1Panel">
@@ -358,13 +353,13 @@ function PhoneFiltr({ products,
                 <div className="smartfonRighBrend">
                   <h3>Popular categories and models</h3>
                   <div className="smartfonRighBrendBox">
-                  {brands?.results?.map((brand) => {
-                        return (
-                            <div>
-                              <p>{brand?.name}</p>
-                            </div>
-                        );
-                      })}
+                    {brands?.results?.map((brand) => {
+                      return (
+                        <div>
+                          <p>{brand?.name}</p>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -374,7 +369,22 @@ function PhoneFiltr({ products,
                 <div className="ToliqMalumot">
                   <h3>Where to buy a reliable smartphone in Tashkent?</h3>
                   <p>
-                    Every year, phones are becoming smarter, more indispensable, more functional. In fact, at this stage, every Uzbek has at least one smartphone. So what is a "smartphone"? - It is a small device that can replace a computer, radio, video camera, TV. It opens access to the Internet and communication in any situation - at home, in transport, in the gym, on the street. Previously, in order to buy electronics, we painfully went to the markets, wandered along the shopping arcades, wasted time to buy a new device from the line. Now, everything is much simpler. We went to the site, read the characteristics, reviews, ordered. All these complex technical characteristics in top smartphones are in no way inferior to laptops and desktop PCs, but they confuse ordinary consumers. The question arises, where and how to choose the right quality product with an adequate price tag?
+                    Every year, phones are becoming smarter, more indispensable,
+                    more functional. In fact, at this stage, every Uzbek has at
+                    least one smartphone. So what is a "smartphone"? - It is a
+                    small device that can replace a computer, radio, video
+                    camera, TV. It opens access to the Internet and
+                    communication in any situation - at home, in transport, in
+                    the gym, on the street. Previously, in order to buy
+                    electronics, we painfully went to the markets, wandered
+                    along the shopping arcades, wasted time to buy a new device
+                    from the line. Now, everything is much simpler. We went to
+                    the site, read the characteristics, reviews, ordered. All
+                    these complex technical characteristics in top smartphones
+                    are in no way inferior to laptops and desktop PCs, but they
+                    confuse ordinary consumers. The question arises, where and
+                    how to choose the right quality product with an adequate
+                    price tag?
                   </p>
                 </div>
               </div>
