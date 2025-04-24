@@ -16,6 +16,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
+import NoProduct from "../../components/noproduct/NoProduct";
 
 function PhoneFiltr({
   products,
@@ -337,6 +338,7 @@ function PhoneFiltr({
                       return <ProductAlotCard item={item} />;
                     }
                   })}
+                  {!filteredProducts?.length == 1 && <NoProduct />}
                 </div>
                 <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
