@@ -108,7 +108,7 @@ import 'react-loading-skeleton/dist/skeleton.css'; // Skeleton uchun CSS kerak b
 import ProductBox from '../productBox/ProductBox';
 
 function Slaydir({ categories, getCategories, products, getData, item }) {
-    console.log("Products data:", products);
+    // console.log("Products data:", products);
     return (
 
         <div>
