@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./PhoneFiltr.css";
+import "./BrandFiltr.css";
 import { HiOutlineChartBar } from "react-icons/hi";
 import { CgMenuGridR } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -17,7 +17,7 @@ import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
 
-function PhoneFiltr({
+function BrandFiltr({
   products,
   getData,
   getCategories,
@@ -396,4 +396,4 @@ function PhoneFiltr({
   );
 }
 
-export default PhoneFiltr;
+export default BrandFiltr;

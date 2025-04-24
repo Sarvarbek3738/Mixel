@@ -9,6 +9,7 @@ function ProductBox({
   getData,
   getOneProductData,
   addToLiked,
+  getLikedProducts,
   setShowOrderModal,
 }) {
   const navigate = useNavigate();
@@ -32,7 +33,11 @@ function ProductBox({
               <h3>{item?.price} UZS</h3>
             </div>
           </div>
-          <h3 className="Title4">{item?.name?.length > 10 ? item?.name.slice(0, 15) + "..." : item?.name}</h3>
+          <h3 className="Title4">
+            {item?.name?.length > 10
+              ? item?.name.slice(0, 15) + "..."
+              : item?.name}
+          </h3>
 
           <div className="Box4Tovar">
             <div
@@ -55,6 +60,7 @@ function ProductBox({
                   if (item?.like) {
                     setLocalLiked(false);
                     deleteFromLiked(item?.like_id);
+                    getLikedProducts();
                   } else {
                     addToLiked(item.id);
                     setLocalLiked(true);

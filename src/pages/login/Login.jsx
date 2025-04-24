@@ -31,8 +31,8 @@ function Login({getUser}) {
         if (result.access) {
           localStorage.setItem("mixelToken", result.access);
           toast.success("Tizimga muvaffaqiyatli kirdingiz!");
-          // getUser();
           navigate("/");
+          window.location.reload();
         } else {
           toast.error("Login yoki parol noto'g'ri!");
         }

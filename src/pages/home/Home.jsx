@@ -28,12 +28,10 @@ function Home({
   products,
   getData,
   getBrands,
-  brands
-
+  brands,
 }) {
   // const [brands, setBrands] = useState(null);
   const [showOrderModal, setShowOrderModal] = useState(false);
-
 
   // getBrands function
   // const getBrands = () => {
@@ -459,12 +457,15 @@ function Home({
                   {brands?.results?.map((brand) => {
                     return (
                       <SwiperSlide>
-                        <div className="brandBox">
+                        <Link
+                          to={`brandfiltr/${brand.id}`}
+                          className="brandBox"
+                        >
                           <div className="brandImg">
                             <img src={brand?.image} alt="" />
                           </div>
                           <h2>{brand?.name}</h2>
-                        </div>
+                        </Link>
                       </SwiperSlide>
                     );
                   })}

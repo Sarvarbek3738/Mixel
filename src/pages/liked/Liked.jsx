@@ -1,43 +1,49 @@
-
-
 import React, { useEffect, useState } from "react";
 import "./Liked.css";
 // import ProductCard from "../../components/productCard/ProductCard";
 import ProductBox from "../../components/productBox/ProductBox";
 import Skeleton from "react-loading-skeleton";
 
-function Liked({}) {
-  const [likedProducts, setLikedProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+function Liked({
+  deleteFromLiked,
+  likedProducts,
+  getLikedProducts,
+  getData,
+  getUser,
+  userData,
+}) {
+  // const [likedProducts, setLikedProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const getLikedProducts = () => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("mixelToken")}`
-    );
+  // const getLikedProducts = () => {
+  //   const myHeaders = new Headers();
+  //   myHeaders.append(
+  //     "Authorization",
+  //     `Bearer ${localStorage.getItem("mixelToken")}`
+  //   );
 
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
 
-    fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setLikedProducts(result);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-      });
-  };
+  //   fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setLikedProducts(result);
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       setLoading(false);
+  //     });
+  // };
 
   useEffect(() => {
     if (localStorage.getItem("mixelToken")) {
       getLikedProducts();
+      getData();
     } else {
       setLoading(false);
     }
@@ -70,15 +76,35 @@ function Liked({}) {
             [1, 2, 3, 4, 5].map((item) => (
               <div className="loadingSkeletons" key={item}>
                 <Skeleton width={230} height={210} />
-                <Skeleton style={{ marginTop: "30px" }} width={230} height={18} />
-                <Skeleton style={{ marginTop: "20px" }} width={230} height={32} />
+                <Skeleton
+                  style={{ marginTop: "30px" }}
+                  width={230}
+                  height={18}
+                />
+                <Skeleton
+                  style={{ marginTop: "20px" }}
+                  width={230}
+                  height={32}
+                />
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                   className="skeletonButtons"
                 >
-                  <Skeleton style={{ marginTop: "20px" }} width={50} height={42} />
-                  <Skeleton style={{ marginTop: "20px" }} width={50} height={42} />
-                  <Skeleton style={{ marginTop: "20px" }} width={50} height={42} />
+                  <Skeleton
+                    style={{ marginTop: "20px" }}
+                    width={50}
+                    height={42}
+                  />
+                  <Skeleton
+                    style={{ marginTop: "20px" }}
+                    width={50}
+                    height={42}
+                  />
+                  <Skeleton
+                    style={{ marginTop: "20px" }}
+                    width={50}
+                    height={42}
+                  />
                 </div>
               </div>
             ))
@@ -88,7 +114,15 @@ function Liked({}) {
             </div>
           ) : (
             likedProducts.map((item) => (
-              <ProductBox item={item.product} key={item.id} />
+              <ProductBox
+                getLikedProducts={getLikedProducts}
+                userData={userData}
+                getUser={getUser}
+                getData={getData}
+                deleteFromLiked={deleteFromLiked}
+                item={item.product}
+                key={item.id}
+              />
             ))
           )}
         </div>
