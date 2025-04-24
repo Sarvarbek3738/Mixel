@@ -18,6 +18,7 @@ import Slaydir from "./components/slaydir/Slaydir";
 import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import BrandFiltr from "./pages/brandfiltr/BrandFiltr";
+import PosterPage from "./pages/posterpage/PosterPage";
 function App() {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
@@ -413,6 +414,7 @@ function App() {
             path="/dashboard"
             element={<Dashboard getUser={getUser} userData={userData} />}
           />
+          <Route path="/poster/:id" element={<PosterPage />} />
           <Route path="/login" element={<Login getUser={getUser} />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>

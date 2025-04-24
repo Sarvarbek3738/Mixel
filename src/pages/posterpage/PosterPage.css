@@ -1,0 +1,21 @@
+.posterPage {
+  padding: 120px 0;
+}
+.posterBanner {
+  width: 100%;
+  overflow: hidden;
+  height: 300px;
+}
+.posterBanner img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.posterProducts {
+  padding-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 37px;
+  flex-wrap: wrap;
+}

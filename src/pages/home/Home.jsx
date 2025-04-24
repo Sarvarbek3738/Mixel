@@ -30,25 +30,8 @@ function Home({
   getBrands,
   brands,
 }) {
-  // const [brands, setBrands] = useState(null);
+
   const [showOrderModal, setShowOrderModal] = useState(false);
-
-  // getBrands function
-  // const getBrands = () => {
-  //   const requestOptions = {
-  //     method: "GET",
-  //     redirect: "follow",
-  //   };
-
-  //   fetch("https://abzzvx.pythonanywhere.com/brands/", requestOptions)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       // console.log(result);
-  //       setBrands(result);
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
-
   // getBanner function
   const [banner, setBanner] = useState(null);
   const getBanner = () => {
@@ -61,14 +44,12 @@ function Home({
       .then((response) => response.json())
       .then((result) => {
         setBanner(result);
-        // console.log(result);
       })
       .catch((error) => console.error(error));
   };
 
   useEffect(() => {
     getBanner();
-    // getBrands();
   }, []);
 
   return (
@@ -104,9 +85,9 @@ function Home({
                 {banner?.results.map((item) => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <div className="heroBanner">
+                      <Link to={`/poster/${item.id}`} className="heroBanner">
                         <img src={item?.image} alt="" />
-                      </div>
+                      </Link>
                     </SwiperSlide>
                   );
                 })}

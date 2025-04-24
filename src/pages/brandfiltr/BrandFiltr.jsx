@@ -25,16 +25,11 @@ function BrandFiltr({
   getBrands,
   brands,
 }) {
-  const [value, setValue] = useState([20, 70]);
   const id = useParams();
+  const [value, setValue] = useState([20, 70]);
+  // const id = useParams();
   const [isGrid, setIsGrid] = useState(true);
-  const categoryName = categories?.results.filter((item) => {
-    return item.id == id.id;
-  });
-
-  const filteredProducts = products?.results?.filter((item) => {
-    return item.category == id.id;
-  });
+  const [brandProducts, setBrandProducts] = useState(null);
 
   // function for range
   function valuetext(value) {
@@ -44,8 +39,25 @@ function BrandFiltr({
     setValue(newValue);
   };
 
+  // getBrandProducts function
+  const getBrandProducts = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`https://abzzvx.pythonanywhere.com/products/?brand=${id.id}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setBrandProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
   useEffect(() => {
     getCategories();
+    getBrandProducts();
     getData();
     window.scrollTo({
       top: "0",
@@ -84,7 +96,7 @@ function BrandFiltr({
               {/* fghjklkjhertghjkl */}
               <div className="smatfonTitle1">
                 <div className="smatfonTitle1Panel">
-                  <h3>{categoryName && categoryName[0]?.name}</h3>
+                  {/* <h3>{categoryName && categoryName[0]?.name}</h3> */}
                 </div>
                 <div className="sent">
                   <div>
@@ -330,7 +342,7 @@ function BrandFiltr({
               </div>
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
-                  {filteredProducts?.map((item) => {
+                  {brandProducts?.results?.map((item) => {
                     if (isGrid) {
                       return <ProductBox item={item} />;
                     } else {
