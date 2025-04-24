@@ -212,7 +212,7 @@ function Home({
                     return (
                       <SwiperSlide key={category.id}>
                         <Link
-                          to={`/phoneFiltr/${category.id}`}
+                          to={`/category/${category.id}`}
                           className="box2-1"
                         >
                           <h4>{category?.name}</h4>
@@ -439,7 +439,7 @@ function Home({
                     return (
                       <SwiperSlide>
                         <Link
-                          to={`brandfiltr/${brand.id}`}
+                          to={`brand/${brand.id}`}
                           className="brandBox"
                         >
                           <div className="brandImg">
