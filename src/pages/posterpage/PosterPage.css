@@ -1,16 +1,23 @@
-.posterPage {
-  padding: 120px 0;
+.posterPage{
+  padding-bottom: 80px;
 }
+.posterPage .container {
+  padding-top: 170px;
+
+}
+
 .posterBanner {
   width: 100%;
   overflow: hidden;
   height: 300px;
 }
+
 .posterBanner img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
+
 .posterProducts {
   padding-top: 60px;
   display: flex;
