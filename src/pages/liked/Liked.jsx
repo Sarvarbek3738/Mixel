@@ -3,6 +3,7 @@ import "./Liked.css";
 // import ProductCard from "../../components/productCard/ProductCard";
 import ProductBox from "../../components/productBox/ProductBox";
 import Skeleton from "react-loading-skeleton";
+import NoProduct from "../../components/noproduct/NoProduct";
 
 function Liked({
   deleteFromLiked,
@@ -14,31 +15,6 @@ function Liked({
 }) {
   // const [likedProducts, setLikedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  // const getLikedProducts = () => {
-  //   const myHeaders = new Headers();
-  //   myHeaders.append(
-  //     "Authorization",
-  //     `Bearer ${localStorage.getItem("mixelToken")}`
-  //   );
-
-  //   const requestOptions = {
-  //     method: "GET",
-  //     headers: myHeaders,
-  //     redirect: "follow",
-  //   };
-
-  //   fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       setLikedProducts(result);
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //       setLoading(false);
-  //     });
-  // };
 
   useEffect(() => {
     if (localStorage.getItem("mixelToken")) {
@@ -109,9 +85,7 @@ function Liked({
               </div>
             ))
           ) : likedProducts.length === 0 ? (
-            <div className="emptyWishlist">
-              <p>Istaklar ro'yxatida hech narsa mavjud emas</p>
-            </div>
+            <NoProduct />
           ) : (
             likedProducts.map((item) => (
               <ProductBox

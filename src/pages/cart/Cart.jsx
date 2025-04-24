@@ -1,8 +1,8 @@
-
 import React, { useEffect } from "react";
 import "./Cart.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import { toast } from "react-toastify";
+import NoProduct from "../../components/noproduct/NoProduct";
 
 function Cart({ cartProducts, getCartProducts }) {
   useEffect(() => {
@@ -90,9 +90,7 @@ function Cart({ cartProducts, getCartProducts }) {
             })}
           </div>
         ) : (
-          <div className="emptyCartMessage">
-            <h3>Cart sahifasida hech narsa mavjud emas</h3>
-          </div>
+          <NoProduct />
         )}
       </div>
     </div>

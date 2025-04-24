@@ -157,7 +157,7 @@ function Navbar({
             <div className="CategoryTovar">
               {categories?.results?.map((category) => {
                 return (
-                  <Link to={`/phoneFiltr/${category.id}`}>
+                  <Link to={`/category/${category.id}`}>
                     {" "}
                     <p>{category?.name}</p>
                   </Link>
