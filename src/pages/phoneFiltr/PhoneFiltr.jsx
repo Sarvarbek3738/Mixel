@@ -157,7 +157,7 @@ function PhoneFiltr({
                     </Box>
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <div className="smartfonLeftSent">
                     <div>
                       <p>Наличие</p>
@@ -171,7 +171,7 @@ function PhoneFiltr({
                       <p>Забрать сегодня</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="brend">
                   <div className="smartfonLeftSent">
                     <div>
@@ -206,7 +206,7 @@ function PhoneFiltr({
                     <p>Huawei (30)</p>
                   </div>
                 </div>
-                <div className="Емкость">
+                {/* <div className="Емкость">
                   <div className="smartfonLeftSent">
                     <div>
                       <p>Емкость аккумулятора</p>
@@ -239,7 +239,7 @@ function PhoneFiltr({
                     </div>
                     <p>5000 мА⋅ч</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="Страна">
                   <div className="smartfonLeftSent">
                     <div>
@@ -274,7 +274,7 @@ function PhoneFiltr({
                     <p>Huawei</p>
                   </div>
                 </div>
-                <div className="Количество">
+                {/* <div className="Количество">
                   <div className="smartfonLeftSent">
                     <div>
                       <p>Количество ядер</p>
@@ -303,8 +303,8 @@ function PhoneFiltr({
                       <i class="fa-solid fa-chevron-right"></i>
                     </div>
                   </div>
-                </div>
-                <div className="Версия">
+                </div> */}
+                {/* <div className="Версия">
                   <div className="smartfonLeftSent">
                     <div>
                       <p>Версия ОС</p>
@@ -323,7 +323,7 @@ function PhoneFiltr({
                       <i class="fa-solid fa-chevron-right"></i>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="smartfonLeftBtn">
                   <button>Показать</button>
                 </div>
