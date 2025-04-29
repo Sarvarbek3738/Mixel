@@ -16,6 +16,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
+import NoProduct from "../../components/noproduct/NoProduct";
+import Loader from "../../components/loader/Loader";
 
 function PhoneFiltr({
   products,
@@ -26,15 +28,31 @@ function PhoneFiltr({
   brands,
 }) {
   const [value, setValue] = useState([20, 70]);
+  const [filteredProducts, setFilteredProducts] = useState(null);
   const id = useParams();
   const [isGrid, setIsGrid] = useState(true);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
   });
 
-  const filteredProducts = products?.results?.filter((item) => {
-    return item.category == id.id;
-  });
+  const getCategoryProducts = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      `https://abzzvx.pythonanywhere.com/products/?category=${id.id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setFilteredProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+  console.log(filteredProducts?.results?.length);
 
   // function for range
   function valuetext(value) {
@@ -47,6 +65,7 @@ function PhoneFiltr({
   useEffect(() => {
     getCategories();
     getData();
+    getCategoryProducts();
     window.scrollTo({
       top: "0",
     });
@@ -330,13 +349,14 @@ function PhoneFiltr({
               </div>
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
-                  {filteredProducts?.map((item) => {
+                  {filteredProducts?.results.map((item) => {
                     if (isGrid) {
                       return <ProductBox item={item} />;
                     } else {
                       return <ProductAlotCard item={item} />;
                     }
                   })}
+                  {!filteredProducts?.results.length == 1 && <NoProduct />}
                 </div>
                 <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>

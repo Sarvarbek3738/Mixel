@@ -216,13 +216,21 @@ function Navbar({
                     {products?.results?.map((product) => {
                       if (product?.category == categoryId) {
                         return (
-                          <p
-                            onMouseEnter={() => {
-                              setProductId(product.id);
-                            }}
+                          <Link
+                            // onClick={() => {
+                            //   setOpen(false), setOpenModal(false);
+                            // }}
+                            to={`/product/${product?.id}`}
+                            className="categoriyaModal2Block"
                           >
-                            {product.name}
-                          </p>
+                            <p
+                              onMouseEnter={() => {
+                                setProductId(product.id);
+                              }}
+                            >
+                              {product.name}
+                            </p>
+                          </Link>
                         );
                       } else {
                         return;

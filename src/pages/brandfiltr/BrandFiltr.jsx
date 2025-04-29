@@ -16,6 +16,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
+import NoProduct from "../../components/noproduct/NoProduct";
 
 function BrandFiltr({
   products,
@@ -46,7 +47,10 @@ function BrandFiltr({
       redirect: "follow",
     };
 
-    fetch(`https://abzzvx.pythonanywhere.com/products/?brand=${id.id}`, requestOptions)
+    fetch(
+      `https://abzzvx.pythonanywhere.com/products/?brand=${id.id}`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
@@ -349,6 +353,7 @@ function BrandFiltr({
                       return <ProductAlotCard item={item} />;
                     }
                   })}
+                  {!brandProducts?.results?.length && <NoProduct />}
                 </div>
                 <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
@@ -367,9 +372,9 @@ function BrandFiltr({
                   <div className="smartfonRighBrendBox">
                     {brands?.results?.map((brand) => {
                       return (
-                        <div>
+                        <Link to={`/brand/${brand.id}`}>
                           <p>{brand?.name}</p>
-                        </div>
+                        </Link>
                       );
                     })}
                   </div>
