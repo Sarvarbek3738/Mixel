@@ -27,6 +27,8 @@ function Product({
       top: "0",
     });
   }, []);
+  console.log(oneProductData);
+  
   return (
     <>
       <div className="product">
@@ -143,150 +145,184 @@ function Product({
                 </div>
               </div>
             </div>
-            <div className="ProductTitle">
-              {oneProductData && <h1>{oneProductData?.name}</h1>}
-              {!oneProductData && (
-                <Skeleton
-                  variant="rectangular"
-                  // style={{ marginTop: "30px" }}
-                  width={400}
-                  height={32}
-                />
-              )}
-              <div className="productPrise">
-                <div>
-                  {oneProductData && <p>{oneProductData?.price} cум</p>}
+            <div>
+              <div className="ProductTitles">
+                <div className="ProductTitle">
+                  {oneProductData && <h1>{oneProductData?.name}</h1>}
                   {!oneProductData && (
                     <Skeleton
                       variant="rectangular"
                       // style={{ marginTop: "30px" }}
-                      width={200}
-                      height={24}
+                      width={400}
+                      height={32}
                     />
                   )}
-                </div>
-                <div className="Box5Tovar">
-                  <div>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </div>
-                  <div className="hear">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
-                  <div>
-                    <i class="fa-solid fa-scale-balanced"></i>
-                  </div>
-                </div>
-              </div>
-              <p className="vip">
-                {" "}
-                <i class="fa-regular fa-comments"></i>
-                VIP скидки для VIP клиентов
-              </p>
-              <div className="productBtn">
-                <div>
-                  <button>
-                    Купить <br />
-                    сейчас
-                  </button>
-                </div>
-                <div>
-                  <button>
-                    Купить в рассрочку <br />
-                    сейчас
-                  </button>
-                </div>
-              </div>
-              <div className="ProductMinText">
-                <div>
-                  <p className="productMinSiz">Название для договора</p>
-                  {oneProductData && (
-                    <p>
-                      {oneProductData?.name}{" "}
-                      {String(oneProductData?.details).slice(0, detailValue)}
-                      {detailValue < 100 ? (
-                        <button
-                          className="readBtn"
-                          onClick={() => {
-                            setDetailValue(10000);
-                          }}
-                        >
-                          Read more
-                        </button>
-                      ) : (
-                        <button
-                          className="readBtn"
-                          onClick={() => {
-                            setDetailValue(80);
-                          }}
-                        >
-                          {" "}
-                          Read less
-                        </button>
+                  <div className="productPrise">
+                    <div>
+                      {oneProductData && <p>{oneProductData?.price} cум</p>}
+                      {!oneProductData && (
+                        <Skeleton
+                          variant="rectangular"
+                          // style={{ marginTop: "30px" }}
+                          width={200}
+                          height={24}
+                        />
                       )}
-                    </p>
-                  )}
-                  {!oneProductData && (
-                    <Skeleton variant="rectangular" width={400} height={32} />
-                  )}
-                </div>
-              </div>
-              <div className="ProductMinText">
-                <h3>Технические параметры</h3>
-                <div>
-                  <p className="productMinSiz">Название</p>
-                  <p>MacBook Pro 13 MXK32ZP/A Space Gray</p>
-                </div>
-                <div>
-                  <p className="productMinSiz">Состояние</p>
-                  <p>Новый</p>
-                </div>
-                <div>
-                  <p className="productMinSiz">Технические параметры</p>
-                  <p>
-                    MacBook Pro 13 MXK32ZP/A <br /> Space Gray
+                    </div>
+                    <div className="Box5Tovar">
+                      <div>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                      </div>
+                      <div className="hear">
+                        <i class="fa-regular fa-heart"></i>
+                      </div>
+                      <div>
+                        <i class="fa-solid fa-scale-balanced"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="vip">
+                    {" "}
+                    <i class="fa-regular fa-comments"></i>
+                    VIP скидки для VIP клиентов
                   </p>
+                  <div className="productBtn">
+                    <div>
+                      <button>
+                        Купить <br />
+                        сейчас
+                      </button>
+                    </div>
+                    <div>
+                      <button>
+                        Купить в рассрочку <br />
+                        сейчас
+                      </button>
+                    </div>
+                  </div>
+                  <div className="ProductMinText">
+                    <div>
+                      <p className="productMinSiz">Название для договора</p>
+                      {oneProductData && (
+                        <p>
+                          {oneProductData?.name}{" "}
+                          {String(oneProductData?.details).slice(0, detailValue)}
+                          {detailValue < 100 ? (
+                            <button
+                              className="readBtn"
+                              onClick={() => {
+                                setDetailValue(10000);
+                              }}
+                            >
+                              Read more
+                            </button>
+                          ) : (
+                            <button
+                              className="readBtn"
+                              onClick={() => {
+                                setDetailValue(80);
+                              }}
+                            >
+                              {" "}
+                              Read less
+                            </button>
+                          )}
+                        </p>
+                      )}
+                      {!oneProductData && (
+                        <Skeleton variant="rectangular" width={400} height={32} />
+                      )}
+                    </div>
+                  </div>
+                  <div className="ProductMinText">
+                    <h3>Технические параметры</h3>
+                    <div>
+                      <p className="productMinSiz">Название</p>
+                      <p>MacBook Pro 13 MXK32ZP/A Space Gray</p>
+                    </div>
+                    <div>
+                      <p className="productMinSiz">Состояние</p>
+                      <p>Новый</p>
+                    </div>
+                    <div>
+                      <p className="productMinSiz">Технические параметры</p>
+                      <p>
+                        MacBook Pro 13 MXK32ZP/A <br /> Space Gray
+                      </p>
+                    </div>
+                  </div>
+                  <div className="ProductMinText">
+                    <h3>Дисплей</h3>
+                    <div>
+                      <p className="productMinSiz">Поверхность</p>
+                      <p>Матовая</p>
+                    </div>
+                    <div>
+                      <p className="productMinSiz">Сенсорный экран</p>
+                      <p>Нет</p>
+                    </div>
+                    <div>
+                      <p className="productMinSiz">Частота смены кадров</p>
+                      <p>60 Гц</p>
+                    </div>
+                    <div>
+                      <p className="productMinSiz">Тип матрицы</p>
+                      <p>IPS</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div className="Productservices">
+                  <div className="ProductservicesCard">
+                    <div>
+                      <i class="fa-solid fa-arrows-rotate fa-spin"></i>
+                    </div>
+                    <div>
+                      <h4>30 дней на обмен и возврат.</h4>
+                      <p>
+                        Если купите товар сегодня, до 06 мая <br /> можете вернуть
+                        или обменять.
+                      </p>
+                      <Link>Подробнее о программе.</Link>
+                    </div>
+                  </div>
+                  <div className="ProductservicesCard">
+                    <div>
+                      <i class="fa-solid fa-arrows-rotate fa-spin"></i>
+                    </div>
+                    <div>
+                      <h4>30 дней на обмен и возврат.</h4>
+                      <p>
+                        Если купите товар сегодня, до 06 мая <br /> можете вернуть
+                        или обменять.
+                      </p>
+                      <Link>Подробнее о программе.</Link>
+                    </div>
+                  </div>
+                  <div className="ProductservicesCard">
+                    <div>
+                      <i class="fa-solid fa-arrows-rotate fa-spin"></i>
+                    </div>
+                    <div>
+                      <h4>30 дней на обмен и возврат.</h4>
+                      <p>
+                        Если купите товар сегодня, до 06 мая <br /> можете вернуть
+                        или обменять.
+                      </p>
+                      <Link>Подробнее о программе.</Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="ProductMinText">
-                <h3>Дисплей</h3>
-                <div>
-                  <p className="productMinSiz">Поверхность</p>
-                  <p>Матовая</p>
-                </div>
-                <div>
-                  <p className="productMinSiz">Сенсорный экран</p>
-                  <p>Нет</p>
-                </div>
-                <div>
-                  <p className="productMinSiz">Частота смены кадров</p>
-                  <p>60 Гц</p>
-                </div>
-                <div>
-                  <p className="productMinSiz">Тип матрицы</p>
-                  <p>IPS</p>
-                </div>
+              <div className="container">
+                <Slaydir products={products} getData={getData} />
               </div>
             </div>
-            <div className="Productservices">
-              <div className="ProductservicesCard">
-                <div>
-                  <i class="fa-solid fa-arrows-rotate fa-spin"></i>
-                </div>
-                <div>
-                  <h4>30 дней на обмен и возврат.</h4>
-                  <p>
-                    Если купите товар сегодня, до 06 мая <br /> можете вернуть
-                    или обменять.
-                  </p>
-                  <Link>Подробнее о программе.</Link>
-                </div>
-              </div>
-            </div>
+
           </div>
+
         </div>
-        <div className="container">
-          <Slaydir products={products} getData={getData} />
-        </div>
+
       </div>
     </>
   );
