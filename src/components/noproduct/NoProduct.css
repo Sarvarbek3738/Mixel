@@ -1,0 +1,18 @@
+.noProductComponent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.noProductContainer {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.noProductContainer img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}

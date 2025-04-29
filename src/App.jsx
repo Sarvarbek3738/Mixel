@@ -339,7 +339,7 @@ function App() {
             }
           />
           <Route
-            path="/phoneFiltr/:id"
+            path="/category/:id"
             element={
               <PhoneFiltr
                 getBrands={getBrands}
@@ -352,7 +352,7 @@ function App() {
             }
           />
           <Route
-            path="/brandfiltr/:id"
+            path="/brand/:id"
             element={
               <BrandFiltr
                 getBrands={getBrands}
