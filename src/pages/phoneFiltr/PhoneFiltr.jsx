@@ -375,9 +375,9 @@ function PhoneFiltr({
                   <div className="smartfonRighBrendBox">
                     {brands?.results?.map((brand) => {
                       return (
-                        <div>
+                        <Link to={`brand/${brand.id}`} key={brand.id}>
                           <p>{brand?.name}</p>
-                        </div>
+                        </Link>
                       );
                     })}
                   </div>
