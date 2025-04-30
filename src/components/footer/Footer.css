@@ -30,8 +30,8 @@ footer .container {
   cursor: pointer;
 }
 .footerRight h3 {
-  padding-bottom: 28px;
   font-size: 20px;
+  padding-bottom: 12px;
   font-weight: 400;
 }
 
