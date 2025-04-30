@@ -227,6 +227,9 @@ function Navbar({
                               onMouseEnter={() => {
                                 setProductId(product.id);
                               }}
+                              onMouseLeave={() => {
+                                setProductId(null);
+                              }}
                             >
                               {product.name}
                             </p>
