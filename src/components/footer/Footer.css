@@ -1,64 +1,77 @@
 footer {
-    background-color: #202020;
+  background-color: #202020;
+  position: relative;
+  z-index: 222;
 }
 
 footer .container {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
 }
 
 .footerRight {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  color: white;
+}
+.footerCategoryLinks {
+  display: flex;
+  flex-direction: column;
+    gap: 15px;
     color: white;
 }
-
+.footerCategoryLinks a {
+  text-decoration: none;
+  color: rgba(144, 144, 144, 1);
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
 .footerRight h3 {
-    padding-bottom: 28px;
-    font-size: 20px;
-    font-weight: 400;
+  padding-bottom: 28px;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .footerRight p {
-    padding-bottom: 13px;
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-    color: rgba(144, 144, 144, 1);
+  padding-bottom: 13px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  color: rgba(144, 144, 144, 1);
 }
 
 .FooterFeft {
-    color: white;
+  color: white;
 }
 
 .FooterFeft .logo {
-    padding-bottom: 59px;
+  padding-bottom: 59px;
 }
 
 .FooterFeft p {
-    padding-bottom: 59px;
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-    color: rgba(144, 144, 144, 1);
+  padding-bottom: 59px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  color: rgba(144, 144, 144, 1);
 }
-.footerIcon{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding-bottom: 40px;
-   
+.footerIcon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 40px;
 }
-.footerIcon div{
-    border: 1px solid rgba(144, 144, 144, 1);
-    color: rgba(144, 144, 144, 1);
-    /* padding: 10px; */
-    text-align: center;
-    padding-top: 10px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
+.footerIcon div {
+  border: 1px solid rgba(144, 144, 144, 1);
+  color: rgba(144, 144, 144, 1);
+  /* padding: 10px; */
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 }
