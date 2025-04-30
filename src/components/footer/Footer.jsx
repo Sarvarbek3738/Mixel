@@ -41,7 +41,7 @@ function Footer({ categories }) {
           </div>
           <div className="footerRight">
             <div className="footerCategoryLinks">
-              <h3>Categories</h3>
+              <h4>Categories</h4>
               {categories?.results?.map((item) => {
                 return <Link  to={`/category/${item.id}`}>{item.name}</Link>;
               })}

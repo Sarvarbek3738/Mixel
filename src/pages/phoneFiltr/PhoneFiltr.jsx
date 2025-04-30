@@ -18,14 +18,22 @@ import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
 import NoProduct from "../../components/noproduct/NoProduct";
 import Loader from "../../components/loader/Loader";
+import OrderModal from "../../components/orderModal/OrderModal";
 
 function PhoneFiltr({
-  products,
-  getData,
-  getCategories,
-  categories,
-  getBrands,
-  brands,
+  products, //+
+  getData, //+
+  getLikedProducts,
+  getCategories, //+
+  categories, //+
+  brands, //+
+  getUser,
+  userData,
+  deleteFromLiked,
+  addToLiked,
+  addToCart,
+  getOneProductData,
+  oneProductData,
 }) {
   const [value, setValue] = useState([20, 70]);
   const [filteredProducts, setFilteredProducts] = useState(null);
@@ -33,6 +41,8 @@ function PhoneFiltr({
   const [loading, setLoading] = useState(true);
   const id = useParams();
   const [isGrid, setIsGrid] = useState(true);
+  const [showOrderModal, setShowOrderModal] = useState(false);
+
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
   });
@@ -58,7 +68,6 @@ function PhoneFiltr({
       })
       .catch((error) => console.error(error));
   };
-  console.log(filteredProducts?.results?.length);
 
   // function for range
   function valuetext(value) {
@@ -81,6 +90,14 @@ function PhoneFiltr({
     <>
       <div className="phoneFilter">
         <div className="container">
+          <div className={showOrderModal ? "forModal open" : "forModal"}>
+            <OrderModal
+              addToCart={addToCart}
+              oneProductData={oneProductData}
+              showOrderModal={showOrderModal}
+              setShowOrderModal={setShowOrderModal}
+            />
+          </div>
           <div className="basicTitle">
             <div className="basicTitleLeft">
               <div>
@@ -273,9 +290,35 @@ function PhoneFiltr({
                 <div className="smartfonRightCards">
                   {filteredProducts?.results.map((item) => {
                     if (isGrid) {
-                      return <ProductBox item={item} />;
+                      return (
+                        <ProductBox
+                          getLikedProducts={getLikedProducts}
+                          userData={userData}
+                          getUser={getUser}
+                          getData={getData}
+                          deleteFromLiked={deleteFromLiked}
+                          item={item}
+                          key={item.id}
+                          addToLiked={addToLiked}
+                          getOneProductData={getOneProductData}
+                          setShowOrderModal={setShowOrderModal}
+                        />
+                      );
                     } else {
-                      return <ProductAlotCard item={item} />;
+                      return (
+                        <ProductAlotCard
+                          getLikedProducts={getLikedProducts}
+                          userData={userData}
+                          getUser={getUser}
+                          getData={getData}
+                          deleteFromLiked={deleteFromLiked}
+                          item={item}
+                          key={item.id}
+                          addToLiked={addToLiked}
+                          getOneProductData={getOneProductData}
+                          setShowOrderModal={setShowOrderModal}
+                        />
+                      );
                     }
                   })}
                   {spinning && <Loader />}
@@ -348,7 +391,7 @@ function PhoneFiltr({
                   <div className="smartfonRighBrendBox">
                     {brands?.results?.map((brand) => {
                       return (
-                        <Link to={`brand/${brand.id}`} key={brand.id}>
+                        <Link to={`/brand/${brand.id}`} key={brand.id}>
                           <p>{brand?.name}</p>
                         </Link>
                       );

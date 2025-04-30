@@ -40,15 +40,15 @@ function ProductBox({
           </h3>
 
           <div className="Box4Tovar">
-            <div
+            <div className="boxIcon"
               onClick={(e) => {
+                e.preventDefault();
                 if (userData) {
                   getOneProductData(item?.id);
                   setShowOrderModal(true);
                 } else {
                   navigate("/signup");
                 }
-                e.preventDefault();
               }}
             >
               <i class="fa-solid fa-cart-shopping"></i>
@@ -70,7 +70,7 @@ function ProductBox({
                 }
                 getData();
               }}
-              className="hear"
+              className="hear boxIcon"
             >
               <i
                 class={
@@ -80,7 +80,7 @@ function ProductBox({
                 }
               ></i>
             </div>
-            <div
+            <div className="boxIcon"
               onClick={(e) => {
                 e.preventDefault();
               }}

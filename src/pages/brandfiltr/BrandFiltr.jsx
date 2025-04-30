@@ -17,15 +17,23 @@ import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
 import NoProduct from "../../components/noproduct/NoProduct";
-import { Loader } from "@chakra-ui/react";
+import Loader from "../../components/loader/Loader";
+import OrderModal from "../../components/orderModal/OrderModal";
 
 function BrandFiltr({
-  products,
-  getData,
-  getCategories,
-  categories,
-  getBrands,
-  brands,
+  products, //+
+  getData, //+
+  getLikedProducts,
+  getCategories, //+
+  categories, //+
+  brands, //+
+  getUser,
+  userData,
+  deleteFromLiked,
+  addToLiked,
+  addToCart,
+  getOneProductData,
+  oneProductData,
 }) {
   const id = useParams();
   const [value, setValue] = useState([20, 70]);
@@ -55,8 +63,8 @@ function BrandFiltr({
     )
       .then((response) => response.json())
       .then((result) => {
-      setLoading(false)
-      setSpinning(false)
+        setLoading(false);
+        setSpinning(false);
         setBrandProducts(result);
       })
       .catch((error) => console.error(error));
@@ -70,11 +78,20 @@ function BrandFiltr({
       top: "0",
     });
   }, [id.id]);
+  const [showOrderModal, setShowOrderModal] = useState(false);
 
   return (
     <>
       <div className="phoneFilter">
         <div className="container">
+          <div className={showOrderModal ? "forModal open" : "forModal"}>
+            <OrderModal
+              addToCart={addToCart}
+              oneProductData={oneProductData}
+              showOrderModal={showOrderModal}
+              setShowOrderModal={setShowOrderModal}
+            />
+          </div>
           <div className="basicTitle">
             <div className="basicTitleLeft">
               <div>
@@ -268,9 +285,35 @@ function BrandFiltr({
                 <div className="smartfonRightCards">
                   {brandProducts?.results?.map((item) => {
                     if (isGrid) {
-                      return <ProductBox item={item} />;
+                      return (
+                        <ProductBox
+                          getLikedProducts={getLikedProducts}
+                          userData={userData}
+                          getUser={getUser}
+                          getData={getData}
+                          deleteFromLiked={deleteFromLiked}
+                          item={item}
+                          key={item.id}
+                          addToLiked={addToLiked}
+                          getOneProductData={getOneProductData}
+                          setShowOrderModal={setShowOrderModal}
+                        />
+                      );
                     } else {
-                      return <ProductAlotCard item={item} />;
+                      return (
+                        <ProductAlotCard
+                          getLikedProducts={getLikedProducts}
+                          userData={userData}
+                          getUser={getUser}
+                          getData={getData}
+                          deleteFromLiked={deleteFromLiked}
+                          item={item}
+                          key={item.id}
+                          addToLiked={addToLiked}
+                          getOneProductData={getOneProductData}
+                          setShowOrderModal={setShowOrderModal}
+                        />
+                      );
                     }
                   })}
                   {spinning && <Loader />}

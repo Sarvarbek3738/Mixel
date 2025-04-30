@@ -4,10 +4,22 @@ import "./Liked.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import Skeleton from "react-loading-skeleton";
 import NoProduct from "../../components/noproduct/NoProduct";
+import OrderModal from "../../components/orderModal/OrderModal";
 
-function Liked({ deleteFromLiked, getData, getUser, userData }) {
+function Liked({
+  deleteFromLiked,
+  getData,
+  getUser,
+  userData,
+  getOneProductData,
+  addToCart,
+  addToLiked,
+  oneProductData,
+}) {
   const [loading, setLoading] = useState(true);
   const [likedProducts, setLikedProducts] = useState([]);
+  const [showOrderModal, setShowOrderModal] = useState(false);
+
   const getLikedProducts = () => {
     const myHeaders = new Headers();
     myHeaders.append(
@@ -45,6 +57,14 @@ function Liked({ deleteFromLiked, getData, getUser, userData }) {
   return (
     <div className="likedPage">
       <div className="container">
+        <div className={showOrderModal ? "forModal open" : "forModal"}>
+          <OrderModal
+            addToCart={addToCart}
+            oneProductData={oneProductData}
+            showOrderModal={showOrderModal}
+            setShowOrderModal={setShowOrderModal}
+          />
+        </div>
         <div className="basicTitle">
           <div className="basicTitleLeft">
             <div>
@@ -64,16 +84,20 @@ function Liked({ deleteFromLiked, getData, getUser, userData }) {
           {likedProducts?.map((item) => (
             <ProductBox
               getLikedProducts={getLikedProducts}
+              // deleteFromLiked={deleteFromLiked}
               userData={userData}
               getUser={getUser}
               getData={getData}
               deleteFromLiked={deleteFromLiked}
               item={item.product}
               key={item.id}
+              addToLiked={addToLiked}
+              getOneProductData={getOneProductData}
+              setShowOrderModal={setShowOrderModal}
             />
           ))}
           {loading &&
-            [1, 2, 3, 4,5].map((item) => {
+            [1, 2, 3, 4, 5].map((item) => {
               return (
                 <div className="loadingSkeletons">
                   <Skeleton variant="rectangular" width={230} height={210} />
