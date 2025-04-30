@@ -419,6 +419,7 @@ function Home({
               <div>
                 <h3>Brands</h3>
               </div>
+              
               <div className="brandBlock">
                 <Swiper
                   slidesPerView={5}
