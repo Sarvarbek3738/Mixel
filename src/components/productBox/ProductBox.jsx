@@ -40,12 +40,7 @@ function ProductBox({
           </h3>
 
           <div className="Box4Tovar">
-<<<<<<< HEAD
-            <div
-
-=======
             <div className="boxIcon"
->>>>>>> Kamoliddin
               onClick={(e) => {
                 e.preventDefault();
                 if (userData) {

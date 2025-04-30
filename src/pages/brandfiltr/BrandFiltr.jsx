@@ -193,7 +193,7 @@ function BrandFiltr({
                     </Box>
                   </div>
                 </div>
-                {/* <div>
+                <div>
                   <div className="smartfonLeftSent">
                     <div>
                       <p>Наличие</p>
@@ -207,7 +207,7 @@ function BrandFiltr({
                       <p>Забрать сегодня</p>
                     </div>
                   </div>
-                </div> */}
+                </div>
                 <div className="brend">
                   <div className="smartfonLeftSent">
                     <div>
@@ -242,44 +242,7 @@ function BrandFiltr({
                     <p>Huawei (30)</p>
                   </div>
                 </div>
-<<<<<<< HEAD
-                {/* <div className="Емкость">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Емкость аккумулятора</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>1821 мА⋅ч</p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>3000 мА⋅ч</p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>4500 мА⋅ч</p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>5000 мА⋅ч</p>
-                  </div>
-                </div> */}
-=======
 
->>>>>>> Kamoliddin
                 <div className="Страна">
                   <div className="smartfonLeftSent">
                     <div>
@@ -314,59 +277,6 @@ function BrandFiltr({
                     <p>Huawei</p>
                   </div>
                 </div>
-<<<<<<< HEAD
-                {/* <div className="Количество">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Количество ядер</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Фронтальная">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Фронтальная камера</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Фотокамера">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Фотокамера</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Версия">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Версия ОС</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Разъем">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Разъем для наушников</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div> */}
-=======
->>>>>>> Kamoliddin
                 <div className="smartfonLeftBtn">
                   <button>Показать</button>
                 </div>
