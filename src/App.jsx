@@ -418,7 +418,7 @@ function App() {
           <Route path="/login" element={<Login getUser={getUser} />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
-        <Footer />
+        <Footer categories={categories} />
       </BrowserRouter>
     </SkeletonTheme>
   );
