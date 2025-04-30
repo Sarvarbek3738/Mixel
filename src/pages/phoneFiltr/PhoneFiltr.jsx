@@ -29,12 +29,16 @@ function PhoneFiltr({
 }) {
   const [value, setValue] = useState([20, 70]);
   const [filteredProducts, setFilteredProducts] = useState(null);
+  const [spinning, setSpinning] = useState(true);
+  const [loading, setLoading] = useState(true);
   const id = useParams();
   const [isGrid, setIsGrid] = useState(true);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
   });
-
+  useEffect(() => {
+    setSpinning(true);
+  }, [id.id]);
   const getCategoryProducts = () => {
     const requestOptions = {
       method: "GET",
@@ -48,6 +52,8 @@ function PhoneFiltr({
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
+        setLoading(false);
+        setSpinning(false);
         setFilteredProducts(result);
       })
       .catch((error) => console.error(error));
@@ -100,7 +106,6 @@ function PhoneFiltr({
 
           <div className="smartfon">
             <div className="smatfonTitle">
-              {/* fghjklkjhertghjkl */}
               <div className="smatfonTitle1">
                 <div className="smatfonTitle1Panel">
                   <h3>{categoryName && categoryName[0]?.name}</h3>
@@ -194,7 +199,7 @@ function PhoneFiltr({
                 <div className="brend">
                   <div className="smartfonLeftSent">
                     <div>
-                      <p>Бренд</p>
+                      <p>Brend</p>
                     </div>
                     <div>
                       <i class="fa-solid fa-chevron-right"></i>
@@ -204,65 +209,32 @@ function PhoneFiltr({
                     <div>
                       <input type="checkbox" />
                     </div>
-                    <p>LG (30)</p>
+                    <p>LG </p>
                   </div>
                   <div className="samsung">
                     <div>
                       <input type="checkbox" />
                     </div>
-                    <p>Samsung (30)</p>
+                    <p>Samsung </p>
                   </div>
                   <div className="artel">
                     <div>
                       <input type="checkbox" />
                     </div>
-                    <p>Artel (7)</p>
+                    <p>Artel</p>
                   </div>
                   <div className="huawei">
                     <div>
                       <input type="checkbox" />
                     </div>
-                    <p>Huawei (30)</p>
+                    <p>Huawei </p>
                   </div>
                 </div>
-                <div className="Емкость">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Емкость аккумулятора</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>1821 мА⋅ч</p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>3000 мА⋅ч</p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>4500 мА⋅ч</p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>5000 мА⋅ч</p>
-                  </div>
-                </div>
+
                 <div className="Страна">
                   <div className="smartfonLeftSent">
                     <div>
-                      <p>Страна производитель</p>
+                      <p>Country</p>
                     </div>
                     <div>
                       <i class="fa-solid fa-chevron-right"></i>
@@ -293,56 +265,6 @@ function PhoneFiltr({
                     <p>Huawei</p>
                   </div>
                 </div>
-                <div className="Количество">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Количество ядер</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Фронтальная">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Фронтальная камера</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Фотокамера">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Фотокамера</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Версия">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Версия ОС</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Разъем">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Разъем для наушников</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
                 <div className="smartfonLeftBtn">
                   <button>Показать</button>
                 </div>
@@ -356,14 +278,65 @@ function PhoneFiltr({
                       return <ProductAlotCard item={item} />;
                     }
                   })}
-                  {!filteredProducts?.results.length == 1 && <NoProduct />}
+                  {spinning && <Loader />}
+                  {loading &&
+                    [1, 2, 3, 4, 5].map((item) => {
+                      return (
+                        <div className="loadingSkeletons">
+                          <Skeleton
+                            variant="rectangular"
+                            width={230}
+                            height={210}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "30px" }}
+                            width={230}
+                            height={18}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={230}
+                            height={32}
+                          />
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                            className="skeletonButtons"
+                          >
+                            <Skeleton
+                              variant="rectangular"
+                              style={{ marginTop: "20px" }}
+                              width={50}
+                              height={42}
+                            />
+                            <Skeleton
+                              variant="rectangular"
+                              style={{ marginTop: "20px" }}
+                              width={50}
+                              height={42}
+                            />
+                            <Skeleton
+                              variant="rectangular"
+                              style={{ marginTop: "20px" }}
+                              width={50}
+                              height={42}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  {!filteredProducts?.results.length > 1 && <NoProduct />}
                 </div>
                 <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
                   <div className="Paginetion">
                     <Stack spacing={2}>
                       <Pagination
-                        count={10}
+                        count={2}
                         variant="outlined"
                         shape="rounded"
                       />

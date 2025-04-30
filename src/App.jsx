@@ -282,8 +282,8 @@ function App() {
     <SkeletonTheme baseColor="#fafafa" highlightColor="#ccc">
       <BrowserRouter>
         <ToastContainer
-          position="top-right"
-          autoClose={2000}
+          position="bottom-right"
+          autoClose={1000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}
