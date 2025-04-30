@@ -41,6 +41,7 @@ function ProductBox({
 
           <div className="Box4Tovar">
             <div
+
               onClick={(e) => {
                 if (userData) {
                   getOneProductData(item?.id);

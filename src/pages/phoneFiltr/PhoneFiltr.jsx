@@ -373,11 +373,11 @@ function PhoneFiltr({
                 <div className="smartfonRighBrend">
                   <h3>Popular categories and models</h3>
                   <div className="smartfonRighBrendBox">
-                    {brands?.results?.map((brand) => {
+                  {brands?.results?.map((brand) => {
                       return (
-                        <div>
+                        <Link to={`/brand/${brand.id}`}>
                           <p>{brand?.name}</p>
-                        </div>
+                        </Link>
                       );
                     })}
                   </div>
