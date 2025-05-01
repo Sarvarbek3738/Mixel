@@ -138,8 +138,17 @@ function App() {
   };
   // getOneproductdata fucntion
   const getOneProductData = (id) => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("mixelToken")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("mixelToken")}`
+      );
+    }
+
     const requestOptions = {
       method: "GET",
+      headers: myHeaders,
       redirect: "follow",
     };
 
@@ -147,7 +156,6 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         setOneProductData(result);
-        // console.log(result);
       })
       .catch((error) => console.error(error));
   };
@@ -155,10 +163,12 @@ function App() {
   // Get liked products function
   const getLikedProducts = () => {
     const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("mixelToken")}`
-    );
+    if (localStorage.getItem("mixelToken")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("mixelToken")}`
+      );
+    }
 
     const requestOptions = {
       method: "GET",
@@ -363,20 +373,20 @@ function App() {
             path="/brand/:id"
             element={
               <BrandFiltr
-              getUser={getUser}
-              userData={userData}
-              deleteFromLiked={deleteFromLiked}
-              addToLiked={addToLiked}
-              addToCart={addToCart}
-              getOneProductData={getOneProductData}
-              oneProductData={oneProductData}
-              getLikedProducts={getLikedProducts}
-              getBrands={getBrands}
-              brands={brands}
-              products={products}
-              getData={getData}
-              categories={categories}
-              getCategories={getCategories}
+                getUser={getUser}
+                userData={userData}
+                deleteFromLiked={deleteFromLiked}
+                addToLiked={addToLiked}
+                addToCart={addToCart}
+                getOneProductData={getOneProductData}
+                oneProductData={oneProductData}
+                getLikedProducts={getLikedProducts}
+                getBrands={getBrands}
+                brands={brands}
+                products={products}
+                getData={getData}
+                categories={categories}
+                getCategories={getCategories}
               />
             }
           />
@@ -390,6 +400,14 @@ function App() {
                 categories={categories}
                 products={products}
                 getData={getData}
+                deleteFromLiked={deleteFromLiked}
+                addToLiked={addToLiked}
+                addToCart={addToCart}
+                getUser={getUser}
+                userData={userData}
+                getLikedProducts={getLikedProducts}
+                getBrands={getBrands}
+                brands={brands}
               />
             }
           />

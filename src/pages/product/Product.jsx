@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 import Slaydir from "../../components/slaydir/Slaydir";
+import OrderModal from "../../components/orderModal/OrderModal";
 function Product({
   categories,
   getOneProductData,
@@ -16,23 +17,39 @@ function Product({
   getCategories,
   products,
   getData,
+  deleteFromLiked,
+  addToLiked,
+  addToCart,
+  getUser,
+  userData,
+  getLikedProducts,
+  getBrands,
+  brands,
 }) {
   const id = useParams();
   const [mainImgIndex, setMainImgIndex] = useState(0);
   const [detailValue, setDetailValue] = useState(80);
-
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [localLiked, setLocalLiked] = useState(false);
   useEffect(() => {
     getOneProductData(id.id);
     window.scrollTo({
       top: "0",
     });
   }, []);
-  console.log(oneProductData);
-  
+
   return (
     <>
       <div className="product">
         <div className="container">
+          <div className={showOrderModal ? "forModal open" : "forModal"}>
+            <OrderModal
+              addToCart={addToCart}
+              oneProductData={oneProductData}
+              showOrderModal={showOrderModal}
+              setShowOrderModal={setShowOrderModal}
+            />
+          </div>
           <div className="basicTitle">
             <div className="basicTitleLeft">
               <div>
@@ -170,11 +187,46 @@ function Product({
                       )}
                     </div>
                     <div className="Box5Tovar">
-                      <div>
+                      <div
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (userData) {
+                            getOneProductData(oneProductData?.id);
+                            setShowOrderModal(true);
+                          } else {
+                            navigate("/signup");
+                          }
+                        }}
+                      >
                         <i class="fa-solid fa-cart-shopping"></i>
                       </div>
-                      <div className="hear">
-                        <i class="fa-regular fa-heart"></i>
+                      <div
+                        className="hear"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (userData) {
+                            if (oneProductData?.like) {
+                              setLocalLiked(false);
+                              deleteFromLiked(oneProductData?.like_id);
+                              getLikedProducts();
+                            } else {
+                              addToLiked(oneProductData.id);
+                              setLocalLiked(true);
+                            }
+                            getOneProductData(oneProductData?.id);
+                          } else {
+                            navigate("/signup");
+                          }
+                          getData();
+                        }}
+                      >
+                        <i
+                          class={
+                            oneProductData?.like || localLiked
+                              ? "fa-solid fa-heart"
+                              : "fa-regular fa-heart"
+                          }
+                        ></i>
                       </div>
                       <div>
                         <i class="fa-solid fa-scale-balanced"></i>
@@ -206,7 +258,10 @@ function Product({
                       {oneProductData && (
                         <p>
                           {oneProductData?.name}{" "}
-                          {String(oneProductData?.details).slice(0, detailValue)}
+                          {String(oneProductData?.details).slice(
+                            0,
+                            detailValue
+                          )}
                           {detailValue < 100 ? (
                             <button
                               className="readBtn"
@@ -230,7 +285,11 @@ function Product({
                         </p>
                       )}
                       {!oneProductData && (
-                        <Skeleton variant="rectangular" width={400} height={32} />
+                        <Skeleton
+                          variant="rectangular"
+                          width={400}
+                          height={32}
+                        />
                       )}
                     </div>
                   </div>
@@ -270,7 +329,6 @@ function Product({
                       <p>IPS</p>
                     </div>
                   </div>
-
                 </div>
                 <div className="Productservices">
                   <div className="ProductservicesCard">
@@ -280,8 +338,8 @@ function Product({
                     <div>
                       <h4>30 дней на обмен и возврат.</h4>
                       <p>
-                        Если купите товар сегодня, до 06 мая <br /> можете вернуть
-                        или обменять.
+                        Если купите товар сегодня, до 06 мая <br /> можете
+                        вернуть или обменять.
                       </p>
                       <Link>Подробнее о программе.</Link>
                     </div>
@@ -293,8 +351,8 @@ function Product({
                     <div>
                       <h4>30 дней на обмен и возврат.</h4>
                       <p>
-                        Если купите товар сегодня, до 06 мая <br /> можете вернуть
-                        или обменять.
+                        Если купите товар сегодня, до 06 мая <br /> можете
+                        вернуть или обменять.
                       </p>
                       <Link>Подробнее о программе.</Link>
                     </div>
@@ -306,8 +364,8 @@ function Product({
                     <div>
                       <h4>30 дней на обмен и возврат.</h4>
                       <p>
-                        Если купите товар сегодня, до 06 мая <br /> можете вернуть
-                        или обменять.
+                        Если купите товар сегодня, до 06 мая <br /> можете
+                        вернуть или обменять.
                       </p>
                       <Link>Подробнее о программе.</Link>
                     </div>
@@ -318,11 +376,8 @@ function Product({
                 <Slaydir products={products} getData={getData} />
               </div>
             </div>
-
           </div>
-
         </div>
-
       </div>
     </>
   );
