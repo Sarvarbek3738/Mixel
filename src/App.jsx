@@ -27,6 +27,8 @@ function App() {
   const [oneProductData, setOneProductData] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
 
+  
+
   // deleteFromLiked function
   const deleteFromLiked = (id) => {
     const myHeaders = new Headers();

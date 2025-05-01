@@ -219,14 +219,14 @@ i {
   gap: 15px;
   padding-bottom: 80px;
 }
-.smartfonRighBrendBox div {
+.smartfonRighBrendBox p {
   border: 1px solid rgba(189, 189, 189, 1);
   padding: 4px 22px;
   border-radius: 17px;
   font-size: 14px;
   font-weight: 400;
 }
-.smartfonRighBrendBox div:hover {
+.smartfonRighBrendBox p:hover {
   background-color: #e0e0e0;
   cursor: pointer;
 }
