@@ -1,6 +1,9 @@
 .likedPage{
   padding-top: 200px;
 }
+.likedPage .loadingSkeletons{
+  margin: 0 !important;
+}
 .pageTitle {
   padding-bottom: 27px;
   font-size: 20px;

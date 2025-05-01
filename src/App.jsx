@@ -27,6 +27,8 @@ function App() {
   const [oneProductData, setOneProductData] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
 
+  
+
   // deleteFromLiked function
   const deleteFromLiked = (id) => {
     const myHeaders = new Headers();
@@ -282,8 +284,8 @@ function App() {
     <SkeletonTheme baseColor="#fafafa" highlightColor="#ccc">
       <BrowserRouter>
         <ToastContainer
-          position="top-right"
-          autoClose={2000}
+          position="bottom-right"
+          autoClose={1000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}
@@ -342,6 +344,14 @@ function App() {
             path="/category/:id"
             element={
               <PhoneFiltr
+                getUser={getUser}
+                userData={userData}
+                deleteFromLiked={deleteFromLiked}
+                addToLiked={addToLiked}
+                addToCart={addToCart}
+                getOneProductData={getOneProductData}
+                oneProductData={oneProductData}
+                getLikedProducts={getLikedProducts}
                 getBrands={getBrands}
                 brands={brands}
                 products={products}
@@ -355,12 +365,20 @@ function App() {
             path="/brand/:id"
             element={
               <BrandFiltr
-                getBrands={getBrands}
-                brands={brands}
-                products={products}
-                getData={getData}
-                categories={categories}
-                getCategories={getCategories}
+              getUser={getUser}
+              userData={userData}
+              deleteFromLiked={deleteFromLiked}
+              addToLiked={addToLiked}
+              addToCart={addToCart}
+              getOneProductData={getOneProductData}
+              oneProductData={oneProductData}
+              getLikedProducts={getLikedProducts}
+              getBrands={getBrands}
+              brands={brands}
+              products={products}
+              getData={getData}
+              categories={categories}
+              getCategories={getCategories}
               />
             }
           />
@@ -381,6 +399,10 @@ function App() {
             path="/liked"
             element={
               <Liked
+                addToCart={addToCart}
+                getOneProductData={getOneProductData}
+                oneProductData={oneProductData}
+                addToLiked={addToLiked}
                 likedProducts={likedProducts}
                 getLikedProducts={getLikedProducts}
                 getData={getData}

@@ -177,6 +177,7 @@ i {
 /* =================================================== */
 .smartfonRight .smartfonRightCards {
   display: flex;
+  position: relative;
   height: 600px;
   overflow-y: auto;
   justify-content: start;

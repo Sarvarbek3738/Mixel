@@ -64,7 +64,6 @@ function Home({
               setShowOrderModal={setShowOrderModal}
             />
           </div>
-
           <div className="container">
             {banner && (
               <Swiper

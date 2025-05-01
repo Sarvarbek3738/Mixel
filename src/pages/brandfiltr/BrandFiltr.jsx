@@ -17,18 +17,28 @@ import Skeleton from "react-loading-skeleton";
 import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
 import NoProduct from "../../components/noproduct/NoProduct";
+import Loader from "../../components/loader/Loader";
+import OrderModal from "../../components/orderModal/OrderModal";
 
 function BrandFiltr({
-  products,
-  getData,
-  getCategories,
-  categories,
-  getBrands,
-  brands,
+  products, //+
+  getData, //+
+  getLikedProducts,
+  getCategories, //+
+  categories, //+
+  brands, //+
+  getUser,
+  userData,
+  deleteFromLiked,
+  addToLiked,
+  addToCart,
+  getOneProductData,
+  oneProductData,
 }) {
   const id = useParams();
   const [value, setValue] = useState([20, 70]);
-  // const id = useParams();
+  const [spinning, setSpinning] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [isGrid, setIsGrid] = useState(true);
   const [brandProducts, setBrandProducts] = useState(null);
 
@@ -53,7 +63,8 @@ function BrandFiltr({
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        setLoading(false);
+        setSpinning(false);
         setBrandProducts(result);
       })
       .catch((error) => console.error(error));
@@ -67,11 +78,20 @@ function BrandFiltr({
       top: "0",
     });
   }, [id.id]);
+  const [showOrderModal, setShowOrderModal] = useState(false);
 
   return (
     <>
       <div className="phoneFilter">
         <div className="container">
+          <div className={showOrderModal ? "forModal open" : "forModal"}>
+            <OrderModal
+              addToCart={addToCart}
+              oneProductData={oneProductData}
+              showOrderModal={showOrderModal}
+              setShowOrderModal={setShowOrderModal}
+            />
+          </div>
           <div className="basicTitle">
             <div className="basicTitleLeft">
               <div>
@@ -173,7 +193,7 @@ function BrandFiltr({
                     </Box>
                   </div>
                 </div>
-                {/* <div>
+                <div>
                   <div className="smartfonLeftSent">
                     <div>
                       <p>Наличие</p>
@@ -187,7 +207,7 @@ function BrandFiltr({
                       <p>Забрать сегодня</p>
                     </div>
                   </div>
-                </div> */}
+                </div>
                 <div className="brend">
                   <div className="smartfonLeftSent">
                     <div>
@@ -222,40 +242,7 @@ function BrandFiltr({
                     <p>Huawei (30)</p>
                   </div>
                 </div>
-                {/* <div className="Емкость">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Емкость аккумулятора</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>1821 мА⋅ч</p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>3000 мА⋅ч</p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>4500 мА⋅ч</p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>5000 мА⋅ч</p>
-                  </div>
-                </div> */}
+
                 <div className="Страна">
                   <div className="smartfonLeftSent">
                     <div>
@@ -290,56 +277,6 @@ function BrandFiltr({
                     <p>Huawei</p>
                   </div>
                 </div>
-                {/* <div className="Количество">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Количество ядер</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Фронтальная">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Фронтальная камера</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Фотокамера">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Фотокамера</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Версия">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Версия ОС</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="Разъем">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Разъем для наушников</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                </div> */}
                 <div className="smartfonLeftBtn">
                   <button>Показать</button>
                 </div>
@@ -348,11 +285,88 @@ function BrandFiltr({
                 <div className="smartfonRightCards">
                   {brandProducts?.results?.map((item) => {
                     if (isGrid) {
-                      return <ProductBox item={item} />;
+                      return (
+                        <ProductBox
+                          getLikedProducts={getLikedProducts}
+                          userData={userData}
+                          getUser={getUser}
+                          getData={getData}
+                          deleteFromLiked={deleteFromLiked}
+                          item={item}
+                          key={item.id}
+                          addToLiked={addToLiked}
+                          getOneProductData={getOneProductData}
+                          setShowOrderModal={setShowOrderModal}
+                        />
+                      );
                     } else {
-                      return <ProductAlotCard item={item} />;
+                      return (
+                        <ProductAlotCard
+                          getLikedProducts={getLikedProducts}
+                          userData={userData}
+                          getUser={getUser}
+                          getData={getData}
+                          deleteFromLiked={deleteFromLiked}
+                          item={item}
+                          key={item.id}
+                          addToLiked={addToLiked}
+                          getOneProductData={getOneProductData}
+                          setShowOrderModal={setShowOrderModal}
+                        />
+                      );
                     }
                   })}
+                  {spinning && <Loader />}
+                  {loading &&
+                    [1, 2, 3, 4, 5].map((item) => {
+                      return (
+                        <div className="loadingSkeletons">
+                          <Skeleton
+                            variant="rectangular"
+                            width={230}
+                            height={210}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "30px" }}
+                            width={230}
+                            height={18}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            style={{ marginTop: "20px" }}
+                            width={230}
+                            height={32}
+                          />
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                            className="skeletonButtons"
+                          >
+                            <Skeleton
+                              variant="rectangular"
+                              style={{ marginTop: "20px" }}
+                              width={50}
+                              height={42}
+                            />
+                            <Skeleton
+                              variant="rectangular"
+                              style={{ marginTop: "20px" }}
+                              width={50}
+                              height={42}
+                            />
+                            <Skeleton
+                              variant="rectangular"
+                              style={{ marginTop: "20px" }}
+                              width={50}
+                              height={42}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
                   {!brandProducts?.results?.length && <NoProduct />}
                 </div>
                 <div className="smartfonRighBtn">

@@ -17,9 +17,14 @@ function Product({
   products,
   getData,
 }) {
+
   const id = useParams();
   const [mainImgIndex, setMainImgIndex] = useState(0);
   const [detailValue, setDetailValue] = useState(80);
+
+  const categoryName = categories?.results.filter((item) => {
+    return item.id == id.id;
+  });
 
   useEffect(() => {
     getOneProductData(id.id);
@@ -27,8 +32,8 @@ function Product({
       top: "0",
     });
   }, []);
-  console.log(oneProductData);
-  
+  console.log(categoryName);
+
   return (
     <>
       <div className="product">
@@ -36,19 +41,21 @@ function Product({
           <div className="basicTitle">
             <div className="basicTitleLeft">
               <div>
-                <p>Главная</p>
+                <Link to={"/"}>
+                  <p>Home</p>
+                </Link>
                 <div>
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
               </div>
               <div>
-                <p>Ноутбуки</p>
+                <p>{oneProductData?.category_name}</p>
                 <div>
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
               </div>
               <div>
-                <p>Apple</p>
+                <p>{oneProductData?.name?.slice(0, 7)}</p>
               </div>
             </div>
           </div>
