@@ -47,7 +47,7 @@ function Comparison() {
                             </div>
                             <div>
                                 <p>
-                                Add products
+                                    Add products
                                 </p>
                             </div>
                         </div>
@@ -76,7 +76,8 @@ function Comparison() {
                     </div>
                     <div className="comparisonCards">
                         <div className="productsBlock">
-                            <ProductBox />                        </div>
+                            {/* <ProductBox /> */}
+                        </div>
                     </div>
                 </div>
             </div>
