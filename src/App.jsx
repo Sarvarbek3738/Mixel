@@ -14,7 +14,7 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { SkeletonTheme } from "react-loading-skeleton";
-import Slaydir from "./components/slaydir/Slaydir";
+// import Slaydir from "./components/slaydir/Slaydir";
 import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import BrandFiltr from "./pages/brandfiltr/BrandFiltr";
@@ -338,7 +338,7 @@ function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="/slaydir"
             element={
               <Slaydir
@@ -348,7 +348,7 @@ function App() {
                 getData={getData}
               />
             }
-          />
+          /> */}
           <Route
             path="/category/:id"
             element={

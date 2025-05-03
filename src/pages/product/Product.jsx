@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
-import Slaydir from "../../components/slaydir/Slaydir";
+// import Slaydir from "../../components/slaydir/Slaydir";
 import OrderModal from "../../components/orderModal/OrderModal";
 function Product({
   categories,
@@ -208,7 +208,7 @@ function Product({
                       >
                         <i
                           class={
-                            oneProductData.is_cart
+                            oneProductData?.is_cart
                               ? "fa-solid fa-cart-shopping solid"
                               : "fa-solid fa-cart-shopping"
                           }
@@ -308,6 +308,14 @@ function Product({
                     </div>
                   </div>
                   <div className="ProductMinText">
+                    {oneProductData?.properties?.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <p className="productMinSiz">{item.name}</p>
+                          <p>{item.value}</p>
+                        </div>
+                      );
+                    })}
                     <h3>Technical parameters</h3>
                     <div>
                       <p className="productMinSiz">Название</p>
