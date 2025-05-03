@@ -26,7 +26,6 @@ function Product({
   getBrands,
   brands,
 }) {
-
   const id = useParams();
   const [mainImgIndex, setMainImgIndex] = useState(0);
   const [detailValue, setDetailValue] = useState(80);
@@ -36,10 +35,12 @@ function Product({
 
   useEffect(() => {
     getOneProductData(id.id);
+    console.log(oneProductData);
+
     window.scrollTo({
       top: "0",
     });
-  }, []);
+  }, [id.id]);
 
   return (
     <>
@@ -63,12 +64,14 @@ function Product({
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
               </div>
-              <div>
-                <p>{oneProductData?.category_name}</p>
+              <Link to={`/category/${oneProductData?.category}`}>
                 <div>
-                  <i class="fa-solid fa-chevron-right"></i>
+                  <p>{oneProductData?.category_name}</p>
+                  <div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </div>
                 </div>
-              </div>
+              </Link>
               <div>
                 <p>{oneProductData?.name?.slice(0, 7)}</p>
               </div>
@@ -203,7 +206,13 @@ function Product({
                           }
                         }}
                       >
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i
+                          class={
+                            oneProductData.is_cart
+                              ? "fa-solid fa-cart-shopping solid"
+                              : "fa-solid fa-cart-shopping"
+                          }
+                        ></i>
                       </div>
                       <div
                         className="hear"
@@ -228,7 +237,7 @@ function Product({
                         <i
                           class={
                             oneProductData?.like || localLiked
-                              ? "fa-solid fa-heart"
+                              ? "fa-solid fa-heart solid"
                               : "fa-regular fa-heart"
                           }
                         ></i>
@@ -274,7 +283,7 @@ function Product({
                                 setDetailValue(10000);
                               }}
                             >
-                              Read more
+                              &nbsp;Read more
                             </button>
                           ) : (
                             <button
@@ -284,7 +293,7 @@ function Product({
                               }}
                             >
                               {" "}
-                              Read less
+                              &nbsp;Read less
                             </button>
                           )}
                         </p>
@@ -299,7 +308,7 @@ function Product({
                     </div>
                   </div>
                   <div className="ProductMinText">
-                    <h3>Технические параметры</h3>
+                    <h3>Technical parameters</h3>
                     <div>
                       <p className="productMinSiz">Название</p>
                       <p>MacBook Pro 13 MXK32ZP/A Space Gray</p>
@@ -315,25 +324,6 @@ function Product({
                       </p>
                     </div>
                   </div>
-                  <div className="ProductMinText">
-                    <h3>Дисплей</h3>
-                    <div>
-                      <p className="productMinSiz">Поверхность</p>
-                      <p>Матовая</p>
-                    </div>
-                    <div>
-                      <p className="productMinSiz">Сенсорный экран</p>
-                      <p>Нет</p>
-                    </div>
-                    <div>
-                      <p className="productMinSiz">Частота смены кадров</p>
-                      <p>60 Гц</p>
-                    </div>
-                    <div>
-                      <p className="productMinSiz">Тип матрицы</p>
-                      <p>IPS</p>
-                    </div>
-                  </div>
                 </div>
                 <div className="Productservices">
                   <div className="ProductservicesCard">
@@ -341,44 +331,107 @@ function Product({
                       <i class="fa-solid fa-arrows-rotate fa-spin"></i>
                     </div>
                     <div>
-                      <h4>30 дней на обмен и возврат.</h4>
+                      <h4>30 days for exchange and return.</h4>
                       <p>
-                        Если купите товар сегодня, до 06 мая <br /> можете
-                        вернуть или обменять.
+                        You can return or exchange the product within one month
                       </p>
-                      <Link>Подробнее о программе.</Link>
-                    </div>
-                  </div>
-                  <div className="ProductservicesCard">
-                    <div>
-                      <i class="fa-solid fa-arrows-rotate fa-spin"></i>
-                    </div>
-                    <div>
-                      <h4>30 дней на обмен и возврат.</h4>
-                      <p>
-                        Если купите товар сегодня, до 06 мая <br /> можете
-                        вернуть или обменять.
-                      </p>
-                      <Link>Подробнее о программе.</Link>
-                    </div>
-                  </div>
-                  <div className="ProductservicesCard">
-                    <div>
-                      <i class="fa-solid fa-arrows-rotate fa-spin"></i>
-                    </div>
-                    <div>
-                      <h4>30 дней на обмен и возврат.</h4>
-                      <p>
-                        Если купите товар сегодня, до 06 мая <br /> можете
-                        вернуть или обменять.
-                      </p>
-                      <Link>Подробнее о программе.</Link>
+                      <Link>Details about the program.</Link>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="container">
-                <Slaydir products={products} getData={getData} />
+                <div>
+                  <div className="section1Title">
+                    <h3>Recently Viewed</h3>
+                    <p>View All →</p>
+                  </div>
+                  <div className="sliderCards">
+                    <Swiper
+                      slidesPerView={4}
+                      centeredSlides={true}
+                      autoplay={{
+                        delay: 2500,
+                        disableOnInteraction: false,
+                      }}
+                      spaceBetween={30}
+                      grabCursor={true}
+                      loop={true}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      navigation={true}
+                      modules={[Autoplay, Pagination, Navigation]}
+                      className="mySwiper"
+                    >
+                      {!products ? (
+                        // Ma'lumot hali yuklanmayapti - Skeleton ko'rsatamiz
+                        [1, 2, 3, 4, 5].map((_, index) => (
+                          <SwiperSlide key={index}>
+                            <div className="loadingSkeletons">
+                              <Skeleton width={230} height={210} />
+                              <Skeleton
+                                style={{ marginTop: "30px" }}
+                                width={230}
+                                height={18}
+                              />
+                              <Skeleton
+                                style={{ marginTop: "20px" }}
+                                width={230}
+                                height={32}
+                              />
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                }}
+                                className="skeletonButtons"
+                              >
+                                <Skeleton
+                                  style={{ marginTop: "20px" }}
+                                  width={50}
+                                  height={42}
+                                />
+                                <Skeleton
+                                  style={{ marginTop: "20px" }}
+                                  width={50}
+                                  height={42}
+                                />
+                                <Skeleton
+                                  style={{ marginTop: "20px" }}
+                                  width={50}
+                                  height={42}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        ))
+                      ) : products.results?.length > 0 ? (
+                        // Ma'lumotlar bor - mahsulotlar chiqadi
+                        products.results.map((item) => (
+                          <SwiperSlide key={item.id}>
+                            <ProductBox
+                              getUser={getUser}
+                              userData={userData}
+                              deleteFromLiked={deleteFromLiked}
+                              addToLiked={addToLiked}
+                              getOneProductData={getOneProductData}
+                              setShowOrderModal={setShowOrderModal}
+                              key={item.id}
+                              item={item}
+                              getData={getData}
+                            />
+                          </SwiperSlide>
+                        ))
+                      ) : (
+                        // Ma'lumotlar bo'sh - "Mahsulot topilmadi"
+                        <SwiperSlide>
+                          <p>Mahsulot topilmadi</p>
+                        </SwiperSlide>
+                      )}
+                    </Swiper>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

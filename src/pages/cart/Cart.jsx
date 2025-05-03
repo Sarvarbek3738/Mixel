@@ -3,9 +3,12 @@ import "./Cart.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import { toast } from "react-toastify";
 import NoProduct from "../../components/noproduct/NoProduct";
+import { Link } from "react-router-dom";
 
 function Cart({ cartProducts, getCartProducts }) {
+  console.log(cartProducts);
   useEffect(() => {
+    
     window.scrollTo({
       top: "0",
     });
@@ -65,7 +68,7 @@ function Cart({ cartProducts, getCartProducts }) {
             </div>
             {cartProducts?.results.map((item) => {
               return (
-                <div className="cartProductCard" key={item.id}>
+                <Link to={`/product/${item.product}`} className="cartProductCard" key={item.id}>
                   <div className="productMainData">
                     <div className="productImg">
                       <img src={item.product_image} alt="" />
@@ -85,7 +88,7 @@ function Cart({ cartProducts, getCartProducts }) {
                   >
                     <i className="fas fa-trash"></i>
                   </button>
-                </div>
+                </Link>
               );
             })}
           </div>

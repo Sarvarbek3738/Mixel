@@ -51,7 +51,7 @@ function ProductBox({
                 }
               }}
             >
-              <i class="fa-solid fa-cart-shopping"></i>
+              <i class={item.is_cart ? "fa-solid fa-cart-shopping solid" : "fa-solid fa-cart-shopping"}></i>
             </div>
             <div
               onClick={(e) => {
@@ -75,7 +75,7 @@ function ProductBox({
               <i
                 class={
                   item?.like || localLiked
-                    ? "fa-solid fa-heart"
+                    ? "fa-solid fa-heart solid"
                     : "fa-regular fa-heart"
                 }
               ></i>

@@ -49,18 +49,29 @@ function PhoneFiltr({
   useEffect(() => {
     setSpinning(true);
   }, [id.id]);
-  const getCategoryProducts = () => {
+  const getFilter = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      category: [id.id],
+      minPrice: 1000,
+      maxPrice: Infinity,
+      brand: [2, 3, 4, 5, 6, 7, 8, 9],
+      country: ["Korea", "USA", "xitoy"],
+    });
+
     const requestOptions = {
-      method: "GET",
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
       redirect: "follow",
     };
 
-    fetch(
-      `https://abzzvx.pythonanywhere.com/products/?category=${id.id}`,
-      requestOptions
-    )
+    fetch("https://abzzvx.pythonanywhere.com/products/filter/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
         console.log(result);
         setLoading(false);
         setSpinning(false);
@@ -76,11 +87,13 @@ function PhoneFiltr({
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  console.log(filteredProducts);
 
   useEffect(() => {
     getCategories();
     getData();
-    getCategoryProducts();
+    // getCategoryProducts();
+    getFilter();
     window.scrollTo({
       top: "0",
     });
@@ -172,7 +185,7 @@ function PhoneFiltr({
                 <div>
                   <div className="smartfonLeftSent">
                     <div>
-                      <p>Цена (cум)</p>
+                      <p>Price (uzs)</p>
                     </div>
                     <div>
                       <i class="fa-solid fa-chevron-right"></i>
@@ -180,10 +193,10 @@ function PhoneFiltr({
                   </div>
                   <div className="smartfonLeftPrise">
                     <div className="ot">
-                      <p>от 300 000</p>
+                      <p>from 300 000</p>
                     </div>
                     <div>
-                      <p>до 103 300 000</p>
+                      <p>until 103 300 000</p>
                     </div>
                   </div>
                   <div>
@@ -198,21 +211,7 @@ function PhoneFiltr({
                     </Box>
                   </div>
                 </div>
-                <div>
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Наличие</p>
-                    </div>
-                  </div>
-                  <div className="zabrat">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <div>
-                      <p>Забрать сегодня</p>
-                    </div>
-                  </div>
-                </div>
+               
                 <div className="brend">
                   <div className="smartfonLeftSent">
                     <div>
@@ -222,29 +221,17 @@ function PhoneFiltr({
                       <i class="fa-solid fa-chevron-right"></i>
                     </div>
                   </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>LG </p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Samsung </p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Artel</p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Huawei </p>
+                  <div className="brandBlock">
+                    {brands?.results?.map((brand) => {
+                      return (
+                        <div className="samsung" key={brand.id}>
+                          <div>
+                            <input type="checkbox" />
+                          </div>
+                          <p>{brand.name}</p>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -288,7 +275,7 @@ function PhoneFiltr({
               </div>
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
-                  {filteredProducts?.results.map((item) => {
+                  {filteredProducts?.products?.map((item) => {
                     if (isGrid) {
                       return (
                         <ProductBox
@@ -372,7 +359,7 @@ function PhoneFiltr({
                         </div>
                       );
                     })}
-                  {!filteredProducts?.results.length > 1 && <NoProduct />}
+                  {!filteredProducts?.results?.length > 1 && <NoProduct />}
                 </div>
                 <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>

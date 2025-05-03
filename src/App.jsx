@@ -27,8 +27,6 @@ function App() {
   const [oneProductData, setOneProductData] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
 
-  
-
   // deleteFromLiked function
   const deleteFromLiked = (id) => {
     const myHeaders = new Headers();
@@ -135,6 +133,7 @@ function App() {
         // console.log("result", result);
         toast.success("Product added successufully");
         getCartProducts();
+        getData();
       })
       .catch((error) => console.error(error));
   };
