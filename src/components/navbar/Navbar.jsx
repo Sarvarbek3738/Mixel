@@ -59,7 +59,7 @@ function Navbar({
                       navigate("/search");
                     }}
                     type="text"
-                    placeholder="Telephones and household appliances"
+                    placeholder="Searching for ..."
                   />
                 </div>
 

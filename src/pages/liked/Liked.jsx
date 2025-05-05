@@ -112,6 +112,7 @@ function Liked({
                     style={{ marginTop: "20px" }}
                     width={230}
                     height={32}
+                    
                   />
                   <div
                     style={{

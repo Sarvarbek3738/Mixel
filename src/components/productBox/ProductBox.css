@@ -9,6 +9,9 @@
   box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+.solid{
+  color: red;
+}
 .cardImg {
   padding: 20px;
   display: flex;

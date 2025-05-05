@@ -14,7 +14,7 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { SkeletonTheme } from "react-loading-skeleton";
-import Slaydir from "./components/slaydir/Slaydir";
+// import Slaydir from "./components/slaydir/Slaydir";
 import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import BrandFiltr from "./pages/brandfiltr/BrandFiltr";
@@ -26,8 +26,6 @@ function App() {
   const [likedProducts, setLikedProducts] = useState(false);
   const [oneProductData, setOneProductData] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
-
-  
 
   // deleteFromLiked function
   const deleteFromLiked = (id) => {
@@ -135,13 +133,23 @@ function App() {
         // console.log("result", result);
         toast.success("Product added successufully");
         getCartProducts();
+        getData();
       })
       .catch((error) => console.error(error));
   };
   // getOneproductdata fucntion
   const getOneProductData = (id) => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("mixelToken")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("mixelToken")}`
+      );
+    }
+
     const requestOptions = {
       method: "GET",
+      headers: myHeaders,
       redirect: "follow",
     };
 
@@ -149,7 +157,6 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         setOneProductData(result);
-        // console.log(result);
       })
       .catch((error) => console.error(error));
   };
@@ -157,10 +164,12 @@ function App() {
   // Get liked products function
   const getLikedProducts = () => {
     const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("mixelToken")}`
-    );
+    if (localStorage.getItem("mixelToken")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("mixelToken")}`
+      );
+    }
 
     const requestOptions = {
       method: "GET",
@@ -329,7 +338,7 @@ function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="/slaydir"
             element={
               <Slaydir
@@ -339,7 +348,7 @@ function App() {
                 getData={getData}
               />
             }
-          />
+          /> */}
           <Route
             path="/category/:id"
             element={
@@ -365,20 +374,20 @@ function App() {
             path="/brand/:id"
             element={
               <BrandFiltr
-              getUser={getUser}
-              userData={userData}
-              deleteFromLiked={deleteFromLiked}
-              addToLiked={addToLiked}
-              addToCart={addToCart}
-              getOneProductData={getOneProductData}
-              oneProductData={oneProductData}
-              getLikedProducts={getLikedProducts}
-              getBrands={getBrands}
-              brands={brands}
-              products={products}
-              getData={getData}
-              categories={categories}
-              getCategories={getCategories}
+                getUser={getUser}
+                userData={userData}
+                deleteFromLiked={deleteFromLiked}
+                addToLiked={addToLiked}
+                addToCart={addToCart}
+                getOneProductData={getOneProductData}
+                oneProductData={oneProductData}
+                getLikedProducts={getLikedProducts}
+                getBrands={getBrands}
+                brands={brands}
+                products={products}
+                getData={getData}
+                categories={categories}
+                getCategories={getCategories}
               />
             }
           />
@@ -392,6 +401,14 @@ function App() {
                 categories={categories}
                 products={products}
                 getData={getData}
+                deleteFromLiked={deleteFromLiked}
+                addToLiked={addToLiked}
+                addToCart={addToCart}
+                getUser={getUser}
+                userData={userData}
+                getLikedProducts={getLikedProducts}
+                getBrands={getBrands}
+                brands={brands}
               />
             }
           />

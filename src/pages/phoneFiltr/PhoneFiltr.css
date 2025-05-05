@@ -99,7 +99,10 @@ i {
 }
 .ot {
   border-right: 1px solid rgba(242, 242, 242, 1);
-  padding-right: 25px;
+  padding-right: 15px;
+}
+.smartfonLeftPrise p{
+  font-size: 12px;
 }
 .smartfonLeftPrise p {
   padding: 7px;
