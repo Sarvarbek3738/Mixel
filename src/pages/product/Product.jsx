@@ -42,7 +42,7 @@ function Product({
             <div className="basicTitleLeft">
               <div>
                 <Link to={"/"}>
-                  <p>Home</p>
+                  <p>Home <h1>salom</h1></p>
                 </Link>
                 <div>
                   <i class="fa-solid fa-chevron-right"></i>
