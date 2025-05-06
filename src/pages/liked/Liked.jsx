@@ -81,7 +81,7 @@ function Liked({
         <h2 className="pageTitle">Featured</h2>
 
         <div className="productsBlock">
-          {likedProducts?.map((item) => (
+          {likedProducts?.results?.map((item) => (
             <ProductBox
               getLikedProducts={getLikedProducts}
               // deleteFromLiked={deleteFromLiked}
@@ -143,7 +143,7 @@ function Liked({
                 </div>
               );
             })}
-          {!loading && likedProducts?.length === 0 && <NoProduct />}
+          {!loading && likedProducts?.results?.length === 0 && <NoProduct />}
         </div>
       </div>
     </div>

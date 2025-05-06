@@ -307,30 +307,24 @@ function Product({
                       )}
                     </div>
                   </div>
-                  <div className="ProductMinText">
+                  <div className="productProperty">
                     {oneProductData?.properties?.map((item) => {
                       return (
                         <div key={item.id}>
-                          <p className="productMinSiz">{item.name}</p>
-                          <p>{item.value}</p>
+                          <h3>{item.title}</h3>
+                          <div className="values">
+                            {item?.value?.map((value) => {
+                              return (
+                                <div>
+                                  <p className="propertyType" >{value?.type} :</p>
+                                  <p className="propertyValue">{value?.value}</p>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
                       );
                     })}
-                    <h3>Technical parameters</h3>
-                    <div>
-                      <p className="productMinSiz">Название</p>
-                      <p>MacBook Pro 13 MXK32ZP/A Space Gray</p>
-                    </div>
-                    <div>
-                      <p className="productMinSiz">Состояние</p>
-                      <p>Новый</p>
-                    </div>
-                    <div>
-                      <p className="productMinSiz">Технические параметры</p>
-                      <p>
-                        MacBook Pro 13 MXK32ZP/A <br /> Space Gray
-                      </p>
-                    </div>
                   </div>
                 </div>
                 <div className="Productservices">
