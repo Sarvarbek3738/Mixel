@@ -42,7 +42,10 @@ function PhoneFiltr({
   const id = useParams();
   const [isGrid, setIsGrid] = useState(true);
   const [showOrderModal, setShowOrderModal] = useState(false);
-
+  const [brandList, setBrandList] = useState([]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(Infinity);
+  // const [categoryId, setCategoryId] = useState(null);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
   });
@@ -55,10 +58,9 @@ function PhoneFiltr({
 
     const raw = JSON.stringify({
       category: [id.id],
-      minPrice: 1000,
-      maxPrice: Infinity,
-      brand: [2, 3, 4, 5, 6, 7, 8, 9],
-      country: ["Korea", "USA", "xitoy"],
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+      brand: brandList,
     });
 
     const requestOptions = {

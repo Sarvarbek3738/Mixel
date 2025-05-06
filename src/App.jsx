@@ -209,7 +209,10 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/products/", requestOptions)
+    fetch(
+      "https://abzzvx.pythonanywhere.com/products/?page_size=100",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         setProducts(result);
