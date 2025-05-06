@@ -59,7 +59,7 @@ function Navbar({
                       navigate("/search");
                     }}
                     type="text"
-                    placeholder="Telephones and household appliances"
+                    placeholder="Searching for ..."
                   />
                 </div>
 
@@ -89,9 +89,9 @@ function Navbar({
               {(products && (
                 <Link to={"/liked"}>
                   <div className="navBtn">
-                    {likedProducts?.length > 0 && (
+                    {likedProducts?.results?.length > 0 && (
                       <div className="likeItemVal">
-                        <p>{likedProducts?.length}</p>
+                        <p>{likedProducts?.results?.length}</p>
                       </div>
                     )}
                     <i class="fa-regular fa-heart"></i>

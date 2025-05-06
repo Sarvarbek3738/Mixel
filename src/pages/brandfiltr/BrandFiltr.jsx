@@ -14,7 +14,7 @@ import ProductAlotCard from "../../components/productAlotCard/ProductAlotCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import Skeleton from "react-loading-skeleton";
-import Slaydir from "../../components/slaydir/Slaydir";
+// import Slaydir from "../../components/slaydir/Slaydir";
 import { Autoplay, Navigation } from "swiper/modules";
 import NoProduct from "../../components/noproduct/NoProduct";
 import Loader from "../../components/loader/Loader";
@@ -394,9 +394,9 @@ function BrandFiltr({
                   </div>
                 </div>
 
-                <div className="sliderCards">
+                {/* <div className="sliderCards">
                   <Slaydir products={products} getData={getData} />
-                </div>
+                </div> */}
                 <div className="ToliqMalumot">
                   <h3>Where to buy a reliable smartphone in Tashkent?</h3>
                   <p>

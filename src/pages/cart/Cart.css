@@ -67,3 +67,17 @@
   color: #555;
 }
 
+.toCheck {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.toCheck button {
+  background-color: #ed3729;
+  color: #fff;
+  padding: 10px 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

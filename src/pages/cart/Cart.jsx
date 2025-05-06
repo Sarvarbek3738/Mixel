@@ -3,8 +3,13 @@ import "./Cart.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import { toast } from "react-toastify";
 import NoProduct from "../../components/noproduct/NoProduct";
+import { Link } from "react-router-dom";
+import { pink } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
 
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 function Cart({ cartProducts, getCartProducts }) {
+  console.log(cartProducts);
   useEffect(() => {
     window.scrollTo({
       top: "0",
@@ -65,8 +70,22 @@ function Cart({ cartProducts, getCartProducts }) {
             </div>
             {cartProducts?.results.map((item) => {
               return (
-                <div className="cartProductCard" key={item.id}>
+                <Link
+                  to={`/product/${item.product}`}
+                  className="cartProductCard"
+                  key={item.id}
+                >
                   <div className="productMainData">
+                    <Checkbox
+                      onClick={(e) => e.stopPropagation()}
+                      {...label}
+                      sx={{
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
+                        },
+                      }}
+                    />
                     <div className="productImg">
                       <img src={item.product_image} alt="" />
                     </div>
@@ -85,9 +104,12 @@ function Cart({ cartProducts, getCartProducts }) {
                   >
                     <i className="fas fa-trash"></i>
                   </button>
-                </div>
+                </Link>
               );
             })}
+            <div className="toCheck">
+              <button>Checkout</button>
+            </div>
           </div>
         ) : (
           <NoProduct />
