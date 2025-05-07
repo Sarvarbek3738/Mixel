@@ -12,7 +12,7 @@ function Orders() {
             </div>
           </div>
           <div>
-            <p>Checkout</p>
+            <p>Orders</p>
           </div>
         </div>
       </div>
