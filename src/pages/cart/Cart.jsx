@@ -8,7 +8,7 @@ import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
-function Cart({ cartProducts, getCartProducts }) {
+function Cart({ cartProducts, getCartProducts, setOrderItems }) {
   console.log(cartProducts);
   useEffect(() => {
     window.scrollTo({
@@ -107,9 +107,9 @@ function Cart({ cartProducts, getCartProducts }) {
                 </Link>
               );
             })}
-            <div className="toCheck">
+            <Link to={"/checkout"} className="toCheck">
               <button>Checkout</button>
-            </div>
+            </Link>
           </div>
         ) : (
           <NoProduct />

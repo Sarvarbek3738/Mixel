@@ -1,0 +1,150 @@
+.checkoutPage {
+  padding: 150px 0;
+  padding-bottom: 50px;
+}
+.titleNumber {
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+  justify-content: start;
+  gap: 15px;
+}
+.titleNumber p {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.titleNumber h2 {
+  font-size: 18px;
+  font-weight: 400;
+}
+.formInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.formInputs .row {
+  display: flex;
+  align-items: start;
+  gap: 30px;
+}
+.formInputs .row input {
+  width: 300px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+}
+.formInputs .row input:focus {
+  border: 1px solid #ed3729;
+}
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.orderItems .orderItem {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.orderItem {
+  width: 60px;
+  height: 60px;
+}
+.orderItem img {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  object-fit: cover;
+}
+.orderItemInfo h2 {
+  font-size: 16px;
+  font-weight: 400;
+}
+.orderItemPrice h2 {
+  font-size: 16px;
+  font-weight: 400;
+}
+.obtainingData {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.obtainingMethodItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mainContent {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 30px;
+}
+.obtainingMethodItem label {
+  font-size: 16px;
+  color: #909090;
+}
+.obtainingMethodItems {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.obtainingMethodItem input {
+  width: 300px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+}
+.lastMethodItem input {
+  width: 630px;
+}
+.rightInfo {
+  width: 550px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+.rightInfo h2 {
+  font-size: 20px;
+  padding-bottom: 15px;
+  font-weight: 500;
+}
+.rightInfoRows {
+  border-bottom: 1px solid #e0e0e0;
+}
+.orderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.totalPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.complateBtn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ED3729;
+  color: white;
+  font-size: 16px;
+}
+.complateBtn:hover{
+  background-color: #c22115;
+}

@@ -80,6 +80,15 @@ function Navbar({
               {(products && (
                 <Link to={"/comparison"}>
                   <div>
+                    <i class="fa-solid fa-list"></i>
+                    <br />
+                    <p>Orders</p>
+                  </div>
+                </Link>
+              )) || <Skeleton variant="rectangular" width={40} height={45} />}
+              {(products && (
+                <Link to={"/comparison"}>
+                  <div>
                     <i class="fa-solid fa-scale-balanced"></i>
                     <br />
                     <p>Comparison</p>
