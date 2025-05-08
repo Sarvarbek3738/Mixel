@@ -4,11 +4,13 @@ import ProductBox from "../../components/productBox/ProductBox";
 import { toast } from "react-toastify";
 import NoProduct from "../../components/noproduct/NoProduct";
 import { Link } from "react-router-dom";
+import { pink } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
 
-function Cart({ cartProducts, getCartProducts }) {
-  console.log(cartProducts);
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
+  // console.log(cartProducts);
   useEffect(() => {
-    
     window.scrollTo({
       top: "0",
     });
@@ -74,8 +76,26 @@ function Cart({ cartProducts, getCartProducts }) {
             </div>
             {cartProducts?.results.map((item) => {
               return (
-                <Link to={`/product/${item.product}`} className="cartProductCard" key={item.id}>
+                <Link
+                  to={`/product/${item.product}`}
+                  className="cartProductCard"
+                  key={item.id}
+                >
                   <div className="productMainData">
+                    <Checkbox
+                      value={item.product}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOrderItems([...orderItems, item.product]);
+                      }}
+                      {...label}
+                      sx={{
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
+                        },
+                      }}
+                    />
                     <div className="productImg">
                       <img src={item.product_image} alt="" />
                     </div>
@@ -86,10 +106,28 @@ function Cart({ cartProducts, getCartProducts }) {
                   <h2 className="productPrice">{item.product_price}</h2>
                   <h2>{item.amount}</h2>
                   <h2>{item.total_price}</h2>
+<<<<<<< HEAD
                   <button onClick={(e) => handleDelete(e, item.id)}> <i className="fas fa-trash"></i></button>
+=======
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      deleteCartProduct(item.id);
+                    }}
+                    className="removeProductfromCartBtn"
+                  >
+                    <i className="fas fa-trash"></i>
+                  </button>
+>>>>>>> master
                 </Link>
               );
             })}
+            <Link to={"/checkout"} className="toCheck">
+              <button onClick={()=>{
+                console.log(orderItems);
+                
+              }}>Checkout</button>
+            </Link>
           </div>
         ) : (
           <NoProduct />

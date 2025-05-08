@@ -143,7 +143,7 @@ function Liked({
                 </div>
               );
             })}
-          {!loading && likedProducts?.length === 0 && <NoProduct />}
+          {!loading && likedProducts?.results?.length === 0 && <NoProduct />}
         </div>
       </div>
     </div>

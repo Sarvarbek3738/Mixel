@@ -1,0 +1,156 @@
+import React from "react";
+import "./Checkout.css";
+import { toast } from "react-toastify";
+function Checkout({ orderItems }) {
+  const [first_name, setFirstName] = React.useState(null);
+  const [last_name, setLastName] = React.useState(null);
+  const [phone_number, setPhoneNumber] = React.useState(null);
+  const [address, setAddress] = React.useState(null);
+  const createOrder = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const raw = JSON.stringify({
+      cart_item_ids: orderItems,
+      first_name,
+      last_name,
+      phone_number,
+      address,
+      payment_type: "cash",
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/orders/create", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        toast.success("Order created successfully");
+      })
+      .catch((error) => console.error(error));
+  };
+
+  return (
+    <div className="checkoutPage">
+      <div className="container">
+        <div className="basicTitleLeft">
+          <div>
+            <p>Home</p>
+            <div>
+              <i className="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+          <div>
+            <p>Checkout</p>
+          </div>
+        </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            createOrder();
+          }}
+          className="mainContent"
+        >
+          <div className="leftForms">
+            <div className="form">
+              <h2>Order palace</h2>
+              <div className="dataTitle">
+                <div className="titleNumber">
+                  <p>1</p>
+                  <h2>Your info</h2>
+                </div>
+                <div className="formInputs">
+                  <div className="row">
+                    <input required type="text" placeholder="Last name" />
+                    <input required type="text" placeholder="First name" />
+                  </div>
+                  <div className="row">
+                    <input required type="text" placeholder="Father`s name" />
+                    <input required type="text" placeholder="Phone number" />
+                  </div>
+                </div>
+              </div>
+              <div className="yourOrder">
+                <div className="titleNumber">
+                  <p>2</p>
+                  <h2>Your order</h2>
+                </div>
+                <div className="orderItems">
+                  <div className="orderItem">
+                    <div className="orderImg">
+                      <img src="/public/credit-card.svg" alt="" />
+                    </div>
+                    <div className="orderItemInfo">
+                      <h2>Product name</h2>
+                    </div>
+                    <div className="orderAmount">
+                      <p>1 pt</p>
+                    </div>
+                    <div className="orderItemPrice">
+                      <h2>$ 100.00</h2>
+                    </div>
+                  </div>
+                </div>
+                <div className="optainingMethod">
+                  <div className="titleNumber">
+                    <p>3</p>
+                    <h2>Method of obtaining</h2>
+                  </div>
+                  <div className="obtainingData">
+                    <div className="obtainingMethodItems">
+                      <div className="obtainingMethodItem">
+                        <label htmlFor="city">Your city/province</label>
+                        <input required type="text" placeholder="Your City" />
+                      </div>
+                      <div className="obtainingMethodItem">
+                        <label htmlFor="city">Your district</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Your district"
+                        />
+                      </div>
+                    </div>
+                    <div className="obtainingMethodItem lastMethodItem">
+                      <label htmlFor="city">Your address</label>
+                      <input required type="text" placeholder="Your street" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="rightInfo">
+            <h2>Your order info</h2>
+            <div className="rightInfoRows">
+              <div className="orderRow">
+                <p>Subtotal price:</p>
+                <h3>526350 uzs</h3>
+              </div>
+              <div className="orderRow">
+                <p>Delivery:</p>
+                <h3>0 uzs</h3>
+              </div>
+            </div>
+            <div className="totalPrice">
+              <p>Total price:</p>
+              <h3>5 262 000 uzs</h3>
+            </div>
+            <button className="complateBtn">Complete the purchase</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default Checkout;

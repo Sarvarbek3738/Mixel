@@ -19,9 +19,13 @@ import { Autoplay, Navigation } from "swiper/modules";
 import NoProduct from "../../components/noproduct/NoProduct";
 import Loader from "../../components/loader/Loader";
 import OrderModal from "../../components/orderModal/OrderModal";
+import { pink } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
 
 function PhoneFiltr({
+  getBrandsByCategory,
   products, //+
+  brandsByCategory,
   getData, //+
   getLikedProducts,
   getCategories, //+
@@ -35,19 +39,26 @@ function PhoneFiltr({
   getOneProductData,
   oneProductData,
 }) {
-  const [value, setValue] = useState([20, 70]);
-  const [filteredProducts, setFilteredProducts] = useState(null);
-  const [spinning, setSpinning] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const id = useParams();
-  const [isGrid, setIsGrid] = useState(true);
-  const [showOrderModal, setShowOrderModal] = useState(false);
-
+    const [value, setValue] = useState([100000, 20000000]);
+    const [filteredProducts, setFilteredProducts] = useState(null);
+    const [spinning, setSpinning] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const id = useParams();
+    const [isGrid, setIsGrid] = useState(true);
+    const [showOrderModal, setShowOrderModal] = useState(false);
+    const [brandList, setBrandList] = useState([]);
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(Infinity);
+  // const [categoryId, setCategoryId] = useState(null);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
   });
+<<<<<<< HEAD
 
 
+=======
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+>>>>>>> master
   useEffect(() => {
     setSpinning(true);
   }, [id.id]);
@@ -57,10 +68,9 @@ function PhoneFiltr({
 
     const raw = JSON.stringify({
       category: [id.id],
-      minPrice: 1000,
-      maxPrice: Infinity,
-      brand: [2, 3, 4, 5, 6, 7, 8, 9],
-      country: ["Korea", "USA", "xitoy"],
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+      brand: brandList,
     });
 
     const requestOptions = {
@@ -74,7 +84,7 @@ function PhoneFiltr({
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        console.log(result);
+        // console.log(result);
         setLoading(false);
         setSpinning(false);
         setFilteredProducts(result);
@@ -86,18 +96,32 @@ function PhoneFiltr({
   function valuetext(value) {
     return `${value}°C`;
   }
+  const [priceRange, setPriceRange] = useState([100000, 20000000]);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   console.log(filteredProducts);
+<<<<<<< HEAD
 
 
 
   
 
+=======
+>>>>>>> master
   useEffect(() => {
+    setMinPrice(value[0]);
+    setMaxPrice(value[1]);
+    // setBrandList([]);
+    // getFilter();
+  }, [value]);
+  useEffect(() => {
+    getBrandsByCategory(id.id);
     getCategories();
     getData();
+    setMinPrice(priceRange[0]);
+    setMaxPrice(priceRange[1]);
     // getCategoryProducts();
     getFilter();
     window.scrollTo({
@@ -199,10 +223,10 @@ function PhoneFiltr({
                   </div>
                   <div className="smartfonLeftPrise">
                     <div className="ot">
-                      <p>from 300 000</p>
+                      <p>from 100 000</p>
                     </div>
                     <div>
-                      <p>until 103 300 000</p>
+                      <p>until 20 000 000</p>
                     </div>
                   </div>
                   <div>
@@ -210,9 +234,19 @@ function PhoneFiltr({
                       <Slider
                         getAriaLabel={() => "Temperature range"}
                         value={value}
+                        min={300000}
+                        max={20000000}
+                        step={100000}
                         onChange={handleChange}
                         valueLabelDisplay="auto"
                         getAriaValueText={valuetext}
+                        valueLabelFormat={(value) =>
+                          new Intl.NumberFormat("uz-UZ", {
+                            style: "currency",
+                            currency: "UZS",
+                            minimumFractionDigits: 0,
+                          }).format(value)
+                        }
                       />
                     </Box>
                   </div>
@@ -228,55 +262,51 @@ function PhoneFiltr({
                     </div>
                   </div>
                   <div className="brandBlock">
-                    {brands?.results?.map((brand) => {
+                    {brandsByCategory?.results?.map((brand) => {
                       return (
                         <div className="samsung" key={brand.id}>
                           <div>
-                            <input type="checkbox" />
+                            <Checkbox
+                              onClick={(e) => {
+                                setBrandList([...brandList, brand.id]);
+                                console.log(brandList);
+                              }}
+                              {...label}
+                              sx={{
+                                color: pink[800],
+                                "&.Mui-checked": {
+                                  color: pink[600],
+                                },
+                              }}
+                            />
                           </div>
                           <p>{brand.name}</p>
                         </div>
                       );
                     })}
+                    {!brandsByCategory &&
+                      [1, 2, 3, 4, 5].map((item) => {
+                        return (
+                          <Skeleton
+                            style={{ marginBottom: "40px" }}
+                            variant="rectangular"
+                            width={230}
+                            height={21}
+                          />
+                        );
+                      })}
                   </div>
                 </div>
 
-                <div className="Страна">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Country</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Вьетнам</p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Китай</p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Artel </p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Huawei</p>
-                  </div>
-                </div>
                 <div className="smartfonLeftBtn">
-                  <button>Показать</button>
+                  <button
+                    onClick={() => {
+                      getFilter();
+                      console.log(brandList);
+                    }}
+                  >
+                    Apply
+                  </button>
                 </div>
               </div>
               <div className="smartfonRight">

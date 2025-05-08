@@ -19,6 +19,8 @@ import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import BrandFiltr from "./pages/brandfiltr/BrandFiltr";
 import PosterPage from "./pages/posterpage/PosterPage";
+import Orders from "./pages/orders/Orders";
+import Checkout from "./pages/checkout/Checkout";
 function App() {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
@@ -26,7 +28,27 @@ function App() {
   const [likedProducts, setLikedProducts] = useState(false);
   const [oneProductData, setOneProductData] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
+  const [orderItems, setOrderItems] = useState([]);
+  const [brandsByCategory, setBrandsByCategory] = useState(null);
 
+  // getBrandsByCategory function
+  const getBrandsByCategory = (id) => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      `https://abzzvx.pythonanywhere.com/brands/?category=${id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setBrandsByCategory(result);
+      })
+      .catch((error) => console.error(error));
+  };
   // deleteFromLiked function
   const deleteFromLiked = (id) => {
     const myHeaders = new Headers();
@@ -209,7 +231,10 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/products/", requestOptions)
+    fetch(
+      "https://abzzvx.pythonanywhere.com/products/?page_size=100",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         setProducts(result);
@@ -353,6 +378,8 @@ function App() {
             path="/category/:id"
             element={
               <PhoneFiltr
+                brandsByCategory={brandsByCategory}
+                getBrandsByCategory={getBrandsByCategory}
                 getUser={getUser}
                 userData={userData}
                 deleteFromLiked={deleteFromLiked}
@@ -434,7 +461,9 @@ function App() {
             path="/cart"
             element={
               <Cart
+                orderItems={orderItems}
                 cartProducts={cartProducts}
+                setOrderItems={setOrderItems}
                 getCartProducts={getCartProducts}
               />
             }
@@ -454,6 +483,11 @@ function App() {
             element={<Dashboard getUser={getUser} userData={userData} />}
           />
           <Route path="/poster/:id" element={<PosterPage />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route
+            path="/checkout"
+            element={<Checkout orderItems={orderItems} />}
+          />
           <Route path="/login" element={<Login getUser={getUser} />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
