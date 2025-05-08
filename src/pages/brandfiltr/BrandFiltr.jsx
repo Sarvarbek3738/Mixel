@@ -19,6 +19,8 @@ import { Autoplay, Navigation } from "swiper/modules";
 import NoProduct from "../../components/noproduct/NoProduct";
 import Loader from "../../components/loader/Loader";
 import OrderModal from "../../components/orderModal/OrderModal";
+import { Checkbox } from "@mui/material";
+import { PiNumpadLight } from "react-icons/pi";
 
 function BrandFiltr({
   products, //+
@@ -36,12 +38,15 @@ function BrandFiltr({
   oneProductData,
 }) {
   const id = useParams();
-  const [value, setValue] = useState([20, 70]);
   const [spinning, setSpinning] = useState(true);
   const [loading, setLoading] = useState(true);
   const [isGrid, setIsGrid] = useState(true);
   const [brandProducts, setBrandProducts] = useState(null);
-
+  const [value, setValue] = useState([100000, 20000000]);
+  // const [filteredProducts, setFilteredProducts] = useState(PiNumpadLight
+  const [brandList, setBrandList] = useState([]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(Infinity);
   // function for range
   function valuetext(value) {
     return `${value}°C`;
@@ -119,9 +124,6 @@ function BrandFiltr({
             <div className="smatfonTitle">
               {/* fghjklkjhertghjkl */}
               <div className="smatfonTitle1">
-                <div className="smatfonTitle1Panel">
-                  {/* <h3>{categoryName && categoryName[0]?.name}</h3> */}
-                </div>
                 <div className="sent">
                   <div>
                     <div>
@@ -163,11 +165,11 @@ function BrandFiltr({
               </div>
             </div>
             <div className="smartfonBlock">
-              <div className="smartfonLeft">
+              {/* <div className="smartfonLeft">
                 <div>
                   <div className="smartfonLeftSent">
                     <div>
-                      <p>Цена (cум)</p>
+                      <p>Price (uzs)</p>
                     </div>
                     <div>
                       <i class="fa-solid fa-chevron-right"></i>
@@ -175,10 +177,10 @@ function BrandFiltr({
                   </div>
                   <div className="smartfonLeftPrise">
                     <div className="ot">
-                      <p>от 300 000</p>
+                      <p>from 100 000</p>
                     </div>
                     <div>
-                      <p>до 103 300 000</p>
+                      <p>until 20 000 000</p>
                     </div>
                   </div>
                   <div>
@@ -186,101 +188,35 @@ function BrandFiltr({
                       <Slider
                         getAriaLabel={() => "Temperature range"}
                         value={value}
+                        min={300000}
+                        max={20000000}
+                        step={100000}
                         onChange={handleChange}
                         valueLabelDisplay="auto"
                         getAriaValueText={valuetext}
+                        valueLabelFormat={(value) =>
+                          new Intl.NumberFormat("uz-UZ", {
+                            style: "currency",
+                            currency: "UZS",
+                            minimumFractionDigits: 0,
+                          }).format(value)
+                        }
                       />
                     </Box>
                   </div>
                 </div>
-                <div>
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Наличие</p>
-                    </div>
-                  </div>
-                  <div className="zabrat">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <div>
-                      <p>Забрать сегодня</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="brend">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Бренд</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>LG (30)</p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Samsung (30)</p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Artel (7)</p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Huawei (30)</p>
-                  </div>
-                </div>
 
-                <div className="Страна">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Страна производитель</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Вьетнам</p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Китай</p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Artel </p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Huawei</p>
-                  </div>
-                </div>
                 <div className="smartfonLeftBtn">
-                  <button>Показать</button>
+                  <button
+                    onClick={() => {
+                      getFilter();
+                      console.log(brandList);
+                    }}
+                  >
+                    Apply
+                  </button>
                 </div>
-              </div>
+              </div> */}
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
                   {brandProducts?.results?.map((item) => {
