@@ -271,6 +271,17 @@ function PhoneFiltr({
                         </div>
                       );
                     })}
+                    {!brandsByCategory &&
+                      [1, 2, 3, 4, 5].map((item) => {
+                        return (
+                          <Skeleton
+                            style={{ marginBottom: "40px" }}
+                            variant="rectangular"
+                            width={230}
+                            height={21}
+                          />
+                        );
+                      })}
                   </div>
                 </div>
 
