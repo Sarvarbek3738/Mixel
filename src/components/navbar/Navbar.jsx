@@ -65,7 +65,7 @@ function Navbar({
 
                 <div>
                   <button>
-                    <div>
+                    <div className="SearchBtn">
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     <div>
@@ -78,7 +78,7 @@ function Navbar({
 
             <div className="NavIcon">
               {(products && (
-                <Link to={"/comparison"}>
+                <Link to={"/orders"}>
                   <div>
                     <i class="fa-solid fa-list"></i>
                     <br />

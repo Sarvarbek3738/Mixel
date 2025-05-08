@@ -53,7 +53,6 @@ function PhoneFiltr({
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
   });
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   useEffect(() => {
     setSpinning(true);
   }, [id.id]);
@@ -97,6 +96,12 @@ function PhoneFiltr({
     setValue(newValue);
   };
   console.log(filteredProducts);
+  useEffect(() => {
+    setMinPrice(value[0]);
+    setMaxPrice(value[1]);
+    // setBrandList([]);
+    // getFilter();
+  }, [value]);
   useEffect(() => {
     setMinPrice(value[0]);
     setMaxPrice(value[1]);
@@ -162,7 +167,7 @@ function PhoneFiltr({
                     <div>
                       <img src="/imgs/Bonus.svg" alt="" />
                     </div>
-                    <div>
+                    <div >
                       <p>By price</p>
                     </div>
                   </div>

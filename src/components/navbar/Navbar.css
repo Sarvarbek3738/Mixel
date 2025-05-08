@@ -40,6 +40,9 @@
   outline: none;
   border-radius: 10px;
 }
+.SearchBtn i{
+  color: white;
+}
 
 /* ============================================= */
 .navbar {

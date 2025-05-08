@@ -66,6 +66,14 @@
   font-size: 1.5rem;
   color: #555;
 }
+<<<<<<< HEAD
+.productsBlock button{
+  border: none;
+}
+.productsBlock button i{
+  font-size: 25px;
+}
+=======
 
 .toCheck {
   width: 100%;
@@ -81,3 +89,4 @@
   border-radius: 5px;
   cursor: pointer;
 }
+>>>>>>> master
