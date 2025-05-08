@@ -122,7 +122,6 @@ function BrandFiltr({
 
           <div className="smartfon">
             <div className="smatfonTitle">
-              {/* fghjklkjhertghjkl */}
               <div className="smatfonTitle1">
                 <div className="sent">
                   <div>
@@ -329,10 +328,6 @@ function BrandFiltr({
                     })}
                   </div>
                 </div>
-
-                {/* <div className="sliderCards">
-                  <Slaydir products={products} getData={getData} />
-                </div> */}
                 <div className="ToliqMalumot">
                   <h3>Where to buy a reliable smartphone in Tashkent?</h3>
                   <p>
