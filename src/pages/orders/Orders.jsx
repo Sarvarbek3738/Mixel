@@ -4,15 +4,17 @@ function Orders() {
   return (
     <div className="ordersPage">
       <div className="container">
-        <div className="basicTitleLeft">
-          <div>
-            <p>Home</p>
+      <div className="basicTitle">
+          <div className="basicTitleLeft">
             <div>
-              <i className="fa-solid fa-chevron-right"></i>
+              <p>Home</p>
+              <div>
+                <i className="fa-solid fa-chevron-right"></i>
+              </div>
             </div>
-          </div>
-          <div>
-            <p>Orders</p>
+            <div>
+              <p>Orders</p>
+            </div>
           </div>
         </div>
       </div>
