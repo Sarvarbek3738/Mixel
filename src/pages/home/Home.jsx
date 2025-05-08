@@ -30,7 +30,7 @@ function Home({
   getBrands,
   brands,
 }) {
-console.log(products);
+// console.log(products);
 
   const [showOrderModal, setShowOrderModal] = useState(false);
   // getBanner function

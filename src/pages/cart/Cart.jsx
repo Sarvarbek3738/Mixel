@@ -8,8 +8,8 @@ import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
-function Cart({ cartProducts, getCartProducts, setOrderItems }) {
-  console.log(cartProducts);
+function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
+  // console.log(cartProducts);
   useEffect(() => {
     window.scrollTo({
       top: "0",
@@ -77,7 +77,11 @@ function Cart({ cartProducts, getCartProducts, setOrderItems }) {
                 >
                   <div className="productMainData">
                     <Checkbox
-                      onClick={(e) => e.stopPropagation()}
+                      value={item.product}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOrderItems([...orderItems, item.product]);
+                      }}
                       {...label}
                       sx={{
                         color: pink[800],
@@ -97,7 +101,8 @@ function Cart({ cartProducts, getCartProducts, setOrderItems }) {
                   <h2>{item.amount}</h2>
                   <h2>{item.total_price}</h2>
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
                       deleteCartProduct(item.id);
                     }}
                     className="removeProductfromCartBtn"
@@ -108,7 +113,10 @@ function Cart({ cartProducts, getCartProducts, setOrderItems }) {
               );
             })}
             <Link to={"/checkout"} className="toCheck">
-              <button>Checkout</button>
+              <button onClick={()=>{
+                console.log(orderItems);
+                
+              }}>Checkout</button>
             </Link>
           </div>
         ) : (
