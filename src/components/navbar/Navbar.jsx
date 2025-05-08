@@ -207,7 +207,9 @@ function Navbar({
                         >
                           <div className="ModalLeftBlock">
                             <div className="categoryIcon">
-                              <img src={category?.icon} alt="" />
+                              {category?.icon && (
+                                <img src={category?.icon} alt="" />
+                              )}
                             </div>
                             <div>
                               <p>{category?.name}</p>

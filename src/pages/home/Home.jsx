@@ -30,7 +30,7 @@ function Home({
   getBrands,
   brands,
 }) {
-console.log(products);
+  console.log(products);
 
   const [showOrderModal, setShowOrderModal] = useState(false);
   // getBanner function
@@ -86,7 +86,7 @@ console.log(products);
                   return (
                     <SwiperSlide key={item.id}>
                       <Link to={`/poster/${item.id}`} className="heroBanner">
-                        <img src={item?.image} alt="" />
+                        {item?.image && <img src={item?.image} alt="" />}
                       </Link>
                     </SwiperSlide>
                   );
@@ -217,7 +217,9 @@ console.log(products);
                         >
                           <h4>{category?.name}</h4>
                           <div className="categoryImg">
-                            <img src={category?.image} alt="" />
+                            {category?.image && (
+                              <img src={category?.image} alt="" />
+                            )}
                           </div>
                         </Link>
                       </SwiperSlide>
@@ -419,7 +421,7 @@ console.log(products);
               <div>
                 <h3>Brands</h3>
               </div>
-              
+
               <div className="brandBlock">
                 <Swiper
                   slidesPerView={5}
@@ -439,12 +441,9 @@ console.log(products);
                   {brands?.results?.map((brand) => {
                     return (
                       <SwiperSlide>
-                        <Link
-                          to={`brand/${brand.id}`}
-                          className="brandBox"
-                        >
+                        <Link to={`brand/${brand.id}`} className="brandBox">
                           <div className="brandImg">
-                            <img src={brand?.image} alt="" />
+                            {brand?.image && <img src={brand?.image} alt="" />}
                           </div>
                           <h2>{brand?.name}</h2>
                         </Link>

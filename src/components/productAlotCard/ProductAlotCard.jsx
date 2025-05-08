@@ -17,7 +17,9 @@ function ProductAlotCard({
     <>
       <div className="PhoneFiltrAlotCards">
         <div className="AloImg">
-          <img src={item?.images[0]?.image} alt="" />
+          {item?.images[0]?.image && (
+            <img src={item?.images[0]?.image} alt="" />
+          )}
         </div>
         <div className="AlotTitle">
           <h3>{item?.name}</h3>

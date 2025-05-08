@@ -3,7 +3,8 @@ import "./PosterPage.css";
 import ProductBox from "../../components/productBox/ProductBox";
 import { useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-function PosterPage({getUser,
+function PosterPage({
+  getUser,
   userData,
   key,
   deleteFromLiked,
@@ -11,7 +12,8 @@ function PosterPage({getUser,
   getOneProductData,
   setShowOrderModal,
   item,
-  getData}) {
+  getData,
+}) {
   const id = useParams();
   const [banner, setBanner] = React.useState([]);
   const [posterProducts, setPosterProducts] = React.useState([]);
@@ -29,7 +31,7 @@ function PosterPage({getUser,
       .catch((error) => console.error(error));
   };
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
   const getPosterProducts = () => {
     const requestOptions = {
       method: "GET",
@@ -70,7 +72,6 @@ function PosterPage({getUser,
               <p>PosterPage</p>
             </div>
           </div>
-
         </div>
         {!banner?.results?.length ? (
           <Skeleton
@@ -84,7 +85,7 @@ function PosterPage({getUser,
             .filter((item) => item.id == id.id)
             .map((item) => (
               <div className="posterBanner" key={item.id}>
-                <img src={item.image} alt="Banner" />
+                {item.image && <img src={item.image} alt="Banner" />}
               </div>
             ))
         )}
@@ -92,7 +93,7 @@ function PosterPage({getUser,
           {/* {posterProducts?.results?.map((item) => {
             return <ProductBox item={item} />;
           })} */}
-          {posterProducts?.results?.map((item , index ) => {
+          {posterProducts?.results?.map((item, index) => {
             if (index < 10) {
               return (
                 <ProductBox
@@ -114,11 +115,7 @@ function PosterPage({getUser,
             [1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((item) => {
               return (
                 <div className="loadingSkeletons">
-                  <Skeleton
-                    variant="rectangular"
-                    width={230}
-                    height={210}
-                  />
+                  <Skeleton variant="rectangular" width={230} height={210} />
                   <Skeleton
                     variant="rectangular"
                     style={{ marginTop: "30px" }}

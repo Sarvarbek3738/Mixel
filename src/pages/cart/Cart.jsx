@@ -87,7 +87,9 @@ function Cart({ cartProducts, getCartProducts, setOrderItems }) {
                       }}
                     />
                     <div className="productImg">
-                      <img src={item.product_image} alt="" />
+                      {item?.product_image && (
+                        <img src={item?.product_image} alt="" />
+                      )}
                     </div>
                     <h2 className="cartProductTitle">
                       {String(item.product_name)}
