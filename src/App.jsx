@@ -28,8 +28,27 @@ function App() {
   const [likedProducts, setLikedProducts] = useState(false);
   const [oneProductData, setOneProductData] = useState(null);
   const [cartProducts, setCartProducts] = useState(null);
-  const [orderItems, setOrderItems] = useState(null);
+  const [orderItems, setOrderItems] = useState([]);
+  const [brandsByCategory, setBrandsByCategory] = useState(null);
 
+  // getBrandsByCategory function
+  const getBrandsByCategory = (id) => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      `https://abzzvx.pythonanywhere.com/brands/?category=${id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setBrandsByCategory(result);
+      })
+      .catch((error) => console.error(error));
+  };
   // deleteFromLiked function
   const deleteFromLiked = (id) => {
     const myHeaders = new Headers();
@@ -359,6 +378,8 @@ function App() {
             path="/category/:id"
             element={
               <PhoneFiltr
+                brandsByCategory={brandsByCategory}
+                getBrandsByCategory={getBrandsByCategory}
                 getUser={getUser}
                 userData={userData}
                 deleteFromLiked={deleteFromLiked}
@@ -440,6 +461,7 @@ function App() {
             path="/cart"
             element={
               <Cart
+                orderItems={orderItems}
                 cartProducts={cartProducts}
                 setOrderItems={setOrderItems}
                 getCartProducts={getCartProducts}
