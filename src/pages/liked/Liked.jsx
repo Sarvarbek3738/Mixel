@@ -81,7 +81,7 @@ function Liked({
         <h2 className="pageTitle">Featured</h2>
 
         <div className="productsBlock">
-          {likedProducts?.map((item) => (
+          {likedProducts?.results?.map((item) => (
             <ProductBox
               getLikedProducts={getLikedProducts}
               // deleteFromLiked={deleteFromLiked}

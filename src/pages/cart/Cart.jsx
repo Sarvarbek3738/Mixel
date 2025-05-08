@@ -39,6 +39,12 @@ function Cart({ cartProducts, getCartProducts }) {
       .catch((error) => console.error(error));
   };
 
+
+  const handleDelete = (e, id) => {
+    e.preventDefault(); // forma yuborilishini to‘xtatadi
+    deleteCartProduct(id);
+  };
+
   return (
     <div className="cartPage">
       <div className="container">
@@ -80,14 +86,7 @@ function Cart({ cartProducts, getCartProducts }) {
                   <h2 className="productPrice">{item.product_price}</h2>
                   <h2>{item.amount}</h2>
                   <h2>{item.total_price}</h2>
-                  <button
-                    onClick={() => {
-                      deleteCartProduct(item.id);
-                    }}
-                    className="removeProductfromCartBtn"
-                  >
-                    <i className="fas fa-trash"></i>
-                  </button>
+                  <button onClick={(e) => handleDelete(e, item.id)}> <i className="fas fa-trash"></i></button>
                 </Link>
               );
             })}

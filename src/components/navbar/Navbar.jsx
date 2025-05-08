@@ -65,7 +65,7 @@ function Navbar({
 
                 <div>
                   <button>
-                    <div>
+                    <div className="SearchBtn">
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     <div>

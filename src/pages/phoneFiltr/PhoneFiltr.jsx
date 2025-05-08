@@ -46,6 +46,8 @@ function PhoneFiltr({
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
   });
+
+
   useEffect(() => {
     setSpinning(true);
   }, [id.id]);
@@ -88,6 +90,10 @@ function PhoneFiltr({
     setValue(newValue);
   };
   console.log(filteredProducts);
+
+
+
+  
 
   useEffect(() => {
     getCategories();
@@ -145,7 +151,7 @@ function PhoneFiltr({
                     <div>
                       <img src="/imgs/Bonus.svg" alt="" />
                     </div>
-                    <div>
+                    <div >
                       <p>By price</p>
                     </div>
                   </div>
@@ -211,7 +217,7 @@ function PhoneFiltr({
                     </Box>
                   </div>
                 </div>
-               
+
                 <div className="brend">
                   <div className="smartfonLeftSent">
                     <div>

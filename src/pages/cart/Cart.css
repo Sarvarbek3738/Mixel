@@ -66,4 +66,9 @@
   font-size: 1.5rem;
   color: #555;
 }
-
+.productsBlock button{
+  border: none;
+}
+.productsBlock button i{
+  font-size: 25px;
+}
