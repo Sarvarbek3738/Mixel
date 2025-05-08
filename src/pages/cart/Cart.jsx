@@ -106,9 +106,9 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
                   <h2 className="productPrice">{item.product_price}</h2>
                   <h2>{item.amount}</h2>
                   <h2>{item.total_price}</h2>
-<<<<<<< HEAD
+
                   <button onClick={(e) => handleDelete(e, item.id)}> <i className="fas fa-trash"></i></button>
-=======
+
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -118,7 +118,7 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
                   >
                     <i className="fas fa-trash"></i>
                   </button>
->>>>>>> master
+
                 </Link>
               );
             })}
