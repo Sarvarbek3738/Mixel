@@ -19,8 +19,8 @@ import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import BrandFiltr from "./pages/brandfiltr/BrandFiltr";
 import PosterPage from "./pages/posterpage/PosterPage";
-import Orders from "./pages/orders/Orders";
 import Checkout from "./pages/checkout/Checkout";
+import Modal from "./components/modal/Modal";
 function App() {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
@@ -30,6 +30,10 @@ function App() {
   const [cartProducts, setCartProducts] = useState(null);
   const [orderItems, setOrderItems] = useState([]);
   const [brandsByCategory, setBrandsByCategory] = useState(null);
+  
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   // getBrandsByCategory function
   const getBrandsByCategory = (id) => {
@@ -341,6 +345,9 @@ function App() {
           setInputValue={setInputValue}
           categories={categories}
           getCategories={getCategories}
+          showModal={showModal}
+          openModal={openModal}
+          closeModal={closeModal}
         />
         <Routes>
           <Route
@@ -483,12 +490,14 @@ function App() {
             element={<Dashboard getUser={getUser} userData={userData} />}
           />
           <Route path="/poster/:id" element={<PosterPage />} />
-          <Route path="/orders" element={<Orders />} />
           <Route
             path="/checkout"
             element={<Checkout orderItems={orderItems} />}
           />
           <Route path="/login" element={<Login getUser={getUser} />} />
+          <Route path="/modal" element={<Modal showModal={showModal}
+          openModal={openModal}
+          closeModal={closeModal} />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer categories={categories} />
