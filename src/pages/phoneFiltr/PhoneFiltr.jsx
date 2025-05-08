@@ -39,16 +39,16 @@ function PhoneFiltr({
   getOneProductData,
   oneProductData,
 }) {
-  const [value, setValue] = useState([100000, 20000000]);
-  const [filteredProducts, setFilteredProducts] = useState(null);
-  const [spinning, setSpinning] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const id = useParams();
-  const [isGrid, setIsGrid] = useState(true);
-  const [showOrderModal, setShowOrderModal] = useState(false);
-  const [brandList, setBrandList] = useState([]);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(Infinity);
+    const [value, setValue] = useState([100000, 20000000]);
+    const [filteredProducts, setFilteredProducts] = useState(null);
+    const [spinning, setSpinning] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const id = useParams();
+    const [isGrid, setIsGrid] = useState(true);
+    const [showOrderModal, setShowOrderModal] = useState(false);
+    const [brandList, setBrandList] = useState([]);
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(Infinity);
   // const [categoryId, setCategoryId] = useState(null);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
