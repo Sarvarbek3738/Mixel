@@ -39,16 +39,19 @@ function PhoneFiltr({
   getOneProductData,
   oneProductData,
 }) {
-    const [value, setValue] = useState([100000, 20000000]);
-    const [filteredProducts, setFilteredProducts] = useState(null);
-    const [spinning, setSpinning] = useState(true);
-    const [loading, setLoading] = useState(true);
-    const id = useParams();
-    const [isGrid, setIsGrid] = useState(true);
-    const [showOrderModal, setShowOrderModal] = useState(false);
-    const [brandList, setBrandList] = useState([]);
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(Infinity);
+  const [value, setValue] = useState([100000, 20000000]);
+  const [filteredProducts, setFilteredProducts] = useState(null);
+  const [spinning, setSpinning] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const id = useParams();
+  const [isGrid, setIsGrid] = useState(true);
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [brandList, setBrandList] = useState([]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(Infinity);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [allProducts, setAllProducts] = useState();
+
   // const [categoryId, setCategoryId] = useState(null);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
@@ -77,11 +80,10 @@ function PhoneFiltr({
     fetch("https://abzzvx.pythonanywhere.com/products/filter/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-        // console.log(result);
         setLoading(false);
         setSpinning(false);
-        setFilteredProducts(result);
+        setFilteredProducts(result?.products);
+        setAllProducts(result);
       })
       .catch((error) => console.error(error));
   };
@@ -95,7 +97,6 @@ function PhoneFiltr({
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(filteredProducts);
   useEffect(() => {
     setMinPrice(value[0]);
     setMaxPrice(value[1]);
@@ -108,6 +109,7 @@ function PhoneFiltr({
     // setBrandList([]);
     // getFilter();
   }, [value]);
+
   useEffect(() => {
     getBrandsByCategory(id.id);
     getCategories();
@@ -121,6 +123,39 @@ function PhoneFiltr({
     });
   }, [id.id]);
 
+  const sortProducts = () => {
+    console.log(sortOrder);
+
+    if (!filteredProducts) return;
+
+    const sorted = [...filteredProducts]?.sort((a, b) => {
+      if (sortOrder == "asc") {
+        return a?.price - b?.price; // arzondan qimmatga
+      } else {
+        return b?.price - a?.price; // qimmatdan arzonga
+      }
+    });
+
+    setFilteredProducts(sorted);
+
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
+
+  const sortProductsByName = () => {
+    if (!filteredProducts) return;
+
+    const sorted = [...filteredProducts]?.sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.name.localeCompare(b.name); // A → Z
+      } else {
+        return b.name.localeCompare(a.name); // Z → A
+      }
+    });
+
+    setFilteredProducts(sorted);
+
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
   return (
     <>
       <div className="phoneFilter">
@@ -163,15 +198,23 @@ function PhoneFiltr({
                   <h3>{categoryName && categoryName[0]?.name}</h3>
                 </div>
                 <div className="sent">
-                  <div>
+                  <div
+                    onClick={() => {
+                      sortProducts();
+                    }}
+                  >
                     <div>
                       <img src="/imgs/Bonus.svg" alt="" />
                     </div>
-                    <div >
+                    <div>
                       <p>By price</p>
                     </div>
                   </div>
-                  <div>
+                  <div
+                    onClick={() => {
+                      sortProductsByName();
+                    }}
+                  >
                     <div>
                       <TbMenuDeep />
                     </div>
@@ -261,9 +304,8 @@ function PhoneFiltr({
                             <Checkbox
                               onClick={(e) => {
                                 setBrandList([...brandList, brand.id]);
-                                console.log(brandList);
                               }}
-                              {...label}
+                              // {...label}
                               sx={{
                                 color: pink[800],
                                 "&.Mui-checked": {
@@ -303,7 +345,7 @@ function PhoneFiltr({
               </div>
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
-                  {filteredProducts?.products?.map((item) => {
+                  {filteredProducts?.map((item) => {
                     if (isGrid) {
                       return (
                         <ProductBox
@@ -387,9 +429,9 @@ function PhoneFiltr({
                         </div>
                       );
                     })}
-                  {!filteredProducts?.results?.length > 1 && <NoProduct />}
+                  {!filteredProducts?.count > 1 && <NoProduct />}
                 </div>
-                <div className="smartfonRighBtn">
+                {/* <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
                   <div className="Paginetion">
                     <Stack spacing={2}>
@@ -400,7 +442,7 @@ function PhoneFiltr({
                       />
                     </Stack>
                   </div>
-                </div>
+                </div> */}
                 <div className="smartfonRighBrend">
                   <h3>Popular categories and models</h3>
                   <div className="smartfonRighBrendBox">

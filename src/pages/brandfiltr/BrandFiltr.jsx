@@ -43,6 +43,8 @@ function BrandFiltr({
   const [isGrid, setIsGrid] = useState(true);
   const [brandProducts, setBrandProducts] = useState(null);
   const [value, setValue] = useState([100000, 20000000]);
+  const [sortOrder, setSortOrder] = useState("asc");
+
   // const [filteredProducts, setFilteredProducts] = useState(PiNumpadLight
   const [brandList, setBrandList] = useState([]);
   const [minPrice, setMinPrice] = useState(0);
@@ -70,7 +72,7 @@ function BrandFiltr({
       .then((result) => {
         setLoading(false);
         setSpinning(false);
-        setBrandProducts(result);
+        setBrandProducts(result?.results);
       })
       .catch((error) => console.error(error));
   };
@@ -85,6 +87,37 @@ function BrandFiltr({
   }, [id.id]);
   const [showOrderModal, setShowOrderModal] = useState(false);
 
+  const sortProducts = () => {
+    if (!brandProducts) return;
+
+    const sorted = [...brandProducts]?.sort((a, b) => {
+      if (sortOrder == "asc") {
+        return a?.price - b?.price; // arzondan qimmatga
+      } else {
+        return b?.price - a?.price; // qimmatdan arzonga
+      }
+    });
+
+    setBrandProducts(sorted);
+
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
+
+  const sortProductsByName = () => {
+    if (!brandProducts) return;
+
+    const sorted = [...brandProducts]?.sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.name.localeCompare(b.name); // A → Z
+      } else {
+        return b.name.localeCompare(a.name); // Z → A
+      }
+    });
+
+    setBrandProducts(sorted);
+
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
   return (
     <>
       <div className="phoneFilter">
@@ -122,10 +155,13 @@ function BrandFiltr({
 
           <div className="smartfon">
             <div className="smatfonTitle">
-              {/* fghjklkjhertghjkl */}
               <div className="smatfonTitle1">
                 <div className="sent">
-                  <div>
+                  <div
+                    onClick={() => {
+                      sortProducts();
+                    }}
+                  >
                     <div>
                       <img src="/imgs/Bonus.svg" alt="" />
                     </div>
@@ -133,7 +169,11 @@ function BrandFiltr({
                       <p>By price</p>
                     </div>
                   </div>
-                  <div>
+                  <div
+                    onClick={() => {
+                      sortProductsByName();
+                    }}
+                  >
                     <div>
                       <TbMenuDeep />
                     </div>
@@ -219,7 +259,7 @@ function BrandFiltr({
               </div> */}
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
-                  {brandProducts?.results?.map((item) => {
+                  {brandProducts?.map((item) => {
                     if (isGrid) {
                       return (
                         <ProductBox
@@ -303,7 +343,7 @@ function BrandFiltr({
                         </div>
                       );
                     })}
-                  {!brandProducts?.results?.length && <NoProduct />}
+                  {!brandProducts?.length && <NoProduct />}
                 </div>
                 <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
