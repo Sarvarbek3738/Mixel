@@ -19,9 +19,13 @@ import { Autoplay, Navigation } from "swiper/modules";
 import NoProduct from "../../components/noproduct/NoProduct";
 import Loader from "../../components/loader/Loader";
 import OrderModal from "../../components/orderModal/OrderModal";
+import { pink } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
 
 function PhoneFiltr({
+  getBrandsByCategory,
   products, //+
+  brandsByCategory,
   getData, //+
   getLikedProducts,
   getCategories, //+
@@ -35,7 +39,7 @@ function PhoneFiltr({
   getOneProductData,
   oneProductData,
 }) {
-  const [value, setValue] = useState([20, 70]);
+  const [value, setValue] = useState([100000, 20000000]);
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [spinning, setSpinning] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -45,6 +49,9 @@ function PhoneFiltr({
   const [brandList, setBrandList] = useState([]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(Infinity);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [allProducts, setAllProducts] = useState();
+
   // const [categoryId, setCategoryId] = useState(null);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
@@ -73,11 +80,10 @@ function PhoneFiltr({
     fetch("https://abzzvx.pythonanywhere.com/products/filter/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-        console.log(result);
         setLoading(false);
         setSpinning(false);
-        setFilteredProducts(result);
+        setFilteredProducts(result?.products);
+        setAllProducts(result);
       })
       .catch((error) => console.error(error));
   };
@@ -86,14 +92,30 @@ function PhoneFiltr({
   function valuetext(value) {
     return `${value}°C`;
   }
+  const [priceRange, setPriceRange] = useState([100000, 20000000]);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(filteredProducts);
+  useEffect(() => {
+    setMinPrice(value[0]);
+    setMaxPrice(value[1]);
+    // setBrandList([]);
+    // getFilter();
+  }, [value]);
+  useEffect(() => {
+    setMinPrice(value[0]);
+    setMaxPrice(value[1]);
+    // setBrandList([]);
+    // getFilter();
+  }, [value]);
 
   useEffect(() => {
+    getBrandsByCategory(id.id);
     getCategories();
     getData();
+    setMinPrice(priceRange[0]);
+    setMaxPrice(priceRange[1]);
     // getCategoryProducts();
     getFilter();
     window.scrollTo({
@@ -101,6 +123,39 @@ function PhoneFiltr({
     });
   }, [id.id]);
 
+  const sortProducts = () => {
+    console.log(sortOrder);
+
+    if (!filteredProducts) return;
+
+    const sorted = [...filteredProducts]?.sort((a, b) => {
+      if (sortOrder == "asc") {
+        return a?.price - b?.price; // arzondan qimmatga
+      } else {
+        return b?.price - a?.price; // qimmatdan arzonga
+      }
+    });
+
+    setFilteredProducts(sorted);
+
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
+
+  const sortProductsByName = () => {
+    if (!filteredProducts) return;
+
+    const sorted = [...filteredProducts]?.sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.name.localeCompare(b.name); // A → Z
+      } else {
+        return b.name.localeCompare(a.name); // Z → A
+      }
+    });
+
+    setFilteredProducts(sorted);
+
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
   return (
     <>
       <div className="phoneFilter">
@@ -143,7 +198,11 @@ function PhoneFiltr({
                   <h3>{categoryName && categoryName[0]?.name}</h3>
                 </div>
                 <div className="sent">
-                  <div>
+                  <div
+                    onClick={() => {
+                      sortProducts();
+                    }}
+                  >
                     <div>
                       <img src="/imgs/Bonus.svg" alt="" />
                     </div>
@@ -151,7 +210,11 @@ function PhoneFiltr({
                       <p>By price</p>
                     </div>
                   </div>
-                  <div>
+                  <div
+                    onClick={() => {
+                      sortProductsByName();
+                    }}
+                  >
                     <div>
                       <TbMenuDeep />
                     </div>
@@ -195,10 +258,10 @@ function PhoneFiltr({
                   </div>
                   <div className="smartfonLeftPrise">
                     <div className="ot">
-                      <p>from 300 000</p>
+                      <p>from 100 000</p>
                     </div>
                     <div>
-                      <p>until 103 300 000</p>
+                      <p>until 20 000 000</p>
                     </div>
                   </div>
                   <div>
@@ -206,14 +269,24 @@ function PhoneFiltr({
                       <Slider
                         getAriaLabel={() => "Temperature range"}
                         value={value}
+                        min={300000}
+                        max={20000000}
+                        step={100000}
                         onChange={handleChange}
                         valueLabelDisplay="auto"
                         getAriaValueText={valuetext}
+                        valueLabelFormat={(value) =>
+                          new Intl.NumberFormat("uz-UZ", {
+                            style: "currency",
+                            currency: "UZS",
+                            minimumFractionDigits: 0,
+                          }).format(value)
+                        }
                       />
                     </Box>
                   </div>
                 </div>
-               
+
                 <div className="brend">
                   <div className="smartfonLeftSent">
                     <div>
@@ -224,60 +297,55 @@ function PhoneFiltr({
                     </div>
                   </div>
                   <div className="brandBlock">
-                    {brands?.results?.map((brand) => {
+                    {brandsByCategory?.results?.map((brand) => {
                       return (
                         <div className="samsung" key={brand.id}>
                           <div>
-                            <input type="checkbox" />
+                            <Checkbox
+                              onClick={(e) => {
+                                setBrandList([...brandList, brand.id]);
+                              }}
+                              // {...label}
+                              sx={{
+                                color: pink[800],
+                                "&.Mui-checked": {
+                                  color: pink[600],
+                                },
+                              }}
+                            />
                           </div>
                           <p>{brand.name}</p>
                         </div>
                       );
                     })}
+                    {!brandsByCategory &&
+                      [1, 2, 3, 4, 5].map((item) => {
+                        return (
+                          <Skeleton
+                            style={{ marginBottom: "40px" }}
+                            variant="rectangular"
+                            width={230}
+                            height={21}
+                          />
+                        );
+                      })}
                   </div>
                 </div>
 
-                <div className="Страна">
-                  <div className="smartfonLeftSent">
-                    <div>
-                      <p>Country</p>
-                    </div>
-                    <div>
-                      <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                  </div>
-                  <div className="lg">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Вьетнам</p>
-                  </div>
-                  <div className="samsung">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Китай</p>
-                  </div>
-                  <div className="artel">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Artel </p>
-                  </div>
-                  <div className="huawei">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <p>Huawei</p>
-                  </div>
-                </div>
                 <div className="smartfonLeftBtn">
-                  <button>Показать</button>
+                  <button
+                    onClick={() => {
+                      getFilter();
+                      console.log(brandList);
+                    }}
+                  >
+                    Apply
+                  </button>
                 </div>
               </div>
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
-                  {filteredProducts?.products?.map((item) => {
+                  {filteredProducts?.map((item) => {
                     if (isGrid) {
                       return (
                         <ProductBox
@@ -361,9 +429,9 @@ function PhoneFiltr({
                         </div>
                       );
                     })}
-                  {!filteredProducts?.results?.length > 1 && <NoProduct />}
+                  {!filteredProducts?.count > 1 && <NoProduct />}
                 </div>
-                <div className="smartfonRighBtn">
+                {/* <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
                   <div className="Paginetion">
                     <Stack spacing={2}>
@@ -374,7 +442,7 @@ function PhoneFiltr({
                       />
                     </Stack>
                   </div>
-                </div>
+                </div> */}
                 <div className="smartfonRighBrend">
                   <h3>Popular categories and models</h3>
                   <div className="smartfonRighBrendBox">

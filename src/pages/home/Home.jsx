@@ -254,7 +254,7 @@ function Home({
           <section className="section4">
             <div className="container">
               <div className="section1Title">
-                <h3>Cheaper Products :</h3>
+                <h3>Cheaper Products </h3>
                 <p>Show More →</p>
               </div>
               <div className="Box4">

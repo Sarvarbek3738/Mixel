@@ -249,3 +249,7 @@ i {
 .activeFiltr {
   color: #ed3729;
 }
+
+div.active {
+color: #ED3729;
+}

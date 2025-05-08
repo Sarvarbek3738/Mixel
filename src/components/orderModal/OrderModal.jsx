@@ -115,6 +115,5 @@ function OrderModal({
     </div>
   );
 }
-// Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, nihil!
 
 export default OrderModal;

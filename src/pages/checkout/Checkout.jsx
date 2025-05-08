@@ -1,6 +1,44 @@
 import React from "react";
 import "./Checkout.css";
-function Checkout() {
+import { toast } from "react-toastify";
+function Checkout({ orderItems }) {
+  const [first_name, setFirstName] = React.useState(null);
+  const [last_name, setLastName] = React.useState(null);
+  const [phone_number, setPhoneNumber] = React.useState(null);
+  const [address, setAddress] = React.useState(null);
+  const createOrder = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const raw = JSON.stringify({
+      cart_item_ids: orderItems,
+      first_name,
+      last_name,
+      phone_number,
+      address,
+      payment_type: "cash",
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/orders/create", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        toast.success("Order created successfully");
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="checkoutPage">
       <div className="container">
@@ -15,9 +53,15 @@ function Checkout() {
             <p>Checkout</p>
           </div>
         </div>
-        <div className="mainContent">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            createOrder();
+          }}
+          className="mainContent"
+        >
           <div className="leftForms">
-            <form action="#">
+            <div className="form">
               <h2>Order palace</h2>
               <div className="dataTitle">
                 <div className="titleNumber">
@@ -26,12 +70,12 @@ function Checkout() {
                 </div>
                 <div className="formInputs">
                   <div className="row">
-                    <input type="text" placeholder="Last name" />
-                    <input type="text" placeholder="First name" />
+                    <input required type="text" placeholder="Last name" />
+                    <input required type="text" placeholder="First name" />
                   </div>
                   <div className="row">
-                    <input type="text" placeholder="Father`s name" />
-                    <input type="text" placeholder="Phone number" />
+                    <input required type="text" placeholder="Father`s name" />
+                    <input required type="text" placeholder="Phone number" />
                   </div>
                 </div>
               </div>
@@ -65,21 +109,25 @@ function Checkout() {
                     <div className="obtainingMethodItems">
                       <div className="obtainingMethodItem">
                         <label htmlFor="city">Your city/province</label>
-                        <input type="text" placeholder="Your City" />
+                        <input required type="text" placeholder="Your City" />
                       </div>
                       <div className="obtainingMethodItem">
                         <label htmlFor="city">Your district</label>
-                        <input type="text" placeholder="Your district" />
+                        <input
+                          required
+                          type="text"
+                          placeholder="Your district"
+                        />
                       </div>
                     </div>
                     <div className="obtainingMethodItem lastMethodItem">
                       <label htmlFor="city">Your address</label>
-                      <input type="text" placeholder="Your street" />
+                      <input required type="text" placeholder="Your street" />
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div className="rightInfo">
             <h2>Your order info</h2>
@@ -97,9 +145,9 @@ function Checkout() {
               <p>Total price:</p>
               <h3>5 262 000 uzs</h3>
             </div>
-            <button className="complateBtn" >Complete the purchase</button>
+            <button className="complateBtn">Complete the purchase</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
