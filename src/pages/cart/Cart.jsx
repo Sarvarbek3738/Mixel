@@ -19,6 +19,32 @@ function Cart({
   handlePageChange,
   setCurrentPage,
 }) {
+  const postOrderList = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const raw = JSON.stringify({
+      cart_item_ids: orderItems,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/checkout/items/", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        toast.success("Tanlangan maxsulotlar rasmiylashtirishga o'tdi");
+      })
+      .catch((error) => console.error(error));
+  };
   // console.log(cartProducts);
   useEffect(() => {
     window.scrollTo({
@@ -146,7 +172,7 @@ function Cart({
             <Link to={"/checkout"} className="toCheck">
               <button
                 onClick={() => {
-                  count;
+                  postOrderList();
                 }}
               >
                 Checkout
