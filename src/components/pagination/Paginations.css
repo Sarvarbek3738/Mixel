@@ -1,0 +1,99 @@
+.rc-pagination {
+  margin: 0 auto !important;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0px;
+  justify-content: center;
+}
+
+.rc-pagination-item-active a {
+  color: #006e36 !important;
+}
+
+.App.dark .rc-pagination-item-active a {
+  color: white !important;
+}
+
+.rc-pagination-item-active {
+  border-color: #006e36 !important;
+}
+.App.dark .rc-pagination-item-active {
+  border-color: white !important;
+}
+
+.rc-pagination-item:hover {
+  border-color: #006e36 !important;
+  color: #006e36 !important;
+}
+
+.rc-pagination-item:hover a {
+  color: #006e36 !important;
+}
+
+.App.dark .rc-pagination-item:hover {
+  border-color: white !important;
+  color: white !important;
+}
+
+.App.dark .rc-pagination-item:hover a {
+  color: white !important;
+}
+
+.rc-pagination-item {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.App.dark .rc-pagination-item {
+  background-color: #393e46;
+  border-color: #393e46;
+}
+
+.App.dark .rc-pagination-item a {
+  color: white;
+}
+
+.rc-pagination-next,
+.rc-pagination-prev {
+  font-size: 18px;
+}
+
+.App.dark .rc-pagination-next span,
+.App.dark .rc-pagination-prev span {
+  color: white !important;
+}
+
+.rc-pagination-disabled {
+  opacity: 0.5;
+}
+
+@media (max-width: 840px) {
+  .rc-pagination {
+    flex-wrap: nowrap;
+    width: 90%;
+    overflow-anchor: none;
+    overflow-x: scroll;
+    justify-content: start;
+  }
+
+  .rc-pagination-next,
+  .rc-pagination-prev {
+    font-size: 12px;
+    display: none;
+  }
+
+  .rc-pagination-item {
+    font-size: 16px;
+    min-width: 40px;
+    height: 40px;
+  }
+  .rc-pagination::-webkit-scrollbar {
+    display: none;
+  }
+}

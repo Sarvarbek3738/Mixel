@@ -104,9 +104,9 @@ function Navbar({
               {(products && (
                 <Link to={"/liked"}>
                   <div className="navBtn">
-                    {likedProducts?.results?.length > 0 && (
+                    {likedProducts?.count> 0 && (
                       <div className="likeItemVal">
-                        <p>{likedProducts?.results?.length}</p>
+                        <p>{likedProducts?.count}</p>
                       </div>
                     )}
                     <i class="fa-regular fa-heart"></i>
@@ -118,9 +118,9 @@ function Navbar({
               {(products && (
                 <Link to={"/cart"}>
                   <div className="navBtn">
-                    {cartProducts?.results?.length > 0 && (
+                    {cartProducts?.count > 0 && (
                       <div className="itemValue">
-                        <p>{cartProducts?.results?.length}</p>
+                        <p>{cartProducts?.count}</p>
                       </div>
                     )}
 
@@ -213,7 +213,9 @@ function Navbar({
                         >
                           <div className="ModalLeftBlock">
                             <div className="categoryIcon">
-                              <img src={category?.icon} alt="" />
+                              {category?.icon && (
+                                <img src={category?.icon} alt="" />
+                              )}
                             </div>
                             <div>
                               <p>{category?.name}</p>

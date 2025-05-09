@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "./OrderModal.css";
 import { IoMdCloseCircleOutline } from "react-icons/io";
@@ -43,7 +42,7 @@ function OrderModal({
 
         <div className="productImgSide">
           <div className="mainImg">
-            <img src={mainImage} alt="Main product" />
+            {mainImage && <img src={mainImage} alt="Main product" />}
           </div>
           <div className="itemImgs">
             {(oneProductData?.images || []).slice(0, 4).map((img, index) => (
@@ -52,7 +51,9 @@ function OrderModal({
                 className="itemImg"
                 onClick={() => setMainImage(img.image)}
               >
-                <img src={img.image} alt={`Product thumbnail ${index + 1}`} />
+                {img.image && (
+                  <img src={img.image} alt={`Product thumbnail ${index + 1}`} />
+                )}
               </div>
             ))}
           </div>
@@ -114,6 +115,5 @@ function OrderModal({
     </div>
   );
 }
-
 
 export default OrderModal;

@@ -3,7 +3,6 @@ import "./Footer.css";
 import { Link } from "react-router-dom";
 
 function Footer({ categories }) {
-
   return (
     <>
       <footer>
@@ -42,8 +41,12 @@ function Footer({ categories }) {
           <div className="footerRight">
             <div className="footerCategoryLinks">
               <h4>Categories</h4>
-              {categories?.results?.map((item) => {
-                return <Link  to={`/category/${item.id}`}>{item.name}</Link>;
+              {categories?.results?.map((item, index) => {
+                return (
+                  <Link key={index} to={`/category/${item.id}`}>
+                    {item.name}
+                  </Link>
+                );
               })}
             </div>
             <div>

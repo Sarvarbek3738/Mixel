@@ -21,6 +21,7 @@ import Loader from "../../components/loader/Loader";
 import OrderModal from "../../components/orderModal/OrderModal";
 import { Checkbox } from "@mui/material";
 import { PiNumpadLight } from "react-icons/pi";
+import Paginations from "../../components/pagination/Paginations";
 
 function BrandFiltr({
   products, //+
@@ -44,6 +45,15 @@ function BrandFiltr({
   const [brandProducts, setBrandProducts] = useState(null);
   const [value, setValue] = useState([100000, 20000000]);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrnetPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrnetPage(pageNumber);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   // const [filteredProducts, setFilteredProducts] = useState(PiNumpadLight
   const [brandList, setBrandList] = useState([]);
@@ -65,7 +75,7 @@ function BrandFiltr({
     };
 
     fetch(
-      `https://abzzvx.pythonanywhere.com/products/?brand=${id.id}`,
+      `https://abzzvx.pythonanywhere.com/products/?page=${currentPage}&brand=${id.id}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -73,6 +83,7 @@ function BrandFiltr({
         setLoading(false);
         setSpinning(false);
         setBrandProducts(result?.results);
+        setTotalPages(result?.total_pages);
       })
       .catch((error) => console.error(error));
   };
@@ -84,7 +95,7 @@ function BrandFiltr({
     window.scrollTo({
       top: "0",
     });
-  }, [id.id]);
+  }, [id.id,currentPage]);
   const [showOrderModal, setShowOrderModal] = useState(false);
 
   const sortProducts = () => {
@@ -133,7 +144,7 @@ function BrandFiltr({
           <div className="basicTitle">
             <div className="basicTitleLeft">
               <div>
-                <p>Home</p>
+                <Link to={"/"}>Home</Link>
                 <div>
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
@@ -345,7 +356,15 @@ function BrandFiltr({
                     })}
                   {!brandProducts?.length && <NoProduct />}
                 </div>
-                <div className="smartfonRighBtn">
+
+                <>
+                  <Paginations
+                    handlePageChange={handlePageChange}
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                  />
+                </>
+                {/* <div className="smartfonRighBtn">
                   <button className="smartfonRighButton">Показать еще</button>
                   <div className="Paginetion">
                     <Stack spacing={2}>
@@ -356,7 +375,7 @@ function BrandFiltr({
                       />
                     </Stack>
                   </div>
-                </div>
+                </div> */}
                 <div className="smartfonRighBrend">
                   <h3>Popular categories and models</h3>
                   <div className="smartfonRighBrendBox">

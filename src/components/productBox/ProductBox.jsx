@@ -26,7 +26,9 @@ function ProductBox({
                 <p>{item.discount}%</p>
               </div>
             )}
-            <img src={item?.images[0]?.image} alt="" />
+            {item?.images[0]?.image && (
+              <img src={item?.images[0]?.image} alt="" />
+            )}
           </div>
           <div className="Box4Narx">
             <div>
@@ -40,7 +42,8 @@ function ProductBox({
           </h3>
 
           <div className="Box4Tovar">
-            <div className="boxIcon"
+            <div
+              className="boxIcon"
               onClick={(e) => {
                 e.preventDefault();
                 if (userData) {
@@ -51,7 +54,13 @@ function ProductBox({
                 }
               }}
             >
-              <i class={item.is_cart ? "fa-solid fa-cart-shopping solid" : "fa-solid fa-cart-shopping"}></i>
+              <i
+                class={
+                  item.is_cart
+                    ? "fa-solid fa-cart-shopping solid"
+                    : "fa-solid fa-cart-shopping"
+                }
+              ></i>
             </div>
             <div
               onClick={(e) => {
@@ -80,7 +89,8 @@ function ProductBox({
                 }
               ></i>
             </div>
-            <div className="boxIcon"
+            <div
+              className="boxIcon"
               onClick={(e) => {
                 e.preventDefault();
               }}

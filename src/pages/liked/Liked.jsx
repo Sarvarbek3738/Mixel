@@ -5,6 +5,7 @@ import ProductBox from "../../components/productBox/ProductBox";
 import Skeleton from "react-loading-skeleton";
 import NoProduct from "../../components/noproduct/NoProduct";
 import OrderModal from "../../components/orderModal/OrderModal";
+import Paginations from "../../components/pagination/Paginations";
 
 function Liked({
   deleteFromLiked,
@@ -15,32 +16,47 @@ function Liked({
   addToCart,
   addToLiked,
   oneProductData,
+  totalPages,
+  currentPage,
+  handlePageChange,
+  getLikedProducts,
+  likedProducts,
 }) {
   const [loading, setLoading] = useState(true);
-  const [likedProducts, setLikedProducts] = useState([]);
+
   const [showOrderModal, setShowOrderModal] = useState(false);
 
-  const getLikedProducts = () => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("mixelToken")}`
-    );
+  // likedProducts && setLoading(false);
 
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
+  // const getLikedProducts = () => {
+  //   const myHeaders = new Headers();
+  //   myHeaders.append(
+  //     "Authorization",
+  //     `Bearer ${localStorage.getItem("mixelToken")}`
+  //   );
 
-    fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setLikedProducts(result);
-        setLoading(false);
-      })
-      .catch((error) => console.error(error));
-  };
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+
+  //   fetch(
+  //     `https://abzzvx.pythonanywhere.com/liked-items/?page=${currentPage}`,
+  //     requestOptions
+  //   )
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setLikedProducts(result);
+  //       setTotalPages(result?.total_pages);
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
+
+  console.log(likedProducts);
+  
+
   useEffect(() => {
     if (localStorage.getItem("mixelToken")) {
       getLikedProducts();
@@ -48,11 +64,14 @@ function Liked({
     } else {
       setLoading(false);
     }
-  }, [likedProducts]);
+    setLoading(false);
+  }, [currentPage]);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
+
+
 
   return (
     <div className="likedPage">
@@ -112,7 +131,6 @@ function Liked({
                     style={{ marginTop: "20px" }}
                     width={230}
                     height={32}
-                    
                   />
                   <div
                     style={{
@@ -145,6 +163,15 @@ function Liked({
             })}
           {!loading && likedProducts?.results?.length === 0 && <NoProduct />}
         </div>
+        {!loading && (
+          <>
+            <Paginations
+              handlePageChange={handlePageChange}
+              totalPages={totalPages}
+              currentPage={currentPage}
+            />
+          </>
+        )}
       </div>
     </div>
   );

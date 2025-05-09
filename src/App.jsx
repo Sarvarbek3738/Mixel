@@ -35,8 +35,28 @@ function App() {
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const [totalPagesCart, setTotalPagesCart] = useState(1);
+  const [currentPageCart, setCurrentPageCart] = useState(1);
+  const handlePageChangeCart = (pageNumber) => {
+    setCurrentPageCart(pageNumber);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   // getBrandsByCategory function
   const getBrandsByCategory = (id) => {
+    
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -50,6 +70,7 @@ function App() {
       .then((result) => {
         console.log(result);
         setBrandsByCategory(result);
+
       })
       .catch((error) => console.error(error));
   };
@@ -73,6 +94,10 @@ function App() {
     )
       .then((response) => response.text())
       .then((result) => {
+        if (likedProducts.results.length == 1 && currentPage != 1) {
+          setCurrentPage(currentPage - 1);
+        }
+
         toast.error("Product removed from Featured");
         getLikedProducts();
         getData();
@@ -124,10 +149,14 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/cart-items/", requestOptions)
+    fetch(
+      `https://abzzvx.pythonanywhere.com/cart-items/?page=${currentPageCart}`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
-        // console.log(result);
+        console.log(result?.total_pages);
+        setTotalPagesCart(result?.total_pages);
         setCartProducts(result);
       })
       .catch((error) => console.error(error));
@@ -203,11 +232,14 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
+    fetch(
+      `https://abzzvx.pythonanywhere.com/liked-items/?page=${currentPage}`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
-        // console.log(result);
         setLikedProducts(result);
+        setTotalPages(result?.total_pages);
       })
       .catch((error) => console.error(error));
   };
@@ -217,7 +249,7 @@ function App() {
       getLikedProducts();
       getCartProducts();
     }
-  }, []);
+  }, [currentPageCart]);
 
   // getData Function
   const getData = () => {
@@ -460,6 +492,9 @@ function App() {
                 deleteFromLiked={deleteFromLiked}
                 userData={userData}
                 getUser={getUser}
+                handlePageChange={handlePageChange}
+                currentPage={currentPage}
+                totalPages={totalPages}
               />
             }
           />
@@ -472,6 +507,10 @@ function App() {
                 cartProducts={cartProducts}
                 setOrderItems={setOrderItems}
                 getCartProducts={getCartProducts}
+                totalPages={totalPagesCart}
+                currentPage={currentPageCart}
+                handlePageChange={handlePageChangeCart}
+                setCurrentPage={setCurrentPageCart}
               />
             }
           />
