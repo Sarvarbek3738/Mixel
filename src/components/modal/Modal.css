@@ -1,0 +1,125 @@
+.Modal {
+    position: fixed;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Modal .container{
+    width: 800px;
+    background-color: white;
+    height: 650px;
+    padding: 35px;
+    border-radius: 5px;
+}
+.ModalClose{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ModalClose div{
+    cursor: pointer;
+}
+.Modal_Panel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(242, 242, 242, 1);
+    padding: 20px 0px;
+}
+.Modal_Panel_Img{
+    width: 100px;
+    height: 100px;
+}
+.Modal_Panel_Img img{
+    width: 100%;
+}
+.Modal_Panel_Title{
+    width: 420px;
+}
+.Modal_Panel_Title p{
+    color: rgba(144, 144, 144, 1);
+    font-size: 16px;
+}
+.Modal_Panel_Title h3{
+    color: black;
+    padding-top: 13px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.Modal_Panel_Btn_namber{
+    display: flex;
+    width: 120px;
+    align-items: center;
+    gap: 5px;
+}
+.Modal_Panel_Btn button{
+    /* padding: 8px 10px; */
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(189, 189, 189, 1);
+    background-color: white;
+}
+.Modal_Panel_Btn p{
+    border: 1px solid rgba(189, 189, 189, 1);
+    padding: 10px 12px;
+    border-radius: 5px;
+    color: rgba(237, 55, 41, 1);
+
+}
+.Modal_Panel_Btn_minusBtn{
+    padding: 6px 9px;
+}
+.Modal_Panel_Btn_plusBtn{
+    padding: 6px 11px;
+}
+.Modal_Panel_Btn_Icon{
+    display: flex;
+    justify-content: end;
+    gap: 25px;
+    padding-right: 15px;
+    padding-top: 18px;
+}
+.Modal_Panel_Btn_Icon i{
+    font-size: 18px;
+    color: rgba(189, 189, 189, 1);
+
+}
+.Modal_money{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 30px 0px;
+    gap: 10px;
+}
+.Modal_money p{
+    color: rgba(32, 32, 32, 1);
+    font-weight: 4000;
+    font-size: 14px;
+}
+.Modal_Shop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Modal_Shop button{
+    padding: 12px 50px;
+}
+.Modal_Continue button{
+    border: 1px solid rgba(237, 55, 41, 1);
+    color: rgba(237, 55, 41, 1);
+    background-color: white;
+    border-radius: 5px;
+}
+.Modal_Make button{
+    border: 1px solid rgba(237, 55, 41, 1);
+    background-color: rgba(237, 55, 41, 1);
+    color: white;
+    border-radius: 5px;
+}

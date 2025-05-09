@@ -3,7 +3,11 @@ import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import Skeleton from "react-loading-skeleton";
+import Modal from "../modal/Modal";
 function Navbar({
+  showModal,
+  openModal,
+  closeModal,
   likedProducts,
   getCategories,
   getLikedProducts,
@@ -21,6 +25,8 @@ function Navbar({
   const [categoryId, setCategoryId] = useState(3);
   const [productId, setProductId] = useState(null);
   const [categoryName, setCategoryName] = useState("Phones and Tablets");
+
+
 
   useEffect(() => {
     getCategories();
@@ -78,8 +84,8 @@ function Navbar({
 
             <div className="NavIcon">
               {(products && (
-                <Link to={"/orders"}>
-                  <div>
+                <Link onClick={openModal}>
+                  <div >
                     <i class="fa-solid fa-list"></i>
                     <br />
                     <p>Orders</p>
@@ -133,14 +139,14 @@ function Navbar({
                   </div>
                 </Link>
               )) || (
-                <Link to={"/signup"}>
-                  <div>
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    <br />
-                    <p>Login</p>
-                  </div>
-                </Link>
-              )}
+                  <Link to={"/signup"}>
+                    <div>
+                      <i class="fa-solid fa-right-to-bracket"></i>
+                      <br />
+                      <p>Login</p>
+                    </div>
+                  </Link>
+                )}
             </div>
           </div>
         </nav>
@@ -265,6 +271,10 @@ function Navbar({
             </div>
           </div>
         )}
+
+      </div>
+      <div className="">
+        {showModal && <Modal closeModal={closeModal}/>}
       </div>
     </>
   );

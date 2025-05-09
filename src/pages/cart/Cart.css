@@ -1,5 +1,5 @@
 .cartPage {
-  padding-top: 180px;
+  padding-top: 200px;
   padding-bottom: 80px;
 }
 .productsTop {
@@ -66,12 +66,7 @@
   font-size: 1.5rem;
   color: #555;
 }
-.productsBlock button {
-  border: none;
-}
-.productsBlock button i {
-  font-size: 25px;
-}
+
 .toCheck {
   width: 100%;
   display: flex;
@@ -85,11 +80,4 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-.paginationRow {
-  width: 100%;
-  display: flex;
 
-  align-items: center;
-  justify-content: center;
-}
