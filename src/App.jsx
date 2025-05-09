@@ -67,7 +67,6 @@ function App() {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setBrandsByCategory(result);
       })
       .catch((error) => console.error(error));
@@ -153,7 +152,6 @@ function App() {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result?.total_pages);
         setTotalPagesCart(result?.total_pages);
         setCartProducts(result);
       })
