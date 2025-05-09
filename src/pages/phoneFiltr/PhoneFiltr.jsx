@@ -21,6 +21,7 @@ import Loader from "../../components/loader/Loader";
 import OrderModal from "../../components/orderModal/OrderModal";
 import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
+import Paginations from "../../components/pagination/Paginations";
 
 function PhoneFiltr({
   getBrandsByCategory,
@@ -50,7 +51,6 @@ function PhoneFiltr({
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(Infinity);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [allProducts, setAllProducts] = useState();
 
   // const [categoryId, setCategoryId] = useState(null);
   const categoryName = categories?.results.filter((item) => {
@@ -83,7 +83,6 @@ function PhoneFiltr({
         setLoading(false);
         setSpinning(false);
         setFilteredProducts(result?.products);
-        setAllProducts(result);
       })
       .catch((error) => console.error(error));
   };
@@ -111,12 +110,11 @@ function PhoneFiltr({
   }, [value]);
 
   useEffect(() => {
-    getBrandsByCategory(id.id);
+    getBrandsByCategory(id?.id);
     getCategories();
     getData();
     setMinPrice(priceRange[0]);
     setMaxPrice(priceRange[1]);
-    // getCategoryProducts();
     getFilter();
     window.scrollTo({
       top: "0",
@@ -124,8 +122,6 @@ function PhoneFiltr({
   }, [id.id]);
 
   const sortProducts = () => {
-    console.log(sortOrder);
-
     if (!filteredProducts) return;
 
     const sorted = [...filteredProducts]?.sort((a, b) => {
@@ -155,6 +151,18 @@ function PhoneFiltr({
     setFilteredProducts(sorted);
 
     setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
+
+  // pagination
+
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   return (
     <>
@@ -431,18 +439,13 @@ function PhoneFiltr({
                     })}
                   {!filteredProducts?.count > 1 && <NoProduct />}
                 </div>
-                {/* <div className="smartfonRighBtn">
-                  <button className="smartfonRighButton">Показать еще</button>
-                  <div className="Paginetion">
-                    <Stack spacing={2}>
-                      <Pagination
-                        count={2}
-                        variant="outlined"
-                        shape="rounded"
-                      />
-                    </Stack>
-                  </div>
-                </div> */}
+                <>
+                  <Paginations
+                    handlePageChange={handlePageChange}
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                  />
+                </>
                 <div className="smartfonRighBrend">
                   <h3>Popular categories and models</h3>
                   <div className="smartfonRighBrendBox">

@@ -98,9 +98,9 @@ function Navbar({
               {(products && (
                 <Link to={"/liked"}>
                   <div className="navBtn">
-                    {likedProducts?.results?.length > 0 && (
+                    {likedProducts?.count> 0 && (
                       <div className="likeItemVal">
-                        <p>{likedProducts?.results?.length}</p>
+                        <p>{likedProducts?.count}</p>
                       </div>
                     )}
                     <i class="fa-regular fa-heart"></i>
@@ -112,9 +112,9 @@ function Navbar({
               {(products && (
                 <Link to={"/cart"}>
                   <div className="navBtn">
-                    {cartProducts?.results?.length > 0 && (
+                    {cartProducts?.count > 0 && (
                       <div className="itemValue">
-                        <p>{cartProducts?.results?.length}</p>
+                        <p>{cartProducts?.count}</p>
                       </div>
                     )}
 

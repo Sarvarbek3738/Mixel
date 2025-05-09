@@ -6,9 +6,19 @@ import NoProduct from "../../components/noproduct/NoProduct";
 import { Link } from "react-router-dom";
 import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
+import Paginations from "../../components/pagination/Paginations";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
-function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
+function Cart({
+  cartProducts,
+  getCartProducts,
+  setOrderItems,
+  orderItems,
+  totalPages,
+  currentPage,
+  handlePageChange,
+  setCurrentPage,
+}) {
   // console.log(cartProducts);
   useEffect(() => {
     window.scrollTo({
@@ -33,6 +43,9 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
     fetch(`https://abzzvx.pythonanywhere.com/cart-items/${id}/`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
+        if (cartProducts?.results?.length == 1 && currentPage != 1) {
+          setCurrentPage(currentPage - 1);
+        }
         toast.success("Product deleted successfully");
         if (localStorage.getItem("mixelToken")) {
           getCartProducts();
@@ -40,7 +53,6 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
       })
       .catch((error) => console.error(error));
   };
-
 
   const handleDelete = (e, id) => {
     e.preventDefault(); // forma yuborilishini to‘xtatadi
@@ -65,7 +77,7 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
         </div>
         <h2 className="pageTitle">Cart</h2>
 
-        {cartProducts?.results.length > 0 ? (
+        {cartProducts?.results?.length > 0 ? (
           <div className="productsBlock">
             <div className="productsTop">
               <h2>Product</h2>
@@ -74,6 +86,7 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
               <h2>Subtotal</h2>
               <h2>Action</h2>
             </div>
+
             {cartProducts?.results.map((item) => {
               return (
                 <Link
@@ -109,7 +122,10 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
                   <h2>{item.amount}</h2>
                   <h2>{item.total_price}</h2>
 
-                  <button onClick={(e) => handleDelete(e, item.id)}> <i className="fas fa-trash"></i></button>
+                  <button onClick={(e) => handleDelete(e, item.id)}>
+                    {" "}
+                    <i className="fas fa-trash"></i>
+                  </button>
 
                   <button
                     onClick={(e) => {
@@ -120,15 +136,27 @@ function Cart({ cartProducts, getCartProducts, setOrderItems, orderItems }) {
                   >
                     <i className="fas fa-trash"></i>
                   </button>
-
                 </Link>
               );
             })}
+
+            <div className="paginationRow">
+              <>
+                <Paginations
+                  handlePageChange={handlePageChange}
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                />
+              </>
+            </div>
             <Link to={"/checkout"} className="toCheck">
-              <button onClick={()=>{
-                console.log(orderItems);
-                
-              }}>Checkout</button>
+              <button
+                onClick={() => {
+                  count;
+                }}
+              >
+                Checkout
+              </button>
             </Link>
           </div>
         ) : (
