@@ -62,6 +62,10 @@ function PhoneFiltr({
   const getFilter = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
 
     const raw = JSON.stringify({
       category: [id.id],
@@ -105,9 +109,9 @@ function PhoneFiltr({
   useEffect(() => {
     setMinPrice(value[0]);
     setMaxPrice(value[1]);
-    // setBrandList([]);
+    setBrandList([]);
     // getFilter();
-  }, [value]);
+  }, [value, id.id]);
 
   useEffect(() => {
     getBrandsByCategory(id?.id);
