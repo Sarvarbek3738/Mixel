@@ -75,7 +75,7 @@ function BrandFiltr({
     };
 
     fetch(
-      `https://abzzvx.pythonanywhere.com/products/?page=${currentPage}&brand=${id.id}`,
+      `https://abzzvx.pythonanywhere.com/products/?page=${currentPage}&brand=${id.id}&page_size=10`,
       requestOptions
     )
       .then((response) => response.json())
