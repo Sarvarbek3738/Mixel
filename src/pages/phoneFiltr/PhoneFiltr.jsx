@@ -84,6 +84,8 @@ function PhoneFiltr({
     fetch("https://abzzvx.pythonanywhere.com/products/filter/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
+
         setLoading(false);
         setSpinning(false);
         setFilteredProducts(result?.products);
