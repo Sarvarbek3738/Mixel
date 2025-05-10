@@ -65,7 +65,7 @@ function Modal({ showModal, openModal, closeModal }) {
           <div>
             <img
               onClick={closeModal}
-              src="/public/imgs/Component 2.svg"
+              src="/imgs/Component 2.svg"
               alt=""
             />
           </div>
