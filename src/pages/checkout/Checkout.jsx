@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Checkout.css";
 import { toast } from "react-toastify";
 function Checkout({ orderItems }) {
@@ -6,6 +6,33 @@ function Checkout({ orderItems }) {
   const [last_name, setLastName] = React.useState(null);
   const [phone_number, setPhoneNumber] = React.useState(null);
   const [address, setAddress] = React.useState(null);
+  const [fio, setFio] = React.useState(null);
+  const [orderedProducts, setOrderedProducts] = useState(null);
+  const getorderedProducts = () => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("mixelToken")}`
+    );
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://abzzvx.pythonanywhere.com/checkout/items/get/",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setOrderedProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
   const createOrder = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -18,6 +45,7 @@ function Checkout({ orderItems }) {
       cart_item_ids: orderItems,
       first_name,
       last_name,
+      fio,
       phone_number,
       address,
       payment_type: "cash",
@@ -38,7 +66,9 @@ function Checkout({ orderItems }) {
       })
       .catch((error) => console.error(error));
   };
-
+  useEffect(() => {
+    getorderedProducts();
+  }, []);
   return (
     <div className="checkoutPage">
       <div className="container">
@@ -70,12 +100,40 @@ function Checkout({ orderItems }) {
                 </div>
                 <div className="formInputs">
                   <div className="row">
-                    <input required type="text" placeholder="Last name" />
-                    <input required type="text" placeholder="First name" />
+                    <input
+                      onChange={(e) => {
+                        setLastName(e.target.value);
+                      }}
+                      required
+                      type="text"
+                      placeholder="Last name"
+                    />
+                    <input
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                      }}
+                      required
+                      type="text"
+                      placeholder="First name"
+                    />
                   </div>
                   <div className="row">
-                    <input required type="text" placeholder="Father`s name" />
-                    <input required type="text" placeholder="Phone number" />
+                    <input
+                      onChange={(e) => {
+                        setFio(e.target.value);
+                      }}
+                      required
+                      type="text"
+                      placeholder="Father`s name"
+                    />
+                    <input
+                      onChange={(e) => {
+                        setPhoneNumber(e.target.value);
+                      }}
+                      required
+                      type="text"
+                      placeholder="Phone number"
+                    />
                   </div>
                 </div>
               </div>
@@ -85,20 +143,24 @@ function Checkout({ orderItems }) {
                   <h2>Your order</h2>
                 </div>
                 <div className="orderItems">
-                  <div className="orderItem">
-                    <div className="orderImg">
-                      <img src="/public/credit-card.svg" alt="" />
-                    </div>
-                    <div className="orderItemInfo">
-                      <h2>Product name</h2>
-                    </div>
-                    <div className="orderAmount">
-                      <p>1 pt</p>
-                    </div>
-                    <div className="orderItemPrice">
-                      <h2>$ 100.00</h2>
-                    </div>
-                  </div>
+                  {orderedProducts?.map((product) => {
+                    return (
+                      <div className="orderItem">
+                        <div className="orderImg">
+                          <img src={product?.product_image} alt="" />
+                        </div>
+                        <div className="orderItemInfo">
+                          <h2>Product name</h2>
+                        </div>
+                        <div className="orderAmount">
+                          <p>1 pt</p>
+                        </div>
+                        <div className="orderItemPrice">
+                          <h2>$ 100.00</h2>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
                 <div className="optainingMethod">
                   <div className="titleNumber">
@@ -109,11 +171,21 @@ function Checkout({ orderItems }) {
                     <div className="obtainingMethodItems">
                       <div className="obtainingMethodItem">
                         <label htmlFor="city">Your city/province</label>
-                        <input required type="text" placeholder="Your City" />
+                        <input
+                          onChange={(e) => {
+                            setAddress(`${address} ${e.target.value}`);
+                          }}
+                          required
+                          type="text"
+                          placeholder="Your City"
+                        />
                       </div>
                       <div className="obtainingMethodItem">
                         <label htmlFor="city">Your district</label>
                         <input
+                          onChange={(e) => {
+                            setAddress(`${address} ${e.target.value}`);
+                          }}
                           required
                           type="text"
                           placeholder="Your district"
@@ -122,7 +194,14 @@ function Checkout({ orderItems }) {
                     </div>
                     <div className="obtainingMethodItem lastMethodItem">
                       <label htmlFor="city">Your address</label>
-                      <input required type="text" placeholder="Your street" />
+                      <input
+                        onChange={(e) => {
+                          setAddress(`${address} ${e.target.value}`);
+                        }}
+                        required
+                        type="text"
+                        placeholder="Your street"
+                      />
                     </div>
                   </div>
                 </div>
