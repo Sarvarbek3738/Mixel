@@ -247,7 +247,7 @@ function Product({
                       </div>
                     </div>
                   </div>
-                  <p className="vip">
+                  {/* <p className="vip">
                     {" "}
                     <i class="fa-regular fa-comments"></i>
                     VIP скидки для VIP клиентов
@@ -265,7 +265,7 @@ function Product({
                         сейчас
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="ProductMinText">
                     <div>
                       <p className="productMinSiz">Название для договора</p>
