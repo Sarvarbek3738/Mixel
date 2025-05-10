@@ -30,7 +30,7 @@ function App() {
   const [cartProducts, setCartProducts] = useState(null);
   const [orderItems, setOrderItems] = useState([]);
   const [brandsByCategory, setBrandsByCategory] = useState(null);
-  
+
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -56,7 +56,6 @@ function App() {
 
   // getBrandsByCategory function
   const getBrandsByCategory = (id) => {
-    
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -68,9 +67,7 @@ function App() {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setBrandsByCategory(result);
-
       })
       .catch((error) => console.error(error));
   };
@@ -150,12 +147,11 @@ function App() {
     };
 
     fetch(
-      `https://abzzvx.pythonanywhere.com/cart-items/?page=${currentPageCart}`,
+      `https://abzzvx.pythonanywhere.com/cart-items/?page=${currentPageCart}&page_size=10`,
       requestOptions
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result?.total_pages);
         setTotalPagesCart(result?.total_pages);
         setCartProducts(result);
       })
@@ -233,7 +229,7 @@ function App() {
     };
 
     fetch(
-      `https://abzzvx.pythonanywhere.com/liked-items/?page=${currentPage}`,
+      `https://abzzvx.pythonanywhere.com/liked-items/?page=${currentPage}&page_size=10`,
       requestOptions
     )
       .then((response) => response.json())
@@ -534,9 +530,16 @@ function App() {
             element={<Checkout orderItems={orderItems} />}
           />
           <Route path="/login" element={<Login getUser={getUser} />} />
-          <Route path="/modal" element={<Modal showModal={showModal}
-          openModal={openModal}
-          closeModal={closeModal} />} />
+          <Route
+            path="/modal"
+            element={
+              <Modal
+                showModal={showModal}
+                openModal={openModal}
+                closeModal={closeModal}
+              />
+            }
+          />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer categories={categories} />

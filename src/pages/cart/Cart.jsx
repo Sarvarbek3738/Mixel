@@ -41,7 +41,8 @@ function Cart({
     fetch("https://abzzvx.pythonanywhere.com/checkout/items/", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        toast.success("Tanlangan maxsulotlar rasmiylashtirishga o'tdi");
+        console.log(result)
+        toast.success("Maxsulotlar checkoutga o'tdi")
       })
       .catch((error) => console.error(error));
   };
@@ -125,7 +126,9 @@ function Cart({
                       value={item.product}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setOrderItems([...orderItems, item.product]);
+                        console.log(item);
+                        
+                        setOrderItems([...orderItems, item.id]);
                       }}
                       {...label}
                       sx={{
@@ -173,6 +176,7 @@ function Cart({
               <button
                 onClick={() => {
                   postOrderList();
+                  // console.log(orderItems);
                 }}
               >
                 Checkout

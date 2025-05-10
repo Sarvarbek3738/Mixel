@@ -7,6 +7,8 @@ function Checkout({ orderItems }) {
   const [phone_number, setPhoneNumber] = React.useState(null);
   const [address, setAddress] = React.useState(null);
   const [fio, setFio] = React.useState(null);
+  const [region, setRegion] = React.useState(null);
+  const [city, setCity] = React.useState(null);
   const [orderedProducts, setOrderedProducts] = useState(null);
   const getorderedProducts = () => {
     const myHeaders = new Headers();
@@ -27,13 +29,14 @@ function Checkout({ orderItems }) {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setOrderedProducts(result);
       })
       .catch((error) => console.error(error));
   };
 
-  const createOrder = () => {
+  // updateOrder function
+  const updateOrder = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
@@ -42,32 +45,32 @@ function Checkout({ orderItems }) {
     );
 
     const raw = JSON.stringify({
-      cart_item_ids: orderItems,
+      phone_number,
       first_name,
       last_name,
       fio,
-      phone_number,
-      address,
       payment_type: "cash",
+      region: "string",
+      city: "string",
+      address,
     });
 
     const requestOptions = {
-      method: "POST",
+      method: "PUT",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/orders/create", requestOptions)
+    fetch("https://abzzvx.pythonanywhere.com/orders/7/", requestOptions)
       .then((response) => response.text())
-      .then((result) => {
-        console.log(result);
-        toast.success("Order created successfully");
-      })
+      .then((result) => console.log(result))
       .catch((error) => console.error(error));
   };
+
   useEffect(() => {
     getorderedProducts();
+    console.log(orderedProducts);
   }, []);
   return (
     <div className="checkoutPage">
@@ -86,7 +89,7 @@ function Checkout({ orderItems }) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            createOrder();
+            updateOrder();
           }}
           className="mainContent"
         >
@@ -146,7 +149,12 @@ function Checkout({ orderItems }) {
                   {orderedProducts?.map((product) => {
                     return (
                       <div className="orderItem">
-                        <div className="orderImg">
+                        <div
+                          onClick={() => {
+                            console.log(product);
+                          }}
+                          className="orderImg"
+                        >
                           <img src={product?.product_image} alt="" />
                         </div>
                         <div className="orderItemInfo">

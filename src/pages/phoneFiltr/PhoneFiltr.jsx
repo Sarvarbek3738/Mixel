@@ -52,6 +52,16 @@ function PhoneFiltr({
   const [maxPrice, setMaxPrice] = useState(Infinity);
   const [sortOrder, setSortOrder] = useState("asc");
 
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   // const [categoryId, setCategoryId] = useState(null);
   const categoryName = categories?.results.filter((item) => {
     return item.id == id.id;
@@ -81,14 +91,17 @@ function PhoneFiltr({
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/products/filter/", requestOptions)
+    fetch(
+      `https://abzzvx.pythonanywhere.com/products/filter/?page=${currentPage}`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-
         setLoading(false);
         setSpinning(false);
-        setFilteredProducts(result?.products);
+        setTotalPages(result?.total_pages);
+
+        setFilteredProducts(result?.results);
       })
       .catch((error) => console.error(error));
   };
@@ -125,7 +138,7 @@ function PhoneFiltr({
     window.scrollTo({
       top: "0",
     });
-  }, [id.id]);
+  }, [id?.id, currentPage]);
 
   const sortProducts = () => {
     if (!filteredProducts) return;
@@ -161,15 +174,6 @@ function PhoneFiltr({
 
   // pagination
 
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
   return (
     <>
       <div className="phoneFilter">
@@ -311,9 +315,9 @@ function PhoneFiltr({
                     </div>
                   </div>
                   <div className="brandBlock">
-                    {brandsByCategory?.results?.map((brand) => {
+                    {brandsByCategory?.results?.map((brand, index) => {
                       return (
-                        <div className="samsung" key={brand.id}>
+                        <div className="samsung" key={index}>
                           <div>
                             <Checkbox
                               onClick={(e) => {
@@ -328,14 +332,15 @@ function PhoneFiltr({
                               }}
                             />
                           </div>
-                          <p>{brand.name}</p>
+                          <p>{brand?.name}</p>
                         </div>
                       );
                     })}
                     {!brandsByCategory &&
-                      [1, 2, 3, 4, 5].map((item) => {
+                      [1, 2, 3, 4, 5]?.map((item, index) => {
                         return (
                           <Skeleton
+                            key={index}
                             style={{ marginBottom: "40px" }}
                             variant="rectangular"
                             width={230}
@@ -350,7 +355,6 @@ function PhoneFiltr({
                   <button
                     onClick={() => {
                       getFilter();
-                      console.log(brandList);
                     }}
                   >
                     Apply
@@ -359,17 +363,17 @@ function PhoneFiltr({
               </div>
               <div className="smartfonRight">
                 <div className="smartfonRightCards">
-                  {filteredProducts?.map((item) => {
+                  {filteredProducts?.map((item, index) => {
                     if (isGrid) {
                       return (
                         <ProductBox
+                          key={index}
                           getLikedProducts={getLikedProducts}
                           userData={userData}
                           getUser={getUser}
                           getData={getData}
                           deleteFromLiked={deleteFromLiked}
                           item={item}
-                          key={item.id}
                           addToLiked={addToLiked}
                           getOneProductData={getOneProductData}
                           setShowOrderModal={setShowOrderModal}
@@ -384,7 +388,7 @@ function PhoneFiltr({
                           getData={getData}
                           deleteFromLiked={deleteFromLiked}
                           item={item}
-                          key={item.id}
+                          key={index}
                           addToLiked={addToLiked}
                           getOneProductData={getOneProductData}
                           setShowOrderModal={setShowOrderModal}
@@ -394,9 +398,9 @@ function PhoneFiltr({
                   })}
                   {spinning && <Loader />}
                   {loading &&
-                    [1, 2, 3, 4, 5].map((item) => {
+                    [1, 2, 3, 4, 5].map((item, index) => {
                       return (
-                        <div className="loadingSkeletons">
+                        <div key={index} className="loadingSkeletons">
                           <Skeleton
                             variant="rectangular"
                             width={230}
