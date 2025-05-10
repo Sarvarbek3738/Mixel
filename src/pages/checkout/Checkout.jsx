@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Checkout.css";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 function Checkout({ orderItems }) {
   const [first_name, setFirstName] = React.useState(null);
   const [last_name, setLastName] = React.useState(null);
@@ -10,6 +11,8 @@ function Checkout({ orderItems }) {
   const [region, setRegion] = React.useState(null);
   const [city, setCity] = React.useState(null);
   const [orderedProducts, setOrderedProducts] = useState(null);
+
+  const navigation = useNavigate();
   const getorderedProducts = () => {
     const myHeaders = new Headers();
     myHeaders.append(
@@ -63,8 +66,12 @@ function Checkout({ orderItems }) {
     };
 
     fetch("https://abzzvx.pythonanywhere.com/orders/7/", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        toast.success("Buyurtmanign muvaffaqiyatli yaratildi!");
+        navigation("/");
+      })
       .catch((error) => console.error(error));
   };
 
